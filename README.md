@@ -42,12 +42,12 @@ Do not forget to install the extension pack
 
 ![image](https://github.com/user-attachments/assets/40457f5e-4417-4b4b-b642-f0c4c704617e)
 
-2. Click on the file that you donwloaded and just go with default settings.
+2. Click on the file that you downloaded and just go with the default settings.
 3. Open the application, go to File, then Tools, then the Extention Pack Manager.
 
 ![image](https://github.com/user-attachments/assets/67c5e941-0cbf-4dc1-95e9-8ef9ffa4d88d)
 
-4. Next hit Install button and choose the virtualbox extension pack that you downloaded.
+4. Next hit the Install button and choose the Virtualbox extension pack that you downloaded.
 
 ![image](https://github.com/user-attachments/assets/2d202300-7d52-43c7-baa2-291f35362450)
 ![image](https://github.com/user-attachments/assets/230cf88a-54de-4522-858b-991670742f14)
@@ -76,7 +76,7 @@ Then we choose the latest version.
 
 ![image](https://github.com/user-attachments/assets/a1bed139-45f7-4864-9d89-74ef542fc0cc)
 
-Name your vm, choose the folder that you want to save the machine, choose the iso image that you want to use, select the type and version of the VM.
+Name your vm, choose the folder that you want to save the machine, choose the iso image that you want to use, and select the type and version of the VM.
 
 ![image](https://github.com/user-attachments/assets/fa7194ac-cf8c-44f5-882e-62213f7dc89d)
 
@@ -129,6 +129,9 @@ Adapter 4 AD-LAB:
 
 After doing all of this we can start the machine.
 
+### Intstalling pfSense
+
+1. 
 
 ### Importing Kali 
 
@@ -147,19 +150,33 @@ Then choose the .vbox extension file.
 
 ![image-38](https://github.com/user-attachments/assets/5cf67d2e-ebd6-4c6e-ab83-f49f87a27b82)
 
-3. Right-Click the machine and choose the Network settings.
+3. Right-click the machine and choose the Network settings.
 
 ![cd25168f5bf7404cb6e4d5a8b84ca441](https://github.com/user-attachments/assets/465b1135-d2b9-4e79-aa75-f6eb9f315ed1)
 
-Change the network settings to the pfSense LAN network that you created. 
+Change the network settings to the pfSense LAN network that you created.
 
 ![image](https://github.com/user-attachments/assets/82294fe3-d42c-44cb-8982-732ef4d9e3aa)
 
+Then increase your RAM depending on how much you need. Mine is 8GB RAM because of the tools that I use. You can do it on the machine settings. 
 
+![image](https://github.com/user-attachments/assets/9cf482b6-64c7-48be-8248-fe25ad5868eb)
+
+4. Click OK and now you can start the machine. Use the default credentials of kali:kali
+
+![image](https://github.com/user-attachments/assets/919a0fe4-12fe-4847-acad-0180f51a77b8)
+
+5. Open the terminal to see if we are on the LAN network. Our IP Address should be 10.19.19.X/24. Later we can set up the IP Address that we you want later.
+
+image here
 
 ### Configuring the pfSense firewall
 
+1. Log into the web portal in your Kali machine to: https://10.19.19.1
 
+image here
+
+2. 
 
 ### Importing Vulnhub VMs to the lab
 

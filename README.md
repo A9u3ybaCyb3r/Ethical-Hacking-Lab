@@ -32,6 +32,26 @@ The lab focuses on providing a safe and controlled space to practice various sec
 ![image](https://github.com/user-attachments/assets/8805a3cd-25cb-4cd1-a185-f5291bd3dc3c)
  
  *Ref 1: Network Diagram*
+ 
+### Downloading Virtualbox and installing Virtualbox
+1. Go to this link https://www.virtualbox.org/wiki/Downloads and download depending on your operating system.
+
+![image](https://github.com/user-attachments/assets/f291de59-ca36-44c4-93c0-dbb21030192f)
+
+Do not forget to install the extension pack
+
+![image](https://github.com/user-attachments/assets/40457f5e-4417-4b4b-b642-f0c4c704617e)
+
+2. Click on the file that you donwloaded and just go with default settings.
+3. Open the application, go to File, then Tools, then the Extention Pack Manager.
+
+![image](https://github.com/user-attachments/assets/67c5e941-0cbf-4dc1-95e9-8ef9ffa4d88d)
+
+4. Next hit Install button and choose the virtualbox extension pack that you downloaded.
+
+![image](https://github.com/user-attachments/assets/2d202300-7d52-43c7-baa2-291f35362450)
+![image](https://github.com/user-attachments/assets/230cf88a-54de-4522-858b-991670742f14)
+
 
 ### Building a pfSense VM
 
@@ -113,15 +133,33 @@ After doing all of this we can start the machine.
 ### Importing Kali 
 
 1. Go to https://kali.org/get-kali/
-   - Click on the image that says Virtual Machines and download the 64-bit version of Virtualbox
+   - Click on the image that says Virtual Machines and download the 64-bit version of Virtualbox.
 
       ![image](https://github.com/user-attachments/assets/ae2d558e-57a4-4d1a-8576-5ad25de659ec)
      
      ![image](https://github.com/user-attachments/assets/6430026d-9ca1-46db-9dd6-98e6d758617c)
 
+2. After downloading the file, extract it and hit Add button on Virtualbox. 
+
+![image](https://github.com/user-attachments/assets/37ef160d-c250-4151-80df-bdfb038f063c)
+
+Then choose the .vbox extension file.
+
+![image-38](https://github.com/user-attachments/assets/5cf67d2e-ebd6-4c6e-ab83-f49f87a27b82)
+
+3. Right-Click the machine and choose the Network settings.
+
+![cd25168f5bf7404cb6e4d5a8b84ca441](https://github.com/user-attachments/assets/465b1135-d2b9-4e79-aa75-f6eb9f315ed1)
+
+Change the network settings to the pfSense LAN network that you created. 
+
+![image](https://github.com/user-attachments/assets/82294fe3-d42c-44cb-8982-732ef4d9e3aa)
+
 
 
 ### Configuring the pfSense firewall
+
+
 
 ### Importing Vulnhub VMs to the lab
 

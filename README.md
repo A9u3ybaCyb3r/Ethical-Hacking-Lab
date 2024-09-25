@@ -112,6 +112,15 @@ After doing all of this we can start the machine.
 
 ### Importing Kali 
 
+1. Go to https://kali.org/get-kali/
+   - Click on the image that says Virtual Machines and download the 64-bit version of Virtualbox
+
+      ![image](https://github.com/user-attachments/assets/ae2d558e-57a4-4d1a-8576-5ad25de659ec)
+     
+     ![image](https://github.com/user-attachments/assets/6430026d-9ca1-46db-9dd6-98e6d758617c)
+
+
+
 ### Configuring the pfSense firewall
 
 ### Importing Vulnhub VMs to the lab

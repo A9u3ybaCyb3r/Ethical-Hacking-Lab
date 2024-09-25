@@ -70,6 +70,46 @@ Name your vm, choose the folder that you want to save the machine, choose the is
 
 4. Go to the settings of the machine
 
+![image](https://github.com/user-attachments/assets/783117c5-c6c4-42d2-81c3-d70b5ce5d8fb)
+
+Change the boot order and match it as in the image shown below. Also, uncheck the Floppy Disk 
+This will ensure that the operating system boots upon installation from the disc.
+
+![image](https://github.com/user-attachments/assets/f69d55aa-465c-4616-a2cb-ceac898494ef)
+
+Go to the audio settings and disable the audio
+
+![image](https://github.com/user-attachments/assets/0677dd7d-2d4d-4383-8697-01d8fe5b8c04)
+
+Go to the USB settings and disable it.
+
+![image](https://github.com/user-attachments/assets/96c4257b-b5aa-416e-a86a-2f23360f1d0c)
+
+5. Configure the Network Interface
+
+Still on the machine settings go to the Network settings.
+
+![image](https://github.com/user-attachments/assets/f21163f3-85dc-4176-a402-9eb705f61631)
+
+Adapter 1 WAN:
+
+![image](https://github.com/user-attachments/assets/7ba13507-0c08-4ce8-a7a5-48591123ad08)
+
+Adapter 2 LAN:
+
+![image](https://github.com/user-attachments/assets/924e9715-78d5-45ba-8176-7dcb7d878862)
+
+Adapter 3 ISOLATED:
+
+![image](https://github.com/user-attachments/assets/7f6f4678-f46f-4344-8b99-9b39a45d55cf)
+
+Adapter 4 AD-LAB:
+
+![image](https://github.com/user-attachments/assets/7fe81f34-1f06-443e-bbaf-251de2fc6024)
+
+After doing all of this we can start the machine.
+
+
 ### Importing Kali 
 
 ### Configuring the pfSense firewall

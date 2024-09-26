@@ -199,7 +199,10 @@ We should finish with this configuration, after we confirm that this is what we 
 
 ### Configuring the Interfaces
 
-
+- The WAN interface will pull an IP address from your home netwokr. It will be different from mine.
+- The LAN IP address is going to be in the default option which is going to be 192.168.1.1/24. We will change this later
+- OPT1 is going to be our ISOLATED interface and is not yet configured. We will configured later.
+- OPT2 is going to be our AD_LAB interface and is not yet configured. We will configured later.
 
 ### Importing Kali 
 

@@ -21,8 +21,9 @@ The lab focuses on providing a safe and controlled space to practice various sec
 - pfSense: An open-source firewall software used to create a secure network gateway for the virtual lab environment.
 - Kali Linux: A Linux distribution pre-loaded with various security and penetration testing tools.
 - VulnHub: A repository of pre-configured vulnerable virtual machines for practicing penetration testing techniques.
-- Windows Server:
-- Windows 10: 
+- Windows Server 2019: Used as the Domain Controller (DC) to host Active Directory.
+- Windows 10: Used as a client machine to join the domain and interact with the AD environment.
+- Draw.io: Documenting your network topology and lab setup.
 
 ## Steps
 

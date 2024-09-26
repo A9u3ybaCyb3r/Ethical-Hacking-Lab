@@ -204,6 +204,31 @@ We should finish with this configuration, after we confirm that this is what we 
 - OPT1 is going to be our ISOLATED interface and is not yet configured. We will configured later.
 - OPT2 is going to be our AD_LAB interface and is not yet configured. We will configured later.
 
+![image](https://github.com/user-attachments/assets/32211990-aa57-4a3d-b86a-7dacca3b3e1d)
+
+### Configure the LAN
+
+Enter option 2
+
+![image](https://github.com/user-attachments/assets/ded46fbe-ea36-48c8-89a1-ab5752bf9405)
+
+We are going to change the LAN so enter option 2
+
+![image](https://github.com/user-attachments/assets/2fd90833-1370-4f2f-a932-cf4a8a090c68)
+
+We are going to configure the address statically we will enter 'n'
+
+![image](https://github.com/user-attachments/assets/a33a78e9-4594-4597-b44a-4f61a55f324b)
+
+Enter the IP address
+
+![image](https://github.com/user-attachments/assets/d44ef8c7-3c84-4c2d-9a5e-95db20d74310)
+
+Enter the subnet mask bits
+
+![image](https://github.com/user-attachments/assets/b7dd1628-263f-4e7a-be09-dd3d69c55583)
+
+
 ### Importing Kali 
 
  Go to https://kali.org/get-kali/

@@ -132,18 +132,85 @@ After doing all of this we can start the machine.
 
 ### Intstalling pfSense
 
-1. 
+1. Start the machine.
+
+![image](https://github.com/user-attachments/assets/e8207eaf-82db-4e52-a6e0-5efb4512622d)
+
+![image](https://github.com/user-attachments/assets/16fb7088-5ea1-44f1-ac24-7f3a8b9eddea)
+
+Press Enter 
+
+![image](https://github.com/user-attachments/assets/178f335e-62cf-409e-91d4-9c175da0c808)
+
+2. Choose Install pfSense
+
+![image](https://github.com/user-attachments/assets/ebc7e2fa-5d63-4bcf-ad4a-7e31b10de690)
+
+Choose Auto (ZFS)
+
+![image](https://github.com/user-attachments/assets/fe0a64bc-c58a-4771-bacf-3412eccc69d3)
+
+Then proceed with the installation using the default configuration.
+
+![image](https://github.com/user-attachments/assets/3ef9e02b-aa6d-49f4-92c3-d64d3539a813)
+
+Choose Stripe - No Redundancy
+
+![image](https://github.com/user-attachments/assets/f109234a-7691-4aba-beb2-21ff7bb2fc25)
+
+Use the Space Bar to choose the disk that you want. We should see an asterisk (*) on the option that we chose.
+
+![image](https://github.com/user-attachments/assets/e26bf8a4-d30c-4f8b-bad7-b3c3c93121a4)
+
+Choose YES to continue
+
+![image](https://github.com/user-attachments/assets/4e52f142-af31-477e-bb39-06a898fe9910)
+
+Now we wait for the installation to complete and then we choose Reboot
+
+![image](https://github.com/user-attachments/assets/2296c60c-d355-4902-9789-5f394ef42f15)
+
+
+### Configuring pfSense
+
+When the VM finishes from booting We are going to be asked this question: Should VLANs be set up now [y|n]?, we will choose n
+
+![image](https://github.com/user-attachments/assets/f9a0cf84-ee71-4439-a54a-731c478bcf64)
+
+Then we will enter our interfaces. The first one is for WAN
+
+![image](https://github.com/user-attachments/assets/4f3fe5fa-f812-4c77-a728-cb1f7fdd7b1d)
+
+LAN Interface
+
+![image](https://github.com/user-attachments/assets/ade25300-b7de-45d2-952d-2bf19da796fe)
+
+ISOLATED Interface
+
+![image](https://github.com/user-attachments/assets/dc1363e8-5b9f-43e6-9833-e7629f46e538)
+
+Lastly our AD_LAB Interface
+
+![image](https://github.com/user-attachments/assets/ea899840-4ee0-4bd5-9b48-8f6f6883aa5d)
+
+We should finish with this configuration, after we confirm that this is what we want to choose y
+
+![image](https://github.com/user-attachments/assets/4e4f7eef-f07d-41f7-a125-1836168c733f)
+
+### Configuring the Interfaces
+
+
 
 ### Importing Kali 
 
-1. Go to https://kali.org/get-kali/
+ Go to https://kali.org/get-kali/
    - Click on the image that says Virtual Machines and download the 64-bit version of Virtualbox.
 
       ![image](https://github.com/user-attachments/assets/ae2d558e-57a4-4d1a-8576-5ad25de659ec)
      
      ![image](https://github.com/user-attachments/assets/6430026d-9ca1-46db-9dd6-98e6d758617c)
 
-2. After downloading the file, extract it and hit Add button on Virtualbox. 
+ After downloading the file, extract it and hit Add button on Virtualbox. 
 
 ![image](https://github.com/user-attachments/assets/37ef160d-c250-4151-80df-bdfb038f063c)
 

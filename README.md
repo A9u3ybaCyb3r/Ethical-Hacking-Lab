@@ -30,7 +30,8 @@ The lab focuses on providing a safe and controlled space to practice various sec
 ### Planning Phase
 1. First we will build a network diagram to represent our lab visually.
    
-![image](https://github.com/user-attachments/assets/8805a3cd-25cb-4cd1-a185-f5291bd3dc3c)
+![image](https://github.com/user-attachments/assets/35019192-62e3-49be-95b1-352bf41a258d)
+
  
  *Ref 1: Network Diagram*
  

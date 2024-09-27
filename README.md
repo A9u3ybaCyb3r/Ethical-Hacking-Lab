@@ -308,6 +308,10 @@ Enter option 2
 
 ![image](https://github.com/user-attachments/assets/17caea15-b67f-49ba-8e12-6926a5124612)
 
+Enter 4 to configure the OPT4
+
+![image](https://github.com/user-attachments/assets/7119fee6-3375-4462-abd8-7d88f3423421)
+
 
 ### Importing Kali 
 

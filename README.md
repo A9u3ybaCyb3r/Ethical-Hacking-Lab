@@ -25,7 +25,7 @@ The lab focuses on providing a safe and controlled space to practice various sec
 - Windows 10: Used as a client machine to join the domain and interact with the AD environment.
 - Draw.io: Documenting your network topology and lab setup.
 
-## Steps
+## Steps to build the lab
 
 ### Planning Phase
 1. First we will build a network diagram to represent our lab visually.
@@ -193,16 +193,16 @@ Lastly our AD_LAB Interface
 
 ![image](https://github.com/user-attachments/assets/ea899840-4ee0-4bd5-9b48-8f6f6883aa5d)
 
-We should finish with this configuration, after we confirm that this is what we want to choose y
+We should finish with this configuration after we confirm that this is what we want to choose y
 
 ![image](https://github.com/user-attachments/assets/4e4f7eef-f07d-41f7-a125-1836168c733f)
 
 ### Configuring the Interfaces
 
-- The WAN interface will pull an IP address from your home netwokr. It will be different from mine.
+- The WAN interface will pull an IP address from your home network. It will be different from mine.
 - The LAN IP address is going to be in the default option which is going to be 192.168.1.1/24. We will change this later
-- OPT1 is going to be our ISOLATED interface and is not yet configured. We will configured later.
-- OPT2 is going to be our AD_LAB interface and is not yet configured. We will configured later.
+- OPT1 is going to be our ISOLATED interface and is not yet configured. We will configure it later.
+- OPT2 is going to be our AD_LAB interface and is not yet configured. We will configure it later.
 
 ![image](https://github.com/user-attachments/assets/32211990-aa57-4a3d-b86a-7dacca3b3e1d)
 
@@ -238,7 +238,7 @@ Enter the subnet mask bits
      
      ![image](https://github.com/user-attachments/assets/6430026d-9ca1-46db-9dd6-98e6d758617c)
 
- After downloading the file, extract it and hit Add button on Virtualbox. 
+ After downloading the file, extract it and hit the Add button on Virtualbox. 
 
 ![image](https://github.com/user-attachments/assets/37ef160d-c250-4151-80df-bdfb038f063c)
 
@@ -258,17 +258,17 @@ Then increase your RAM depending on how much you need. Mine is 8GB RAM because o
 
 ![image](https://github.com/user-attachments/assets/9cf482b6-64c7-48be-8248-fe25ad5868eb)
 
-4. Click OK and now you can start the machine. Use the default credentials of kali:kali
+4. Click OK and now you can start the machine. Use the default credentials of *kali:kali*
 
 ![image](https://github.com/user-attachments/assets/919a0fe4-12fe-4847-acad-0180f51a77b8)
 
-5. Open the terminal to see if we are on the LAN network. Our IP Address should be 10.19.19.X/24. Later we can set up the IP Address that we you want later.
+5. Open the terminal to see if we are on the LAN network. Our IP Address should be 10.19.19.X/24. Later we can set up the IP Address that we want later.
 
 image here
 
 ### Configuring the pfSense firewall
 
-1. Log into the web portal in your Kali machine to: https://10.19.19.1
+1. Log into the web portal (firefox for me) in your Kali machine to: https://10.19.19.1
 
 image here
 

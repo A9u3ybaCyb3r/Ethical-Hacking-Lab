@@ -30,10 +30,8 @@ The lab focuses on providing a safe and controlled space to practice various sec
 ### Planning Phase
 1. First we will build a network diagram to represent our lab visually.
    
-![image](https://github.com/user-attachments/assets/35019192-62e3-49be-95b1-352bf41a258d)
+![Network Diagram](https://github.com/A9u3ybaCyb3r/Virtual-Network-Penetration-Testing-Lab/blob/main/StrikeZone%20Net%20Diagram.drawio.pdf)
 
- 
- *Ref 1: Network Diagram*
  
 ### Downloading Virtualbox and installing Virtualbox
 1. Go to this link https://www.virtualbox.org/wiki/Downloads and download depending on your operating system.

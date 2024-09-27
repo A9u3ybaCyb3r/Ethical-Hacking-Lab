@@ -228,6 +228,86 @@ Enter the subnet mask bits
 
 ![image](https://github.com/user-attachments/assets/b7dd1628-263f-4e7a-be09-dd3d69c55583)
 
+Hit Enter this is for LAN.
+
+![image](https://github.com/user-attachments/assets/3e8990ab-4066-4866-9196-0e9b157026e0)
+
+Press n to configure the address statically
+
+![image](https://github.com/user-attachments/assets/23ea1fb7-2727-459c-9187-f293acfeecfc)
+
+Press Enter we are not going to be using IPv6
+
+![image](https://github.com/user-attachments/assets/14099163-f473-42e9-a7de-86ab03eb58cc)
+
+Enter y to enable the DHCP server
+
+![image](https://github.com/user-attachments/assets/36f07dcd-46d5-41d1-9cf3-90c689094758)
+
+Enter the start and end range
+
+![image](https://github.com/user-attachments/assets/8701352d-1e83-4ce3-bfcd-a18683d29d21)
+
+Enter n, we want to keep using TLS on the web portal
+
+![image](https://github.com/user-attachments/assets/cee8c91a-3fea-497f-bcd4-c8eb6f794aa8)
+
+Press Enter and you are done with the LAN
+
+![image](https://github.com/user-attachments/assets/18fb87f1-88ba-4002-a764-e623e34fd87d)
+
+### Configure the ISOLATED Interface
+
+Enter 2
+
+![image](https://github.com/user-attachments/assets/c8265961-0bed-425d-be7b-96efcad11aeb)
+
+Enter option 3 to configure OPT3
+
+![image](https://github.com/user-attachments/assets/0883dce2-053f-44fe-907b-3d96ae9ea5b5)
+
+Enter n to configure the address statically
+
+![image](https://github.com/user-attachments/assets/399d4ace-edf9-4359-a375-771a37bb71f3)
+
+Enter the network address
+
+![image](https://github.com/user-attachments/assets/d0f7ce08-b81e-4cd6-b3bf-b92a907264de)
+
+Enter the subnet mask bit
+
+![image](https://github.com/user-attachments/assets/5aa86244-f89a-4962-bfa1-466c09a68f29)
+
+Press Enter this is for the LAN
+
+![image](https://github.com/user-attachments/assets/c47dfcc5-e16b-47dc-9ae0-0d0f48a4bf63)
+
+Press n to configure statically 
+
+![image](https://github.com/user-attachments/assets/618cd159-3979-408c-bcfd-f9ea80c61d6a)
+
+Press Enter we will not be using IPv6
+
+![image](https://github.com/user-attachments/assets/232aafbb-ca03-43cb-9046-d4549ac6b424)
+
+Enable the DHCP server "y" and then enter the start and end range
+
+![image](https://github.com/user-attachments/assets/1c13e01c-9756-429b-8c42-448ae30ba4f3)
+
+Enter n, we want to keep using TLS on the web portal.
+
+![image](https://github.com/user-attachments/assets/c77ad20b-be1d-4135-8876-670b92f10a8a)
+
+Now we are done with the ISOLATED Interface
+
+![image](https://github.com/user-attachments/assets/93e0a0bd-f519-4ff1-9d6b-b945b2502173)
+
+### Configure the AD_LAB
+
+Enter option 2 
+
+![image](https://github.com/user-attachments/assets/17caea15-b67f-49ba-8e12-6926a5124612)
+
 
 ### Importing Kali 
 

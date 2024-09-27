@@ -23,7 +23,7 @@ The lab focuses on providing a safe and controlled space to practice various sec
 - VulnHub: A repository of pre-configured vulnerable virtual machines for practicing penetration testing techniques.
 - Windows Server 2019: Used as the Domain Controller (DC) to host Active Directory.
 - Windows 10: Used as a client machine to join the domain and interact with the AD environment.
-- Draw.io: Documenting your network topology and lab setup.
+- Draw.io: Used to draw and document the network topology and lab setup.
 
 ## Steps to build the lab
 

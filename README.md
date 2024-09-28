@@ -675,9 +675,11 @@ Scroll down until you find this option and check it
 
 Click Save and Apply Changes. Click Reboot and reboot now.
 
-Lastly, you will grab Kali's new DHCP reservation(ip that we set up earlier). Open a terminal on your and type this command **"sudo ip link set eth0 down && ip link set eth0 up"**
+Lastly, you will grab Kali's new DHCP reservation(IP that we set up earlier). Open a terminal on your and type this command **"sudo ip link set eth0 down && ip link set eth0 up"**
 
 ## Importing Vulnhub VMs to the lab
+
+We are going to Import 
 
 ## Building an Active Directory
 

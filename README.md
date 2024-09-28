@@ -53,7 +53,7 @@ Do not forget to install the extension pack
 ![image](https://github.com/user-attachments/assets/230cf88a-54de-4522-858b-991670742f14)
 
 
-### Building a pfSense VM
+## Building a pfSense VM
 
 1. First we download the file that we need. 
  - Go to this link: https://www.google.com/search?q=site%3A*.netgate.com+download+-site%3Aforum.netgate.com+-site%3Adocs.netgate.com+-inurl%3Ablog+-site%3Awww.netgate.com+-site%3Ashop.netgate.com+-site%3Aforums.netgate.com+-site%3Ainfo.netgate.com&ref=benheater.com
@@ -129,7 +129,7 @@ Adapter 4 AD-LAB:
 
 After doing all of this we can start the machine.
 
-### Intstalling pfSense
+## Intstalling pfSense
 
 1. Start the machine.
 
@@ -170,7 +170,7 @@ Now we wait for the installation to complete and then we choose Reboot
 ![image](https://github.com/user-attachments/assets/2296c60c-d355-4902-9789-5f394ef42f15)
 
 
-### Configuring pfSense
+## Configuring pfSense
 
 When the VM finishes from booting We are going to be asked this question: Should VLANs be set up now [y|n]?, we will choose n
 
@@ -196,7 +196,7 @@ We should finish with this configuration after we confirm that this is what we w
 
 ![image](https://github.com/user-attachments/assets/4e4f7eef-f07d-41f7-a125-1836168c733f)
 
-### Configuring the Interfaces
+### Setting up the Interfaces
 
 - The WAN interface will pull an IP address from your home network. It will be different from mine.
 - The LAN IP address is going to be in the default option which is going to be 192.168.1.1/24. We will change this later
@@ -353,11 +353,11 @@ This is how it should look like after we are done. Remember mine might be differ
 
 ![image](https://github.com/user-attachments/assets/2a0f79b8-93a5-49ee-823b-f4970d67dd11)
 
-## !!!Important!!!
+### !!!Important!!!
 
 We will not be making the pfSense web console accessible from the WAN to avoid exposing it to public networks, especially if using a laptop on public wireless. Instead, the configuration of the firewall rules will be done using a Kali VM later in the process.
 
-### Importing Kali 
+## Importing Kali 
 
  Go to https://kali.org/get-kali/
    - Click on the image that says Virtual Machines and download the 64-bit version of Virtualbox.
@@ -395,7 +395,7 @@ Then increase your RAM depending on how much you need. Mine is 8GB RAM because o
 ![image](https://github.com/user-attachments/assets/3507057e-d6df-423e-9fbe-bde723849657)
 
 
-### Configuring the pfSense firewall
+## Configuring the pfSense firewall
 
 1. Log into the web portal (firefox for me) in your Kali machine to: https://10.19.19.1
 
@@ -418,11 +418,37 @@ Click Next after loggin' in
 
 ![image](https://github.com/user-attachments/assets/4157974c-affb-43d9-aa12-f745ad488560)
 
+Fill out the Hostname and Domain. Uncheck Override DNS. You can use whatever name you want. Click Next.
+
+![image](https://github.com/user-attachments/assets/c3e8a9f6-c266-4412-a404-03931166ec10)
+
+Double-check your timezone and click Next.
+
+![image](https://github.com/user-attachments/assets/6a3875bf-c8be-4140-863b-3296c20aa10a)
+
+Scroll down and uncheck this option. We’re double-NAT, meaning the WAN network is also private and we want to allow this. Click Next.
+
+![image](https://github.com/user-attachments/assets/1fa7b998-b55c-4207-a454-831a331e4356)
+
+Click the Next
+
+![image](https://github.com/user-attachments/assets/d01ad2a6-3c77-446e-80a0-34b74245ba2c)
+
+Change the admin password and remember it. 
+
+![image](https://github.com/user-attachments/assets/73b60b4c-6325-479f-b7be-fe1ef1b8e934)
+
+Click Next and Finish
+
+## Configure the Interfaces
+
+### Isolated Interface
 
 
 
-### Importing Vulnhub VMs to the lab
 
-### Building an Active Directory
+## Importing Vulnhub VMs to the lab
 
-### Building a Pivoting Lab
+## Building an Active Directory
+
+## Building a Pivoting Lab

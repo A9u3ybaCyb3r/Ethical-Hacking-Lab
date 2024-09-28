@@ -392,15 +392,34 @@ Then increase your RAM depending on how much you need. Mine is 8GB RAM because o
 
 5. Open the terminal to see if we are on the LAN network. Our IP Address should be 10.19.19.X/24. Later we can set up the IP Address that we want later.
 
-image here
+![image](https://github.com/user-attachments/assets/3507057e-d6df-423e-9fbe-bde723849657)
+
 
 ### Configuring the pfSense firewall
 
 1. Log into the web portal (firefox for me) in your Kali machine to: https://10.19.19.1
 
-image here
+![image](https://github.com/user-attachments/assets/db0ecfcb-6a40-4817-8187-8cabda8db0bd)
 
-2. 
+2. If you encounter this, click Advanced
+
+![image](https://github.com/user-attachments/assets/329900dc-3fec-47e3-8335-42b84cd7069a)
+
+Then accept the risk
+
+![image](https://github.com/user-attachments/assets/2fbd799e-db1d-447b-8616-538c8b91f774)
+
+The default credentials are:
+
+- Username: admin
+- Password: pfsense
+
+Click Next after loggin' in
+
+![image](https://github.com/user-attachments/assets/4157974c-affb-43d9-aa12-f745ad488560)
+
+
+
 
 ### Importing Vulnhub VMs to the lab
 

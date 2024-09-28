@@ -444,8 +444,238 @@ Click Next and Finish
 
 ### Isolated Interface
 
+Go to Interfaces and choose OPT1
+
+![image](https://github.com/user-attachments/assets/1d51f12c-c551-4c49-9543-464d5f1f9302)
+
+Set the Description to ISOLATED. Then scroll down to click Save and Apply Changes
+
+![image](https://github.com/user-attachments/assets/90a7eff1-1423-4d85-921b-a4c649c6f7aa)
+
+![image](https://github.com/user-attachments/assets/5e86a71c-cb18-452a-b6f8-687eebaf96c8)
 
 
+
+### AD_LAB Interface
+
+Go to Interdace and choose OPT2
+
+![image](https://github.com/user-attachments/assets/f6b7f5cc-1410-4316-a3ba-df06c50e7cb6)
+
+Change the Description to AD_LAB. Then scroll down to click Save and Apply Changes
+
+![image](https://github.com/user-attachments/assets/4a1b57ba-2a69-43d3-a743-fde6276d0868)
+
+![image](https://github.com/user-attachments/assets/44d8157c-8736-484a-8def-c67444700015)
+
+### Optimize the DNS Resolver Service
+
+Go to Services > DNS Resolver
+
+![image](https://github.com/user-attachments/assets/b0dd2a59-96fb-4496-8c93-423fd49f4bfe)
+
+Check both of these options, then click save and apply changes just like before
+
+![image](https://github.com/user-attachments/assets/7b7612c2-1fde-463d-aa03-ebf2125d3aab)
+
+Still in the DNS Resolver, go to Advance Settings and check both of these options. Do not forget to Save and Apply Changes
+
+![image](https://github.com/user-attachments/assets/e7f537a4-9c21-4fe7-889b-68b01c09afa2)
+
+### Give Kali a Static DHCP Lease
+
+Go to Status > DHCP Leases
+
+![image](https://github.com/user-attachments/assets/1129d9f4-f090-470c-8a27-3202972cff1e)
+
+Click on this button to add a static mapping (the hostname is different because my Kali machine is named Vulnhunter)
+
+![image](https://github.com/user-attachments/assets/8e402467-88ac-4272-8336-7f0f00ad6c80)
+
+Now we set up the IP address of our kali machine. Click Save and Apply changes
+
+![image](https://github.com/user-attachments/assets/a85398a6-99fe-4090-9bb2-7f5540b39e88)
+
+### Configure the Firewall Rules
+
+Create an Alias for RFC1918. This will be used to reference all private IPv4 spaces. Go to Firewall > Alianses
+
+![image](https://github.com/user-attachments/assets/d1132f04-0a9e-48d1-b6c2-102723e3c00b)
+
+Click Add and fill this and then click Save
+
+![image](https://github.com/user-attachments/assets/b4e2dcdc-e912-4bf3-be1d-097eddbdee25)
+
+### Create an Alias for Kali
+
+Click Add, Save and Apply Changes
+
+![image](https://github.com/user-attachments/assets/b9e15e1a-9c14-42e1-8096-26c560fe7891)
+
+### LAN
+
+Click on Firewall > Rules
+
+![image](https://github.com/user-attachments/assets/00e87e94-4a92-49cb-84ea-bdbb97dbbe80)
+
+Click on LAN and then add a rule
+
+![image](https://github.com/user-attachments/assets/eb5af460-2933-4136-9018-fda3bd73f433)
+
+ Copy this rules
+
+ ![image](https://github.com/user-attachments/assets/5c1b56a4-808a-45e8-9669-cf0f18cc6b54)
+
+This is how it should look like when you are done.
+
+![image](https://github.com/user-attachments/assets/388db847-7bf8-4421-8563-0153d522d6aa)
+
+
+### ISOLATED
+
+Click on ISOLATED and then we add a rule
+
+![image](https://github.com/user-attachments/assets/c5e09e3a-6633-4157-8d2f-fffcee1e5938)
+
+![image](https://github.com/user-attachments/assets/fd4acef1-4374-4758-ac44-cbe094730803)
+
+![image](https://github.com/user-attachments/assets/f30108a8-dd32-43fb-893f-51d6fb4d3707)
+
+Then we add another rule
+
+![image](https://github.com/user-attachments/assets/9df9fcf5-e0a0-4d03-8aaa-ae7f844d5856)
+
+![image](https://github.com/user-attachments/assets/56e4d325-79c9-401a-93dc-8d9c5ef1b505)
+
+Lastly, we add an Isolated rule
+
+![image](https://github.com/user-attachments/assets/8c67283a-c782-4803-aad0-d1f509d66e08)
+
+![image](https://github.com/user-attachments/assets/a5fa3d8b-e313-4b79-84dc-98f83b19f941)
+
+This is how it should look like when you are done
+
+![image](https://github.com/user-attachments/assets/dc5850a1-70a8-4548-b69e-bc1dc935007e)
+
+### AD_LAB
+
+Click on the AD_LAB and then we add a rule
+
+![image](https://github.com/user-attachments/assets/354dc273-5e98-41d7-bd3d-1b39e246359d)
+
+![image](https://github.com/user-attachments/assets/a92c06e5-bc3d-4368-a396-8159cd84619a)
+
+![image](https://github.com/user-attachments/assets/21947bc9-1f65-4e6d-b362-3fd67ccc3039)
+
+**This rule effectively blocks traffic to any private IP address. Then we'll add another rule above this one to allow traffic to Kali, which is aliased to 10.19.19.2. If there are additional private IPv4 addresses you want your AD_LAB hosts to be able to talk to, you'll need to place the firewall rules above this one, as rules are evaluated from top to bottom.**
+
+Then we will add another rule
+
+![image](https://github.com/user-attachments/assets/cd42f591-7f97-4725-9baa-48bcc7b4d413)
+
+![image](https://github.com/user-attachments/assets/7c7f7019-a65c-4ed8-bb69-b814c6fd6166)
+
+ Add another rule 
+
+ ![image](https://github.com/user-attachments/assets/5c0cb759-aded-4b16-85ab-5286e6bf6e58)
+
+![image](https://github.com/user-attachments/assets/13aa5108-fdfe-44b4-9577-d0e8caf224fa)
+
+Final AD_LAB rule
+
+![image](https://github.com/user-attachments/assets/6db4663a-9c11-4cff-9f53-a0739ae4156e)
+
+![image](https://github.com/user-attachments/assets/7b9235e4-b712-42b4-b076-1889f7358bc3)
+
+This is how it should look like when you are done
+
+![image](https://github.com/user-attachments/assets/35cf63a4-ff61-4fcb-b5a1-bea349450758)
+
+### Floating Rules
+
+Floating rules are a flexible way to create firewall rules that can be applied to multiple interfaces. Unlike rules attached directly to specific interfaces, floating rules can be applied to any interface. This is helpful for rules that need to be consistent across multiple network locations.
+
+Add the port Alias
+
+Go to Firewall > Aliases 
+
+![image](https://github.com/user-attachments/assets/afd67561-4332-48a6-b4c0-eb89886cb4c3)
+
+Then click on ports and we add a rule
+
+![image](https://github.com/user-attachments/assets/1aee82ef-8ea6-4bdc-8ae1-7e8f506c447e)
+
+![image](https://github.com/user-attachments/assets/619133f6-b021-44a0-9ac4-8d2b1b7748c1)
+
+Fill it out and then click on Save
+
+![image](https://github.com/user-attachments/assets/08a31367-b3a1-463d-9873-23ca20873fc9)
+
+### Add the Separators
+
+Go to Firewall > Rules
+
+![image](https://github.com/user-attachments/assets/c0a61275-99c3-4a50-9ed6-835921920d3a)
+
+Choose Floating
+
+![image](https://github.com/user-attachments/assets/5ef5ef01-0caa-4954-a8f9-4917bf8ac593)
+
+Click this button to add a separator
+
+![image](https://github.com/user-attachments/assets/e0a96622-c717-4600-bfed-ccc811c7bbd9)
+
+Write this and do it again
+
+![image](https://github.com/user-attachments/assets/1bc1957f-3550-4f6a-a8c4-2c7b6d8778c5)
+
+You should have two separators when you are done, we will use them to sandwich the other rules that we create
+
+![image](https://github.com/user-attachments/assets/aa9127bd-e1c4-47ff-b04b-fd5d4f644dc9)
+
+Don't forget to save what you created
+
+### Block Logins to the Firewall
+
+Add a rule
+
+![image](https://github.com/user-attachments/assets/b34e2ea1-ab27-4dcd-a6ec-0aba4839348e)
+
+![image](https://github.com/user-attachments/assets/ddde4107-32c5-4d1f-8691-c952f0eed999)
+
+The subnets ISOLATED and AD_LAB are isolated from the firewall's login ports to enhance security. The "in" direction is chosen because traffic is flowing from external hosts into the firewall interface.
+
+![image](https://github.com/user-attachments/assets/5240f215-a47b-4479-8a25-295e3a340417)
+
+Click Save and Apply changes
+
+![image](https://github.com/user-attachments/assets/2936151e-28c2-4105-b561-dc94fc86df5d)
+
+### FLOATING Rules Desired End State
+
+Drag and drop items to re-order, then click Save and Apply Changes
+
+![image](https://github.com/user-attachments/assets/efdb2193-6a39-4d8e-81be-d76b396d1223)
+
+**To prevent hosts from accessing the firewall login ports, additional interfaces will be created as you progress through the VirtualBox lab. Subnets that are allowed to access the internet but not private IP addresses need to reach the gateway address. To achieve this without allowing access to the firewall login ports, specific rules are created.**
+
+### Make Some System Tweaks to pfSense
+
+Go to System > Advanced
+
+![image](https://github.com/user-attachments/assets/a2199be8-544f-4688-9109-3fd44c28d47f)
+
+Then Networking
+
+![image](https://github.com/user-attachments/assets/a3ae6783-b1d0-4961-9e87-db9835445ecf)
+
+Scroll down until you find this option and check it
+
+![image](https://github.com/user-attachments/assets/313f82d4-2e26-4f65-ad4f-f641c3c142bc)
+
+Click Save and Apply Changes. Click Reboot and reboot now.
+
+Lastly, you will grab Kali's new DHCP reservation(ip that we set up earlier). Open a terminal on your and type this command **"sudo ip link set eth0 down && ip link set eth0 up"**
 
 ## Importing Vulnhub VMs to the lab
 

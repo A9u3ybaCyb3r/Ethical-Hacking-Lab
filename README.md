@@ -311,6 +311,51 @@ Enter 4 to configure the OPT4
 
 ![image](https://github.com/user-attachments/assets/7119fee6-3375-4462-abd8-7d88f3423421)
 
+Enter the n to configure the address statically
+
+![image](https://github.com/user-attachments/assets/8b091b1f-4971-4ab4-8a8f-9690e7b12455)
+
+Enter the network address
+
+![image](https://github.com/user-attachments/assets/dc69c922-e5b7-45ca-a1f1-6f9a19df0f40)
+
+Enter the subnet mask bits
+
+![image](https://github.com/user-attachments/assets/06bd2dd6-0561-4389-9010-b2a70e671473)
+
+Press Enter, this is for the LAN
+
+![image](https://github.com/user-attachments/assets/ff489e11-bc9f-4929-bc91-9169e9ca5731)
+
+Enter n to configure the address statically
+
+![image](https://github.com/user-attachments/assets/b4fe77f0-fbd9-47e2-af03-133744f353e7)
+
+Press Enter, we are not going to use IPv6
+
+![image](https://github.com/user-attachments/assets/1597c9a7-a41f-4369-975e-30bfbfb0745f)
+
+Enter n to disable the DHCP server, as the domain controller will be acting as the DHCP server
+
+![image](https://github.com/user-attachments/assets/b691fdee-718b-4230-a0ba-c4915b2e1063)
+
+Enter n, we want to keep using TLS on the web portal
+
+![image](https://github.com/user-attachments/assets/ee252a48-5a29-4092-828f-81587093f117)
+
+Now we are done with the AD_LAB Interface.
+
+![image](https://github.com/user-attachments/assets/7d8c3f96-2db1-462f-a122-0c7ee1d66107)
+
+### Final Check
+
+This is how it should look like after we are done. Remember mine might be different than yours if you chose to use another IP address.
+
+![image](https://github.com/user-attachments/assets/2a0f79b8-93a5-49ee-823b-f4970d67dd11)
+
+## !!!Important!!!
+
+We will not be making the pfSense web console accessible from the WAN to avoid exposing it to public networks, especially if using a laptop on public wireless. Instead, the configuration of the firewall rules will be done using a Kali VM later in the process.
 
 ### Importing Kali 
 

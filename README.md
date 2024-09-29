@@ -679,8 +679,138 @@ Lastly, you will grab Kali's new DHCP reservation(IP that we set up earlier). Op
 
 ## Importing Vulnhub VMs to the lab
 
-We are going to Import 
+We are going to Import Machines from Vulnhub. We are going to download Metasploitable 2 these are the links:
+
+VM Info on Vulnhub: https://vulnhub.com/entry/metasploitable-2,29/
+
+Vulnhub Download Link: https://download.vulnhub.com/metasploitable/metasploitable-linux-2.0.0.zip
+
+You are going to get a a zip file so we need to extract it.
+
+![image](https://github.com/user-attachments/assets/852efc57-8754-4618-ada7-5e8d4533cf57)
+
+The .vmdk file is what we want
+
+![image](https://github.com/user-attachments/assets/6b2f3222-b258-4853-9fbd-acf787fd9469)
+
+On Virtualbox Click New so we can build a new machine
+
+![image](https://github.com/user-attachments/assets/94cf1927-a8a1-4975-bf93-9c85ba4ef9b5)
+
+![image](https://github.com/user-attachments/assets/23473cf4-7b97-401e-b5e4-78b4c37a23c5)
+
+![image](https://github.com/user-attachments/assets/3a6874c8-8a31-4972-aa27-2a7d97e008b7)
+
+Then we go here so we can add a disk
+
+![image](https://github.com/user-attachments/assets/d53613eb-96ac-47c7-b7d7-1225d52424a6)
+
+Click this icon
+
+![image](https://github.com/user-attachments/assets/ce21926b-c715-476c-899a-a5e430dda9aa)
+
+Then you go where you downloaded and unzipped metasploitable and get this file
+
+![image](https://github.com/user-attachments/assets/c26467eb-5e9b-4423-8447-8cffc81f6623)
+
+It should look like this
+
+![image](https://github.com/user-attachments/assets/8a730189-dbda-4797-8299-3d4cddf79c91)
+
+Then we click Finish
+
+![image](https://github.com/user-attachments/assets/b083e8e6-1b8e-4e3f-a18e-d087a9eadd4a)
+
+We don't start the VM, we right-click the Metasploitable2 VM, choose Settings, and go to network settings
+
+![image](https://github.com/user-attachments/assets/ce42f843-1bf5-4bd0-9603-6f11ff9c7a59)
+
+![image](https://github.com/user-attachments/assets/61ba46aa-5273-462a-a242-9aaa1d5c6e2a)
+
+Now you can start the VM.
+
+Login to the machine with the credentials msfadmin:msfadmin 
+
+![image](https://github.com/user-attachments/assets/1856ad49-3f18-46ed-aea6-a9714d7528d6)
+
+Next, we ping our Kali machine from Metasploitable 2, will do it with the IP address first
+
+image here
+
+Then we will use the local DNS suffix
+
+image here
+
+Lastly, we will ping Google and it should fail becuase we blocked everything outside
+
+![image](https://github.com/user-attachments/assets/3e2e770e-7db8-488b-bbb7-b4dac1e7d480)
+
+Now we should ping the Metasploitable VM from Kali
+
+image here
 
 ## Building an Active Directory
 
+For an Internal Penetration test, you only need to change the network adapter settings of the Kali machine and put it into the AD_LAB network. 
+
+### Windows Iso files 
+
+
+We will get the iso files from this link [Mircrosoft Evaluation Center](https://www.microsoft.com/en-us/evalcenter) and get these two machines:
+
+Windows Server 2019
+
+ - Download the ISO
+ - Fill out the information
+ - Then select your language and download
+
+Windows 10 Enterprise
+
+- Download the ISO-Enterprise
+- Fill out the information
+- Select your language and click download
+
+### Creating the Windows Server
+
+Click the New VM button, choose the ISO image, and then click Next
+
+![image](https://github.com/user-attachments/assets/9236f1e2-8434-4fac-ad75-75abdef2523a)
+
+You can use 2048 MB RAM which is the minimum. 4096 MB RAM is preferred
+
+![image](https://github.com/user-attachments/assets/bc72a1f8-930d-4735-b485-5b06d5dec688)
+
+![image](https://github.com/user-attachments/assets/9207ef6d-7170-45b8-a9f2-f97def9bc35a)
+
+![image](https://github.com/user-attachments/assets/ea745f88-9a49-43e9-9660-72eaf56c5ffb)
+
+Right-click and choose Settings and go to network
+
+![image](https://github.com/user-attachments/assets/2dfca7fd-ac04-4ce6-977d-2f015f04abd2)
+
+![image](https://github.com/user-attachments/assets/f3210e6a-7c63-4d53-b284-27cbe2b1cf94)
+
+### Create a Windows 10 Enterprise Template 
+
+Create a new VM and name it: Win10EnterpriseTemplate. Then choose the ISO file and click Next
+
+![image](https://github.com/user-attachments/assets/95cd722a-afb5-428e-affe-d68f151856a5)
+
+You can use 2048 MB RAM which is the minimum. 4096 MB RAM is preferred 
+
+![image](https://github.com/user-attachments/assets/73e05703-3c5d-4ef2-a3a5-6be3027d15c2)
+
+![image](https://github.com/user-attachments/assets/478a1849-f01a-44d8-a093-738e021c9507)
+
+Then go to network settings and change the network adapter
+
+![image](https://github.com/user-attachments/assets/b3c12b35-1707-4cc9-8733-a3ed0db29fda)
+
+![image](https://github.com/user-attachments/assets/0d653eb3-2c29-4908-bc6d-f8a1642c530d)
+
+Save the settings but do not start the VM
+
+### Install Windows Server 2019
+
+Start the VM
 ## Building a Pivoting Lab

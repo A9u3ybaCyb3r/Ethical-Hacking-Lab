@@ -934,6 +934,366 @@ When creating a new Active Directory forest, you need to specify a root domain n
 
 ![image](https://github.com/user-attachments/assets/e589f244-ea9b-4302-8889-3c06899d41a9)
 
+Click Next. The default options are fine. Specify a restore password. You can use the same password as the local admin or something different. It doesn’t matter. Click Next.
+
+![image](https://github.com/user-attachments/assets/5a052621-8569-4a81-976e-5c60adad81be)
+
+Ignore this message
+
+![image](https://github.com/user-attachments/assets/932f6756-b3a2-423c-aeed-21cb0782d26a)
+
+Click Next and continue with the defaults.
+
+![image](https://github.com/user-attachments/assets/874cc392-1625-440a-8f9e-a2fa209a4cd2)
+
+Click Install and wait for it to complete.
+
+![image](https://github.com/user-attachments/assets/9b9ee9a5-e763-4fc5-93b7-1817789c841a)
+
+The server will automatically reboot.
+
+### Configure Active Directory Certificate Services
+
+To enable LDAPS (Lightweight Directory Access Protocol Secure), Active Directory Certificate Services will be installed. After installation, log back into the domain controller using the local administrator account and wait for the Server Manager application to load.
+
+Open Server Manager and go to Manage > Add Roles and Features
+
+![image](https://github.com/user-attachments/assets/830e519e-bb03-48f2-950e-8979a75caf36)
+
+Click Next > Next > Next > Choose Active Directory Certificate Services
+
+![image](https://github.com/user-attachments/assets/664c7489-1afe-4dc9-907b-286d2cd14c48)
+
+Click Next > Next > Next > Next. For AD CS, choose the Certificate Authority role service.
+
+![image](https://github.com/user-attachments/assets/04aa0450-a9ee-4c85-8949-c60c6639dc6e)
+
+Click on the alert icon and click on the text to Configure Active Directory Certificate Services.
+
+![image](https://github.com/user-attachments/assets/4b12e359-f9d3-4cf7-bc18-172983dfe37a)
+
+Click Next, then select the service role to configure. Click Next.
+
+![image](https://github.com/user-attachments/assets/b53723e5-1e5f-42e4-ba34-d54d2768f4fb)
+
+Choose Enterprise CA and click Next.
+
+![image](https://github.com/user-attachments/assets/6c009654-c758-41f8-917c-5e6eee5c44e6)
+
+We're just going to use the default settings. Click Next > Next > Next > Next > Next > Next > Configure.
+
+### Configure DNS Forwarders
+
+The domain controller's DNS server will be used to resolve DNS queries within the ad.lab domain. However, for queries that it cannot resolve, it will need to forward them to a downstream DNS server. The pfSense default gateway can be used as this downstream DNS server. To configure the DNS settings on the domain controller, open the Start Menu and search for "DNS."
+
+![image](https://github.com/user-attachments/assets/4cc97fa9-e96a-4b5f-b974-a55d0629cc12)
+
+Expand DNS > DC1 and double-click Forwarders
+
+![image](https://github.com/user-attachments/assets/ab8b8351-831a-404a-b64f-afc0c286e284)
+
+Click Edit and add the IP address of the default gateway. Click OK.
+
+![image](https://github.com/user-attachments/assets/04c9aa9a-83fd-4707-aae9-10f136085fec)
+
+Image here
+
+### Add and Configure a DHCP Server
+
+Open Server Manager and go to Manage > Add Roles and Features
+
+![image](https://github.com/user-attachments/assets/c2346bc9-350a-449d-a468-5ee45b39106f)
+
+Click Next > Next > Next. Click DHCP Server
+
+![image](https://github.com/user-attachments/assets/7276d0ec-a13b-4350-969c-34fa33f0a4e2)
+
+![image](https://github.com/user-attachments/assets/924de763-5c47-4907-a92d-c867354eb5de)
+
+Click Add Features and click Next > Next > Next > Install
+
+Once the installation is complete, click on Complete DHCP Configuration
+
+![image](https://github.com/user-attachments/assets/f0869208-1c18-482a-ade0-731d2fdc830b)
+
+![image](https://github.com/user-attachments/assets/c093e03e-261c-4458-a281-6443eb01fb4c)
+
+Click Next > Commit > Close > Close
+
+Go to the Start Menu and search DHCP
+
+![image](https://github.com/user-attachments/assets/f528ad4e-c78a-4b4c-bb00-6436031119f3)
+
+Expand the DHCP server tree right-click IPv4 and choose New Scope
+
+![image](https://github.com/user-attachments/assets/aaef05a2-5f80-4d3e-8019-cbf0f95f3a61)
+
+Click Next and give your DHCP configuration a name and description. Then, click Next.
+
+image here
+
+Configure the DHCP address space and subnet mask. Then, click Next.
+
+image here
+
+We're not configuring any DHCP exclusions (reservations), so click Next
+
+![image](https://github.com/user-attachments/assets/49ba30e1-d159-4d6b-8790-419bf4a974b2)
+
+We'll make it so clients' leases are good for one year. Click Next.
+
+![image](https://github.com/user-attachments/assets/51bcf912-2265-429b-a0f8-79d894d610ab)
+
+Click Next to configure it now.
+
+![image](https://github.com/user-attachments/assets/a0f43082-23ee-44a3-80a2-6276d28b425e)
+
+Enter the address of the default gateway and click Add.
+
+image here
+
+The default DNS configuration for DHCP clients is good here. Click Next.
+
+image here
+
+We don't have a WINS server in our lab environment. Click Next
+
+![image](https://github.com/user-attachments/assets/386e6e33-a831-456a-b828-b807ed0939e0)
+
+Click Next to activate the DHCP scope and click Finish
+
+![image](https://github.com/user-attachments/assets/676e4eba-e20b-4174-b10d-d700469cd0b1)
+
+### Adding a Domain Administrator Account
+
+Go to the Start Menu. Search for Active Directory Users and Computers and open the app.
+
+![image](https://github.com/user-attachments/assets/fa6d2c7b-00bd-4728-9974-743258b6d177)
+
+![image](https://github.com/user-attachments/assets/caef1670-d782-4050-80e3-6f6f2474b14f)
+
+domain.lab > Right-click Users > New > User
+
+image here
+
+Fill out the fields
+
+image here
+
+Set the password and password options
+
+![image](https://github.com/user-attachments/assets/8c9f6279-7983-454f-af94-d5061bacaa84)
+
+Click Users
+
+![image](https://github.com/user-attachments/assets/cbb2467c-bfca-4b28-889a-1294b1b87440)
+
+Click Domain Admins
+
+![image](https://github.com/user-attachments/assets/13ff5758-fb2b-4246-b599-dcb5d634c1d6)
+
+Enter the domain administrator username and click Check Names. Click Ok > Ok.
+
+image here
+
+Sign out of the local administrator account
+
+![image](https://github.com/user-attachments/assets/c084c198-55af-429e-a4ab-6d05a474ca81)
+
+### Add Some Users to the Lab
+
+Log in as the new domain administrator
+
+image here 
+
+Go to the Start Menu. Search for Active Directory Users and Computers and open the app.
+
+![image](https://github.com/user-attachments/assets/3f5076ef-a893-408c-a3a4-3a0c437ff776)
+
+domian.lab > Right-click Users > New > User
+
+image here 
+
+Create two users, in my case I created two users related to the environment (Darth Vader and Emperor Palpatine)
+
+![image](https://github.com/user-attachments/assets/0446adca-377b-45c4-8d55-92735aa733f8)
+
+![image](https://github.com/user-attachments/assets/3b6acc7d-b8b5-4002-9c1d-ce4fbc326e72)
+
+![image](https://github.com/user-attachments/assets/66f26d75-4759-49fa-93bd-aa8380796704)
+
+![image](https://github.com/user-attachments/assets/d3f08088-f2cf-4c80-8a29-7588bb38908c)
+
+### Windows 10 Enterprise Template
+
+Power on the VM, choose your language, and click Next
+
+![image](https://github.com/user-attachments/assets/333b62a3-6414-4e11-8724-93206d39fd5c)
+
+Choose Install Now and accept the terms and conditions. Choose Custom: Install Windows Only.
+
+![image](https://github.com/user-attachments/assets/87e00b4a-70ff-48e7-97bf-217e3c62136e)
+
+Click New and then Apply
+
+![image](https://github.com/user-attachments/assets/c1ee4c41-6cbc-44bc-b42a-f9e922a9bc61)
+
+Click Next. Wait for the installation to finish.
+
+![image](https://github.com/user-attachments/assets/7a0fb988-d9cf-486d-bd69-feb1a903209c)
+
+Select your regional and language settings. Choose Domain Join instead.
+
+![image](https://github.com/user-attachments/assets/60534f60-499b-4085-8ae0-2fc7484ae487)
+
+Enter the username Template, as this is going to be our template VM.
+
+![image](https://github.com/user-attachments/assets/0bb612e2-2554-4085-9265-31036839f8c0)
+
+Enter a password and set security questions. Save the information in a password vault. Turn off all the services here.
+
+![image](https://github.com/user-attachments/assets/37c2c135-c985-4820-86a6-a83dc3fc2283)
+
+Choose Not now for Cortana.
+
+![image](https://github.com/user-attachments/assets/bf39d3cf-1bb6-410b-85cd-0fea40c20ec2)
+
+### Sysprep the Template
+
+Sysprep will be used to create a template VM. This will ensure that when the VM is cloned, the resulting Windows systems will have unique Security Identifier (SID) values. This is important for joining these cloned systems to a domain, as each system needs a unique SID to be identified within the domain.
+
+Log into the system using the template credentials and open a PowerShell terminal as administrator.
+
+Run the command: C:\Windows\System32\Sysprep\sysprep.exe
+
+![image](https://github.com/user-attachments/assets/65c870df-fa35-4671-9f2e-81c8d032209a)
+
+Click OK. Let the sysprep process run to completion. The VM should shutdown.
+
+### Windows 10 Enterprise VM 1
+
+Right-click the Windows 10 Enterprise Template and choose Clone. Give the cloned VM a name such as Win10Ent1.
+
+![image](https://github.com/user-attachments/assets/6723c25d-b9f1-4ba9-b307-19f0304e222b)
+
+![image](https://github.com/user-attachments/assets/a10acb89-8808-4fbb-a2cc-8dbca685599d)
+
+Click Clone and move on to clone the next one.
+
+### Windows 10 Enterprise VM 2
+
+Right-click the Windows 10 Enterprise Template and choose Clone. Give the cloned VM a name such as Win10Ent2.
+
+![image](https://github.com/user-attachments/assets/09b73fac-e1c6-4251-914c-4d2849b697c5)
+
+![image](https://github.com/user-attachments/assets/d4b43e8a-40c5-4d5b-9714-8971b77ea6eb)
+
+Click Clone and wait for the process to complete.
+
+### Joining the Computers to the Domain
+
+This process you need to repeat it with the other machine. 
+
+**Since we chose the Out-of-Box-Experience (OOBE) option when running sysprep on the template VM, we need to go through the Windows setup process again. This is similar to receiving a newly imaged Windows computer from your employer and joining it to the local domain.**
+
+Choose Domain join instead
+
+![image](https://github.com/user-attachments/assets/074384a8-19fe-4542-bca7-ff67349ca848)
+
+Set up a password and security questions. Save them in a password manager
+
+![image](https://github.com/user-attachments/assets/b8e4d853-e39c-40b6-a04f-e29bc1282e4f)
+
+Disable this
+
+![image](https://github.com/user-attachments/assets/1bf022d3-d557-492a-8a8b-f92c4c15326c)
+
+Choose Not now for Cortana
+
+![image](https://github.com/user-attachments/assets/c7c7f72b-37bc-4a77-9441-6142ba7afe7e)
+
+If prompted, choose Yes
+
+![image](https://github.com/user-attachments/assets/7ec27bd4-2659-4677-b037-041865b37a1d)
+
+Go to the Start Menu > Search for This PC > Right-click > choose Properties
+
+![image](https://github.com/user-attachments/assets/daad5140-747f-4ea1-9859-891a8a2c7f60)
+
+Go to Advance Settings 
+
+![image](https://github.com/user-attachments/assets/caeb1675-30c6-4011-add8-bbdff7825617)
+
+Click Computer Name and then Change
+
+![image](https://github.com/user-attachments/assets/de846123-1802-4a3e-8fd5-d687c10c6276)
+
+![image](https://github.com/user-attachments/assets/2e04a1ed-d6d5-4cee-836e-3614f6076d1b)
+
+Click More
+
+![image](https://github.com/user-attachments/assets/a58eda6b-4f90-4220-81d6-ddd184e76198)
+
+Then enter your local DNS suffix for your AD domain (name of the domain that you created)
+
+![image](https://github.com/user-attachments/assets/a51856bd-07fc-485a-b043-fbb5997bbc78)
+
+Name your computer, whatever you like
+
+![image](https://github.com/user-attachments/assets/b7c87756-337a-46b4-a1cf-dbe2eaf12335)
+
+Enter your AD local admin
+
+![image](https://github.com/user-attachments/assets/6eb156ac-29ec-47cc-80a8-6641bd74ace8)
+
+Enter the domain administrator credentials
+
+![image](https://github.com/user-attachments/assets/2724e77f-f041-41e4-a5a2-9c45e3216124)
+
+![image](https://github.com/user-attachments/assets/b618ce62-4486-465e-9cab-93c65973a173)
+
+Choose Other User > Log in as a domain user
+
+![image](https://github.com/user-attachments/assets/375905eb-0653-4ff5-9d32-063ffd411f6a)
+
+## Hack Your VirtualBox AD Lab
+
+### Using a Vulnerable AD Script
+
+We will use this script to create a vulnerable active directory: https://github.com/WaterExecution/vulnerable-AD-plus?ref=benheater.com
+
+Following along with the installation guidance, you should do the following:
+
+- Log into your Domain Controller VM
+- Run the script on the Domain Controller
+
+### Open Powershell as Administrator
+
+Right-click the Start Menu and Choose Windows PowerShell (Admin)
+
+![image](https://github.com/user-attachments/assets/f4b0a229-ad3a-448a-a788-dcf203db5fc1)
+
+### Run the script in Memory 
+
+Run the following command: 
+
+*# Set the Execution Policy to allow unsigned scripts*
+
+*Set-ExecutionPolicy -ExecutionPolicy Bypass -Force*
+
+We're going to download the script as a string using a .NET class. The script has a placeholder domain name of change.me, so we must change that before running it.
+
+I'll use the PowerShell -replace operator to change change.me to ad.lab. Be sure to substitute it with whatever your domain is. The script will then run in memory using Invoke-Expression.
+
+*[System.Net.WebClient]::new().DownloadString('https://raw.githubusercontent.com/WaterExecution/vulnerable-AD-plus/master/vulnadplus.ps1') -replace 'change\.me', 'ad.lab' | Invoke-Expression*
+
+As the script executes, you should see lots of output and green status indicating successful operations. In the screenshot below, we're at the end of the script and the server is going to reboot in 30 seconds.
+
+![image](https://github.com/user-attachments/assets/1958d78e-329e-401c-8c33-4783b14c2f5c)
+
+### Enable Some Extra Configurations
+
+**Group Policy Objects**
 
 
 ## Building a Pivoting Lab

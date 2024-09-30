@@ -1291,9 +1291,245 @@ As the script executes, you should see lots of output and green status indicatin
 
 ![image](https://github.com/user-attachments/assets/1958d78e-329e-401c-8c33-4783b14c2f5c)
 
-### Enable Some Extra Configurations
+## Enable Some Extra Configurations
 
-**Group Policy Objects**
+### Disable Windows Defender Antivirus and Firewall
+
+Open the Start Menu and search for Group Policy
+
+![image](https://github.com/user-attachments/assets/9044e22f-c381-49a4-9f43-005a777d0d86)
+
+Expand your forest until you see your domain
+
+![image](https://github.com/user-attachments/assets/b4ce6ea5-38fe-4f2e-be98-acffe6a1097c)
+
+Right-click your domain name and choose Create a GPO
+
+![image](https://github.com/user-attachments/assets/816d5a99-cb60-4644-a378-b7c806a97d5e)
+
+![image](https://github.com/user-attachments/assets/03ed6d43-a76a-498f-88dc-84ab0462f27a)
+
+Click OK. Right-click on your new group policy object and click Edit
+
+![image](https://github.com/user-attachments/assets/e23c24ee-5fdd-4a5e-8ffc-d3017d819c1f)
+
+Expand down into Computer Configuration > Policies > Administrative Templates > Windows Components
+
+![image](https://github.com/user-attachments/assets/dfaf703c-e6e2-4e8d-a58a-945df3d74dc1)
+
+Click on Windows Defender Antivirus, set it to enabled and click OK
+
+![image](https://github.com/user-attachments/assets/24bacaef-a79c-411f-8f44-2e3c416029b4)
+
+Click on Real-time Protection
+
+![image](https://github.com/user-attachments/assets/57a37453-830d-4b0e-979e-c42bac1608a8)
+
+Double-click Turn off real-time protection, set it to enabled and click OK
+
+![image](https://github.com/user-attachments/assets/493169c3-b5fe-45f6-a90c-5ad84c2b5c85)
+
+Now, go to Network > Network Connections > Windows Defender Firewall > Domain Profile
+
+![image](https://github.com/user-attachments/assets/cd016b5d-4e89-418a-bd8e-7bc212495d5c)
+
+Double-click Windows Defender Firewall: Protect all network connections. Set to Disabled and click OK
+
+![image](https://github.com/user-attachments/assets/3b266d98-e79c-4c15-9e6a-51155a22162a)
+
+Right-click the group policy object. Turn on the Enforced option
+
+![image](https://github.com/user-attachments/assets/c92383d2-475e-402f-b4e6-1955e1e524e7)
+
+### Enabling Any Local Admin Remote Logon
+
+Log into your Domain Controller and run Group Policy Management app.
+
+![image](https://github.com/user-attachments/assets/3493e5c9-d87f-447f-8071-ba3771ebfe28)
+
+Expand into and right-click the domain name. Choose Create a GPO in this domain, and Link it here
+
+![image](https://github.com/user-attachments/assets/36f6d10c-d3b5-45a7-9423-1aa5fb60458d)
+
+![image](https://github.com/user-attachments/assets/80a67dea-edc3-47d8-95d8-5ea4f9075dcc)
+
+Right-click the new GPO and click Edit
+
+![image](https://github.com/user-attachments/assets/d41f4424-6a7a-487a-913b-09745ed79009)
+
+Descend into Computer Configuration > Preferences > Windows Settings > Registry. Then, right-click Registry and choose New > Registry Item
+
+![image](https://github.com/user-attachments/assets/d373f471-1521-48e1-aba8-b9f95014d671)
+
+- The Hive is **HKEY_LOCAL_MACHINE**
+- The Key Path is **SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\**
+- The ValueName is **LocalAccountTokenFilterPolicy**
+- The ValueType is **REG_DWORD**
+- The ValueData is **1**
+
+![image](https://github.com/user-attachments/assets/07ed763a-d3cd-4d2c-bdbe-4c08af57f651)
+
+### Enable WinRM Server on All Domain Hosts
+
+Log into your Domain Controller and run Group Policy Management app.
+
+![image](https://github.com/user-attachments/assets/bc783e8c-2654-4c1b-afc2-09326bee650d)
+
+Expand into and right-click the domain name. Choose Create a GPO in this domain, and Link it here
+
+![image](https://github.com/user-attachments/assets/219893af-923a-4454-bdbd-008617320bd6)
+
+Give the GPO a name of something descriptive like Enable WinRM Service. Then, right-click the new GPO and choose Edit.
+
+Start from Step 5 on the IBM knowledge base article below. You don't need to run gpupdate /force just yet, as we have other GPOs to create.
+
+Also, skip the last step to create a firewall rule because we have it disabled earlier.
+
+Link: https://www.ibm.com/docs/en/tarm/8.13.0?topic=management-enabling-winrm-via-global-policy-objects
+
+This will open TCP/5985 on your Windows 10 hosts. You can verify the service is running by checking if that port is open.
+
+### Enable Remote Desktop Service on All Domain Hosts
+
+Log into your Domain Controller and run Group Policy Management app.
+
+![image](https://github.com/user-attachments/assets/0c867525-3c88-4df3-8c89-c9cde7d59b36)
+
+Expand into and right-click the domain name. Choose Create a GPO in this domain, and Link it here
+
+![image](https://github.com/user-attachments/assets/b92e96be-0f1e-4290-ae3c-e807bbdc0889)
+
+Give the GPO a name of something descriptive like Enable Remote Desktop Service. Then, right-click the new GPO and choose Edit.
+
+Descend into Computer Configuration > Policies > Administrative Templates > Windows Components > Remote Desktop Services > Remote Desktop Session Host > Connections. Then, configure the policy as shown below and click OK.
+
+![image](https://github.com/user-attachments/assets/7a310ec5-2cc3-49a2-b5e5-70548973dddf)
+
+This will open TCP/3389 on your Windows 10 hosts.
 
 
-## Building a Pivoting Lab
+**If you want to allow any non-admin user to RDP into your domain hosts, follow the guidance here: https://technet2.github.io/Wiki/articles/17671.how-to-add-domain-usersgroup-to-remote-desktop-users-group-on-servers-using-group-policy.html?ref=benheater.com**
+
+**Use the GPO you've created here in this step and follow along with the article. The article uses the Remote Server Users security group, which doesn't exist in this lab. Instead, you can use the Domain Users group.**
+
+### Enable RPC Access on All Hosts
+
+Log into your Domain Controller and run Group Policy Management app.
+
+![image](https://github.com/user-attachments/assets/d4cf396e-d6d3-4771-aa13-ba8f0a92cf56)
+
+Expand into and right-click the domain name. Choose Create a GPO in this domain, and Link it here
+
+![image](https://github.com/user-attachments/assets/ebf6bc16-f9ce-41e1-8322-0cdafce13903)
+
+Give the GPO a name of something descriptive like Enable RPC Access on All Hosts. Then, right-click the new GPO and choose Edit.
+
+Descend into Computer Configuration > Administrative Templates > System > Remote Procedure Call and set Enable RPC Endpoint Mapper Client Authentication to Enabled.
+
+![image](https://github.com/user-attachments/assets/32b29036-a153-49d8-bc07-4a9c1298d51f)
+
+### Update the Domain Policies
+
+Now, open a PowerShell console as administrator on the Domain Controller and run this command: gpupdate /force
+
+![image](https://github.com/user-attachments/assets/4cff3f44-644c-482e-aac3-d03dd6a80b31)
+
+Finally, reboot your Windows 10 VMs, so that they pull the new policies when they come up. Alternatively, you can log into each VM and run the gpupdate /force command.
+
+**Now we can start attacking our Active Directory**
+
+**You can add this if you want, to cover another attack. Link: https://www.blumira.com/integration/how-to-disable-null-session-in-windows/
+A reboot is required to apply the changes.**
+
+## Building a Pivoting Lab To Practice External Pentest
+
+### Network Diagram
+
+![image](https://github.com/user-attachments/assets/2890a7eb-2f5a-470d-9962-91c1ae89af25)
+
+### Setting up the Firewall
+
+The point is to make the lab as realistic as possible. To do so, we will add a rule to the LAN subnet that blocks all packets to the AD_LAB subnets.
+
+### Block Packets to AD Subnet
+
+Go to Firewall > Rules on pfSense
+
+![image](https://github.com/user-attachments/assets/271ad827-b60f-4539-82f2-1d45ff5ca8cc)
+
+Choose LAN
+
+![image](https://github.com/user-attachments/assets/1fb49432-f36e-48db-a96e-c7d187fa9cdb)
+
+Click Add
+
+![image](https://github.com/user-attachments/assets/bfd20b19-b5a9-475e-873a-06b788b5a1e2)
+
+![image](https://github.com/user-attachments/assets/db76748b-500c-4252-a03e-8c9b9405c0be)
+
+![image](https://github.com/user-attachments/assets/f9fd88b8-41e3-46bd-9cae-c78399647ed1)
+
+Save and Apply Changes
+
+### Toggling the New Rule
+
+In pfSense you can toggle a rule on and off without deleting it by pressing the little ✅ or ❌ to the left side of the rule.
+
+![image](https://github.com/user-attachments/assets/ea350f85-01ca-45ed-bbf3-7d49bf810c5a)
+
+Once you've toggled the rule on or off, click Apply Changes for it to take effect. You can turn it off if you do not want it. But for the sake of this lab, we need it enabled.
+
+### Setting up the Vulnerable Target
+
+To keep things simple, we'll use an existing target that should already be in our lab. We are going to use Metasploitable 2 but you can use whatever machine you want. 
+
+### Tweaking Metasploitable 2
+
+Right-click Metasploitable 2 > Snapshots
+
+![image](https://github.com/user-attachments/assets/2439f8bc-9637-47d4-af11-65ecdf8494c4)
+
+![image](https://github.com/user-attachments/assets/b20c688d-11d3-4b5e-b170-3125d386c7fe)
+
+![image](https://github.com/user-attachments/assets/16f89731-de26-4cd4-be85-09959238a98d)
+
+Right-click Metasploitable 2 > Settings
+
+![image](https://github.com/user-attachments/assets/6be6cc5b-68b2-4a15-9226-18fe1c043415)
+
+![image](https://github.com/user-attachments/assets/1cc0a036-a77c-42a1-b01e-7eb0de48766d)
+
+Adapter 1 (ISOLATED)
+
+![image](https://github.com/user-attachments/assets/f8c6b4f9-921e-4c4a-abfb-4bff0448dbbd)
+
+Adapter 2 (AD LAB)
+
+![image](https://github.com/user-attachments/assets/8146f32d-0e74-4638-8914-799ceeb9b8fd)
+
+### Start Up and Configure the Interfaces
+
+For this step, we will need to log into the Metasploitable 2 VM with some credentials and configure the /etc/network/interfaces file, so that we get a DHCP lease on the AD_LAB subnet. Use msfadmin:msfadmin credentials.
+
+![image](https://github.com/user-attachments/assets/98f7738b-ea50-412f-8468-e93192ac54d2)
+
+Command: sudo nano /etc/network/interfaces
+
+Before
+
+![image](https://github.com/user-attachments/assets/e2fc5ab0-b1c4-41a6-be76-b9b649bc7301)
+
+**The post-up ip route commands shown below are used to prefer the 10.25.25.1 gateway as the default route, so that the Metasploitable 2 host can retain internet access.**
+
+After 
+
+![image](https://github.com/user-attachments/assets/04470746-0cb9-46a9-a509-3acf38cdbb48)
+
+Press CTRL + X then Y to save the changes to the file. Then, press Enter. Finally, we need to refresh the networking stack so that we get a new DHCP address on the AD_LAB subnet.
+
+Command: sudo /etc/init.d/networking restart
+
+![image](https://github.com/user-attachments/assets/8f55beb3-450a-4686-9c0e-837ff839cb5f)
+
+**Now we are done with the lab! Happy Hacking!**
+

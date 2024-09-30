@@ -68,7 +68,7 @@ Then we choose the latest version.
 ![image](https://github.com/user-attachments/assets/4510c75a-d8b6-4821-ae6d-df8d84c0bf3a)
 
 
-2. Extract the file, in this case I will be using 7-zip.
+2. Extract the file, in this case, I will be using 7-zip.
 
 ![image](https://github.com/user-attachments/assets/b395d9a3-6e1c-4d7d-a32f-352084f731eb)
 
@@ -355,7 +355,7 @@ This is how it should look like after we are done. Remember mine might be differ
 
 ### !!!Important!!!
 
-We will not be making the pfSense web console accessible from the WAN to avoid exposing it to public networks, especially if using a laptop on public wireless. Instead, the configuration of the firewall rules will be done using a Kali VM later in the process.
+We will not be making the pfSense web console accessible from the WAN to avoid exposing it to public networks, especially if using a laptop on public wireless. Instead, the firewall rules will be configured using a Kali VM later in the process.
 
 ## Importing Kali 
 
@@ -390,7 +390,7 @@ Then increase your RAM depending on how much you need. Mine is 8GB RAM because o
 
 ![image](https://github.com/user-attachments/assets/919a0fe4-12fe-4847-acad-0180f51a77b8)
 
-5. Open the terminal to see if we are on the LAN network. Our IP Address should be 10.19.19.X/24. Later we can set up the IP Address that we want later.
+5. Open the terminal to see if we are on the LAN network. Our IP Address should be 10.19.19.X/24. Later, we can set up the IP Address that we want.
 
 ![image](https://github.com/user-attachments/assets/3507057e-d6df-423e-9fbe-bde723849657)
 
@@ -478,7 +478,7 @@ Check both of these options, then click save and apply changes just like before
 
 ![image](https://github.com/user-attachments/assets/7b7612c2-1fde-463d-aa03-ebf2125d3aab)
 
-Still in the DNS Resolver, go to Advance Settings and check both of these options. Do not forget to Save and Apply Changes
+If you are still in the DNS Resolver, go to Advance Settings and check both of these options. Do not forget to Save and Apply Changes
 
 ![image](https://github.com/user-attachments/assets/e7f537a4-9c21-4fe7-889b-68b01c09afa2)
 
@@ -492,7 +492,7 @@ Click on this button to add a static mapping (the hostname is different because 
 
 ![image](https://github.com/user-attachments/assets/8e402467-88ac-4272-8336-7f0f00ad6c80)
 
-Now we set up the IP address of our kali machine. Click Save and Apply changes
+Now we set up the IP address of our Kali machine. Click Save and Apply changes
 
 ![image](https://github.com/user-attachments/assets/a85398a6-99fe-4090-9bb2-7f5540b39e88)
 
@@ -508,7 +508,7 @@ Click Add and fill this and then click Save
 
 ### Create an Alias for Kali
 
-Click Add, Save and Apply Changes
+Click Add, Save, and Apply Changes
 
 ![image](https://github.com/user-attachments/assets/b9e15e1a-9c14-42e1-8096-26c560fe7891)
 
@@ -733,13 +733,17 @@ Login to the machine with the credentials msfadmin:msfadmin
 
 ![image](https://github.com/user-attachments/assets/1856ad49-3f18-46ed-aea6-a9714d7528d6)
 
+You can check the IP of the machine, by command: ip a
+
+![image](https://github.com/user-attachments/assets/956432cf-afbd-4853-a3c1-84abcc870bea)
+
 Next, we ping our Kali machine from Metasploitable 2, we will do it with the IP address first
 
-image here
+![image](https://github.com/user-attachments/assets/9468c8a9-9bd3-46c4-a2da-fc04dc64cee8)
 
 Then we will use the local DNS suffix
 
-image here
+![image](https://github.com/user-attachments/assets/69a58057-7d8e-4dbf-85eb-5673d19234bf)
 
 Lastly, we will ping Google and it should fail because we blocked everything outside
 
@@ -747,7 +751,7 @@ Lastly, we will ping Google and it should fail because we blocked everything out
 
 Now we should ping the Metasploitable VM from Kali
 
-image here
+![image](https://github.com/user-attachments/assets/4e73696b-f0d9-40fb-92ab-27ce6058ded5)
 
 ## Building an Active Directory
 
@@ -861,7 +865,7 @@ Double-click Internet Protocol Version 4 (TCP/IPv4)
 
 Configure your adapter as such:
 
-Image here
+![image](https://github.com/user-attachments/assets/30fa54b8-3246-4106-8047-cc99165c912a)
 
 DNS queries will be initially handled by the domain controller's DNS server. If the domain controller's DNS server cannot resolve a query, it will forward the query to the default gateway, which will then be resolved by pfSense.
 
@@ -877,9 +881,9 @@ Click the Start Menu and click Settings
 
 ![image](https://github.com/user-attachments/assets/907643dd-9906-4fa3-bdbf-8ed47b98fb0a)
 
-Enter the name of the domain controller. 
+Enter the name of the domain controller. Mine is DeathStar
 
-image here
+![image](https://github.com/user-attachments/assets/883e5a8c-8734-43aa-ac16-deec9f877cc6)
 
 Choose Restart Now. If a reason is required, choose Other (planned).
 
@@ -990,13 +994,13 @@ The domain controller's DNS server will be used to resolve DNS queries within th
 
 Expand DNS > DC1 and double-click Forwarders
 
-![image](https://github.com/user-attachments/assets/ab8b8351-831a-404a-b64f-afc0c286e284)
+![image](https://github.com/user-attachments/assets/a52fec83-9dbd-4cf6-97b3-b1a60215d89c)
 
 Click Edit and add the IP address of the default gateway. Click OK.
 
 ![image](https://github.com/user-attachments/assets/04c9aa9a-83fd-4707-aae9-10f136085fec)
 
-Image here
+![image](https://github.com/user-attachments/assets/b2472dbe-ba9f-4774-90bf-4273ac20b596)
 
 ### Add and Configure a DHCP Server
 
@@ -1026,11 +1030,11 @@ Go to the Start Menu and search DHCP
 
 Expand the DHCP server tree right-click IPv4 and choose New Scope
 
-![image](https://github.com/user-attachments/assets/aaef05a2-5f80-4d3e-8019-cbf0f95f3a61)
+![image](https://github.com/user-attachments/assets/3183010a-c384-4e5a-80e5-dd1745ea1527)
 
 Click Next and give your DHCP configuration a name and description. Then, click Next.
 
-image here
+![image](https://github.com/user-attachments/assets/18d77c1e-ae7b-47a0-a96a-6f0630ba36ba)
 
 Configure the DHCP address space and subnet mask. Then, click Next.
 

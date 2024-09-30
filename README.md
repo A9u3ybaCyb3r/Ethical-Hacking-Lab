@@ -458,7 +458,7 @@ Set the Description to ISOLATED. Then scroll down to click Save and Apply Change
 
 ### AD_LAB Interface
 
-Go to Interdace and choose OPT2
+Go to Interface and choose OPT2
 
 ![image](https://github.com/user-attachments/assets/f6b7f5cc-1410-4316-a3ba-df06c50e7cb6)
 
@@ -1038,7 +1038,7 @@ Click Next and give your DHCP configuration a name and description. Then, click 
 
 Configure the DHCP address space and subnet mask. Then, click Next.
 
-image here
+![image](https://github.com/user-attachments/assets/9f8f218b-407c-4007-b5b4-15b8d91a71f1)
 
 We're not configuring any DHCP exclusions (reservations), so click Next
 
@@ -1052,13 +1052,14 @@ Click Next to configure it now.
 
 ![image](https://github.com/user-attachments/assets/a0f43082-23ee-44a3-80a2-6276d28b425e)
 
-Enter the address of the default gateway and click Add.
+Enter the address of the default gateway and click Add. Mine is 10.25.25.1
 
-image here
+![image](https://github.com/user-attachments/assets/ed6d9661-2e60-4df6-b38f-c32ebe335900)
 
-The default DNS configuration for DHCP clients is good here. Click Next.
 
-image here
+The default DNS configuration for DHCP clients is good here. Click Next. My domain is galactic.empire and the IP of 10.25.25.2
+
+![image](https://github.com/user-attachments/assets/a7962a82-72c5-4406-be46-a44f9e3a6be8)
 
 We don't have a WINS server in our lab environment. Click Next
 
@@ -1076,13 +1077,15 @@ Go to the Start Menu. Search for Active Directory Users and Computers and open t
 
 ![image](https://github.com/user-attachments/assets/caef1670-d782-4050-80e3-6f6f2474b14f)
 
-domain.lab > Right-click Users > New > User
+[name of domain].lab > Right-click Users > New > User
 
-image here
+![image](https://github.com/user-attachments/assets/3f84b18e-2fc8-40a2-9b15-8cb32ea00c72)
 
-Fill out the fields
 
-image here
+Fill out the fields according to what you want.
+
+![image](https://github.com/user-attachments/assets/ebefe8fd-c25d-4cc9-a5e8-8aa81632394b)
+
 
 Set the password and password options
 
@@ -1098,7 +1101,7 @@ Click Domain Admins
 
 Enter the domain administrator username and click Check Names. Click Ok > Ok.
 
-image here
+![image](https://github.com/user-attachments/assets/d18499c1-033f-4030-8c81-fef8f7f63127)
 
 Sign out of the local administrator account
 
@@ -1108,15 +1111,15 @@ Sign out of the local administrator account
 
 Log in as the new domain administrator
 
-image here 
+![image](https://github.com/user-attachments/assets/724633b2-c68f-4400-b30d-14f192210444)
 
 Go to the Start Menu. Search for Active Directory Users and Computers and open the app.
 
 ![image](https://github.com/user-attachments/assets/3f5076ef-a893-408c-a3a4-3a0c437ff776)
 
-domian.lab > Right-click Users > New > User
+[name of domain].lab > Right-click Users > New > User
 
-image here 
+![image](https://github.com/user-attachments/assets/bf078b27-be93-4c88-87ca-f594728f46c9)
 
 Create two users, in my case I created two users related to the environment (Darth Vader and Emperor Palpatine)
 

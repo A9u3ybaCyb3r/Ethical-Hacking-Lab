@@ -675,7 +675,7 @@ Scroll down until you find this option and check it
 
 Click Save and Apply Changes. Click Reboot and reboot now.
 
-Lastly, you will grab Kali's new DHCP reservation(IP that we set up earlier). Open a terminal on your and type this command **"sudo ip link set eth0 down && ip link set eth0 up"**
+Lastly, you will grab Kali's new DHCP reservation(IP we set up earlier). Open a terminal on your and type this command **"sudo ip link set eth0 down && ip link set eth0 up"**
 
 ## Importing Vulnhub VMs to the lab
 
@@ -685,7 +685,7 @@ VM Info on Vulnhub: https://vulnhub.com/entry/metasploitable-2,29/
 
 Vulnhub Download Link: https://download.vulnhub.com/metasploitable/metasploitable-linux-2.0.0.zip
 
-You are going to get a a zip file so we need to extract it.
+You will get a zip file so we need to extract it.
 
 ![image](https://github.com/user-attachments/assets/852efc57-8754-4618-ada7-5e8d4533cf57)
 
@@ -733,7 +733,7 @@ Login to the machine with the credentials msfadmin:msfadmin
 
 ![image](https://github.com/user-attachments/assets/1856ad49-3f18-46ed-aea6-a9714d7528d6)
 
-Next, we ping our Kali machine from Metasploitable 2, will do it with the IP address first
+Next, we ping our Kali machine from Metasploitable 2, we will do it with the IP address first
 
 image here
 
@@ -741,7 +741,7 @@ Then we will use the local DNS suffix
 
 image here
 
-Lastly, we will ping Google and it should fail becuase we blocked everything outside
+Lastly, we will ping Google and it should fail because we blocked everything outside
 
 ![image](https://github.com/user-attachments/assets/3e2e770e-7db8-488b-bbb7-b4dac1e7d480)
 
@@ -812,5 +812,128 @@ Save the settings but do not start the VM
 
 ### Install Windows Server 2019
 
-Start the VM
+Start the VM, it will start the installation. Choose your language and then click Install Now
+
+![image](https://github.com/user-attachments/assets/911f2ead-4caf-4ba6-8d80-d754ccb9b25f)
+
+Choose Windows Server 2019 Standard Evaluation (Desktop Experience)
+
+![image](https://github.com/user-attachments/assets/8bd4d678-196f-43e4-a3d7-279d82e32817)
+
+Click Next and accept the terms and conditions. Choose New and then Apply, to create a new drive
+
+![image](https://github.com/user-attachments/assets/1eb2e5a6-2b07-449a-bc7a-d308e35a5baf)
+
+![image](https://github.com/user-attachments/assets/6d06fc60-5b8f-4c75-a03b-23d57e8a8657)
+
+![image](https://github.com/user-attachments/assets/617f1db9-2305-480f-8790-4092d03f254b)
+
+Then we Click Next and wait for the installation to finish.
+
+![image](https://github.com/user-attachments/assets/c0cc35a8-20f8-43e5-ab74-8a7695df6d90)
+
+Create a local Administrator password (do not forget it). Press CTRL + ALT + DEL and log in with your local Administrator password.
+
+![image](https://github.com/user-attachments/assets/f7c5d4cb-9ab8-4b44-9959-061a8b988700)
+
+**The DHCP service was disabled on pfSense for the AD Lab LAN. This was done to allow the domain controller to serve as the DHCP server. As a result, the domain controller will need to be configured manually.**
+
+Right-click the network interface icon.
+
+![image](https://github.com/user-attachments/assets/e230d92c-111e-4be1-bb10-bbfbbcad97c7)
+
+Choose Open Network & Internet Settings
+
+![image](https://github.com/user-attachments/assets/ee7a3cbd-6019-4f04-9b6f-ba1dbf32b660)
+
+Scroll down and choose Change adapter options
+
+![image](https://github.com/user-attachments/assets/11162fbb-b875-45f9-8fcd-8acc5a972b9b)
+
+Right-click the adapter and choose Properties
+
+![image](https://github.com/user-attachments/assets/03dfa97f-a2a2-43b4-b1df-91d19fdf5ce4)
+
+Double-click Internet Protocol Version 4 (TCP/IPv4)
+
+![image](https://github.com/user-attachments/assets/7bc35dcf-8793-4079-88d0-bd2585525b20)
+
+
+Configure your adapter as such:
+
+Image here
+
+DNS queries will be initially handled by the domain controller's DNS server. If the domain controller's DNS server cannot resolve a query, it will forward the query to the default gateway, which will then be resolved by pfSense.
+
+### Rename the Server 
+
+Click the Start Menu and click Settings
+
+![image](https://github.com/user-attachments/assets/0c78f167-eb1d-4394-8b05-97f366105bdf)
+
+![image](https://github.com/user-attachments/assets/70b9ed00-a739-4b5a-83be-de105f59e9ec)
+
+![image](https://github.com/user-attachments/assets/df0e88ab-3af5-428a-ac4f-5f7449625652)
+
+![image](https://github.com/user-attachments/assets/907643dd-9906-4fa3-bdbf-8ed47b98fb0a)
+
+Enter the name of the domain controller. 
+
+image here
+
+Choose Restart Now. If a reason is required, choose Other (planned).
+
+### Take a Snapshot of the VM
+
+We are going to create a snapshot of the VM before we create a domain. Next to the VM click the menu icon and choose Snapshots. 
+
+![image](https://github.com/user-attachments/assets/f97eac30-6dd0-400d-bbae-6ff295c88fbf)
+
+Click the Take button.
+
+![image](https://github.com/user-attachments/assets/1824a038-9ffb-4ece-a5ae-3182de360c99)
+
+You can fill it out with something like this.
+
+![image](https://github.com/user-attachments/assets/2cbb7a5c-5428-46a8-844b-0e26d31e7ab1)
+
+Click OK. Now, we can restore this snapshot at any time if we want to roll back to a pre-domain install.
+
+### Configure Domain Services
+
+On the Windows Server, Open Server Manager, click Manage > Add Roles and Features
+
+![image](https://github.com/user-attachments/assets/3c5d8e8d-e79d-4511-827c-2d68e3f58e30)
+
+Click Next > Next > Next until you reach Server Roles. Check the following boxes:
+
+- Active Directory Domain Services: This will enable the server to act as a domain controller for an Active Directory domain.
+- DNS Server: This will enable the server to act as a DNS server, allowing other devices to resolve domain names within the network.
+
+Then Click Add Features
+
+![image](https://github.com/user-attachments/assets/e5f34826-48f5-4d72-87f9-c3816f0018ba)
+
+![image](https://github.com/user-attachments/assets/169182bd-7d30-4487-940a-2ae63c43e46a)
+
+Click Next > Install. Wait for the installation to finish and click Close.
+
+![image](https://github.com/user-attachments/assets/2b817f0c-18de-490b-a6ae-6c69b270d291)
+
+### Configure Active Directory Domain Services
+
+Log back into the domain controller as the local administrator and wait for the Server Manager app to load.
+
+![image](https://github.com/user-attachments/assets/4ff65c32-6db1-4bac-b5cb-8d8411c9acca)
+
+Click Promote this server to a domain controller
+
+![image](https://github.com/user-attachments/assets/3ec9b97a-e43b-49fb-9f07-bbfaa4a91fa6)
+
+When creating a new Active Directory forest, you need to specify a root domain name. This domain name will be used to identify the forest and its domain controllers. Examples of suitable domain names include .lab, .local, .com, .org, and .net. However, it is recommended to avoid using .local, as it can interfere with multicast traffic.
+
+![image](https://github.com/user-attachments/assets/e589f244-ea9b-4302-8889-3c06899d41a9)
+
+
+
 ## Building a Pivoting Lab

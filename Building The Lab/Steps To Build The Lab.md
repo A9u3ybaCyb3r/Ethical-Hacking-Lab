@@ -1,7 +1,8 @@
 # Steps to Build The Lab
 
 ### Planning Phase
- First, we will build a network diagram to represent our lab visually.
+
+ We will build a network diagram to represent our lab visually.
    
 [Network Diagram](https://github.com/A9u3ybaCyb3r/Virtual-Network-Penetration-Testing-Lab/blob/main/Building%20The%20Lab/Empire%20Net%20Diagram.drawio.pdf)
 

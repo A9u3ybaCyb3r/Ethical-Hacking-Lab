@@ -23,9 +23,9 @@ This folder contains resources related to performing penetration tests, includin
 - **Penetration Testing**: Importing pre-configured vulnerable machines (VulnHub) and Kali Linux for practicing penetration testing techniques.
 - **Active Directory**: Building a simulated Active Directory environment to understand directory services and practice potential attack vectors.
 - **Security Analysis**: Utilizing tools like pfSense firewall for network traffic control.
+- **Reporting and Documentation**: Developing clear and actionable reports that communicate findings, methodologies, and recommendations to stakeholders.
 - Enhanced knowledge of network protocols and security vulnerabilities.
 - Development of critical thinking and problem-solving skills in cybersecurity.
-- Report Writing.
 
 ## Tools Used
 

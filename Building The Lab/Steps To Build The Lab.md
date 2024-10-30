@@ -18,7 +18,7 @@
 
 ---
 
-## Planning Phase
+## 1. Planning Phase
 
  We will build a network diagram to represent our lab visually.
    
@@ -26,7 +26,7 @@
 
 ---
  
-## Downloading Virtualbox and installing Virtualbox
+## 2. Downloading Virtualbox and installing Virtualbox
 
 Go to this link https://www.virtualbox.org/wiki/Downloads and download depending on your operating system.
 
@@ -50,7 +50,7 @@ Next, hit the Install button and choose the Virtualbox extension pack that you d
 
 ---
 
-## Building a pfSense VM
+## 3. Building a pfSense VM
 
 First, we download the file that we need.
 
@@ -129,7 +129,7 @@ After doing all of this we can start the machine.
 
 ---
 
-## Intstalling pfSense
+## 4. Intstalling pfSense
 
 Start the machine.
 
@@ -171,7 +171,7 @@ Now we wait for the installation to complete and then we choose Reboot.
 
 ---
 
-## Configuring pfSense
+## 5. Configuring pfSense
 
 When the VM finishes booting We are going to be asked this question: Should VLANs be set up now [y|n]? we will choose n.
 
@@ -360,7 +360,7 @@ We will not be making the pfSense web console accessible from the WAN to avoid e
 
 ---
 
-## Importing Kali 
+## 6. Importing Kali 
 
  Go to https://kali.org/get-kali/
 
@@ -400,7 +400,7 @@ Then increase your RAM depending on how much you need. Mine is 8GB RAM because o
 
 ---
 
-## Configuring the pfSense firewall
+## 7. Configuring the pfSense firewall
 
  Log into the web portal (firefox for me) in your Kali machine to: **https://10.19.19.1**.
 
@@ -683,7 +683,7 @@ Lastly, you will grab Kali's new DHCP reservation(IP we set up earlier). Open a 
 
 ---
 
-## Importing Vulnhub VMs to the lab
+## 8. Importing Vulnhub VMs to the lab
 
 We are going to Import Machines from Vulnhub. We are going to download Metasploitable 2 these are the links:
 
@@ -761,7 +761,7 @@ Now we should ping the Metasploitable VM from Kali.
 
 ---
 
-## Building an Active Directory
+## 9. Building an Active Directory
 
 For an Internal Penetration test, you only need to change the network adapter settings of the Kali machine and put it into the AD_LAB network. 
 
@@ -1272,7 +1272,7 @@ Choose Other User > Log in as a domain user.
 
 ---
 
-## Hack Your VirtualBox AD Lab
+## 10. Make your AD Lab vulnerable
 
 ### Using a Vulnerable AD Script
 
@@ -1459,7 +1459,7 @@ A reboot is required to apply the changes.**
 
 ---
 
-## Building a Pivoting Lab To Practice External Pentest
+## 11. Building a Pivoting Lab To Practice External Pentest
 
 ### Network Diagram
 

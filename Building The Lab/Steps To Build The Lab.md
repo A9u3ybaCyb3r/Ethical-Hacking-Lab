@@ -1,6 +1,6 @@
 # Steps to Build The Lab
 
-### Planning Phase
+## Planning Phase
 
  We will build a network diagram to represent our lab visually.
    

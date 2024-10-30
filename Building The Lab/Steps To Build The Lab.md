@@ -7,14 +7,11 @@
 - [4. Installing pfSense](#4-installing-pfsense)
 - [5. Configuring pfSense](#5-configuring-pfsense)
 - [6. Importing Kali](#6-importing-kali)
-- [7. ](#7-)
-- [8. ](#8-)
-- [9. ](#9-)
-- [10. ](#10-)
-- [11. ](#11-)
-- [12. ](#12-)
-- [13. ](#13-)
-- [14. ](#14-)
+- [7.Configuring the pfSense firewall](#7-configuring-the-pfSense-firewall)
+- [8.Importing Vulnhub VMs to the lab ](#8-importing-vulnhub-vms-to-the-lab)
+- [9. Building an Active Directory](#9-building-an-active-directory)
+- [10. Make your AD Lab vulnerable](#10-make-your-ad-lab-vulnerable)
+- [11.Building a Pivoting Lab To Practice External Pentest](#11-building-a-pivoting-lab-to-practice-external-pentest)
 
 ---
 

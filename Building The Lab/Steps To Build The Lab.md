@@ -1,4 +1,22 @@
-# Steps to Build The Lab
+# Steps to Build the Lab
+
+## Table of Contents
+- [1. Planning Phase](#1-planning-phase)
+- [2. Downloading and Installing VirtualBox](#2-downloading-and-installing-virtualbox)
+- [3. Building a pfSense VM](#3-building-a-pfsense-vm)
+- [4. Installing pfSense](#4-installing-pfsense)
+- [5. Configuring pfSense](#5-configuring-pfsense)
+- [6. Importing Kali](#6-importing-kali)
+- [7. ](#7-)
+- [8. ](#8-)
+- [9. ](#9-)
+- [10. ](#10-)
+- [11. ](#11-)
+- [12. ](#12-)
+- [13. ](#13-)
+- [14. ](#14-)
+
+---
 
 ## Planning Phase
 
@@ -6,6 +24,7 @@
    
 [Network Diagram](https://github.com/A9u3ybaCyb3r/Virtual-Network-Penetration-Testing-Lab/blob/main/Building%20The%20Lab/Empire%20Net%20Diagram.drawio.pdf)
 
+---
  
 ## Downloading Virtualbox and installing Virtualbox
 
@@ -29,6 +48,7 @@ Next, hit the Install button and choose the Virtualbox extension pack that you d
 
 ![image](https://github.com/user-attachments/assets/230cf88a-54de-4522-858b-991670742f14)
 
+---
 
 ## Building a pfSense VM
 
@@ -107,6 +127,8 @@ Adapter 4 AD-LAB:
 
 After doing all of this we can start the machine.
 
+---
+
 ## Intstalling pfSense
 
 Start the machine.
@@ -147,6 +169,7 @@ Now we wait for the installation to complete and then we choose Reboot.
 
 ![image](https://github.com/user-attachments/assets/2296c60c-d355-4902-9789-5f394ef42f15)
 
+---
 
 ## Configuring pfSense
 
@@ -335,6 +358,8 @@ This is how it should look like after we are done. Remember mine might be differ
 
 We will not be making the pfSense web console accessible from the WAN to avoid exposing it to public networks, especially if using a laptop on public wireless. Instead, the firewall rules will be configured using a Kali VM later in the process.
 
+---
+
 ## Importing Kali 
 
  Go to https://kali.org/get-kali/
@@ -373,6 +398,7 @@ Then increase your RAM depending on how much you need. Mine is 8GB RAM because o
 
 ![image](https://github.com/user-attachments/assets/3507057e-d6df-423e-9fbe-bde723849657)
 
+---
 
 ## Configuring the pfSense firewall
 
@@ -432,7 +458,6 @@ Set the Description to ISOLATED. Then scroll down to click Save and Apply Change
 ![image](https://github.com/user-attachments/assets/90a7eff1-1423-4d85-921b-a4c649c6f7aa)
 
 ![image](https://github.com/user-attachments/assets/5e86a71c-cb18-452a-b6f8-687eebaf96c8)
-
 
 
 ### AD_LAB Interface
@@ -656,6 +681,8 @@ Click Save and Apply Changes. Click Reboot and reboot now.
 
 Lastly, you will grab Kali's new DHCP reservation(IP we set up earlier). Open a terminal on your and type this command **"sudo ip link set eth0 down && ip link set eth0 up"**.
 
+---
+
 ## Importing Vulnhub VMs to the lab
 
 We are going to Import Machines from Vulnhub. We are going to download Metasploitable 2 these are the links:
@@ -731,6 +758,8 @@ Lastly, we will ping Google and it should fail because we blocked everything out
 Now we should ping the Metasploitable VM from Kali.
 
 ![image](https://github.com/user-attachments/assets/4e73696b-f0d9-40fb-92ab-27ce6058ded5)
+
+---
 
 ## Building an Active Directory
 
@@ -1241,6 +1270,8 @@ Choose Other User > Log in as a domain user.
 
 ![image](https://github.com/user-attachments/assets/375905eb-0653-4ff5-9d32-063ffd411f6a)
 
+---
+
 ## Hack Your VirtualBox AD Lab
 
 ### Using a Vulnerable AD Script
@@ -1425,6 +1456,8 @@ Finally, reboot your Windows 10 VMs, so that they pull the new policies when the
 
 **You can add this if you want, to cover another attack. Link: https://www.blumira.com/integration/how-to-disable-null-session-in-windows/
 A reboot is required to apply the changes.**
+
+---
 
 ## Building a Pivoting Lab To Practice External Pentest
 

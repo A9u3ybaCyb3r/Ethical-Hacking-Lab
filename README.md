@@ -1,4 +1,4 @@
-# Virtual-Network-Penetration-Testing-Lab
+# Virtual Network Penetration Testing Lab
 
 ## Objective
 

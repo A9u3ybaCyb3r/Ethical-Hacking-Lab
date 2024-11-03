@@ -71,6 +71,8 @@
 
    ![New Machine Settings](https://github.com/user-attachments/assets/a1bed139-45f7-4864-9d89-74ef542fc0cc)
 
+    ![image](https://github.com/user-attachments/assets/fa7194ac-cf8c-44f5-882e-62213f7dc89d)
+   
    ![image](https://github.com/user-attachments/assets/56b00275-2a31-4da9-8535-45e44f417f51)
 
    ![image](https://github.com/user-attachments/assets/bf359848-201f-438d-992a-66db8d18b070)

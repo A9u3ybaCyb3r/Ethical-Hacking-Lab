@@ -173,513 +173,296 @@ After completing the settings above, start the VM to begin the pfSense installat
 
 ## 5. Configuring pfSense
 
-When the VM finishes booting We are going to be asked this question: Should VLANs be set up now [y|n]? we will choose n.
+### Initial Setup
 
-![image](https://github.com/user-attachments/assets/f9a0cf84-ee71-4439-a54a-731c478bcf64)
+1. **VLAN Configuration Prompt**  
+   When the VM finishes booting, you'll be prompted with:  
+   *"Should VLANs be set up now [y|n]?"*  
+   - Choose **n**.
 
-Then we will enter our interfaces. The first one is for WAN.
+   ![VLAN Prompt](https://github.com/user-attachments/assets/f9a0cf84-ee71-4439-a54a-731c478bcf64)
 
-![image](https://github.com/user-attachments/assets/4f3fe5fa-f812-4c77-a728-cb1f7fdd7b1d)
+2. **Set Interfaces**  
+   Enter the interfaces as follows:
 
-LAN Interface.
+   - **WAN Interface**: Assign as shown.
 
-![image](https://github.com/user-attachments/assets/ade25300-b7de-45d2-952d-2bf19da796fe)
+     ![WAN Interface](https://github.com/user-attachments/assets/4f3fe5fa-f812-4c77-a728-cb1f7fdd7b1d)
 
-ISOLATED Interface.
+   - **LAN Interface**: Assign as shown.
 
-![image](https://github.com/user-attachments/assets/dc1363e8-5b9f-43e6-9833-e7629f46e538)
+     ![LAN Interface](https://github.com/user-attachments/assets/ade25300-b7de-45d2-952d-2bf19da796fe)
 
-Lastly our AD_LAB Interface.
+   - **ISOLATED Interface**: Assign as shown.
 
-![image](https://github.com/user-attachments/assets/ea899840-4ee0-4bd5-9b48-8f6f6883aa5d)
+     ![ISOLATED Interface](https://github.com/user-attachments/assets/dc1363e8-5b9f-43e6-9833-e7629f46e538)
 
-We should finish with this configuration after we confirm that this is what we want to choose 'y'
+   - **AD_LAB Interface**: Assign as shown.
 
-![image](https://github.com/user-attachments/assets/4e4f7eef-f07d-41f7-a125-1836168c733f)
+     ![AD_LAB Interface](https://github.com/user-attachments/assets/ea899840-4ee0-4bd5-9b48-8f6f6883aa5d)
 
-### Setting up the Interfaces
+3. **Confirm Configuration**  
+   Review your setup and confirm by entering **y**.
 
-- The WAN interface will pull an IP address from your home network. It will be different from mine.
-- The LAN IP address is going to be in the default option which is going to be 192.168.1.1/24. We will change this later
-- OPT1 is going to be our ISOLATED interface and is not yet configured. We will configure it later.
-- OPT2 is going to be our AD_LAB interface and is not yet configured. We will configure it later.
+   ![Confirm](https://github.com/user-attachments/assets/4e4f7eef-f07d-41f7-a125-1836168c733f)
 
-![image](https://github.com/user-attachments/assets/32211990-aa57-4a3d-b86a-7dacca3b3e1d)
+### Setting Up the Interfaces
 
-### Configure the LAN
+- **WAN Interface**: Automatically pulls an IP address from your network.
+- **LAN Interface**: Default IP is **192.168.1.1/24** (we’ll change this later).
+- **OPT1** (ISOLATED Interface): Unconfigured; we'll configure it later.
+- **OPT2** (AD_LAB Interface): Unconfigured; we'll configure it later.
 
-Enter option 2.
-
-![image](https://github.com/user-attachments/assets/ded46fbe-ea36-48c8-89a1-ab5752bf9405)
-
-We are going to change the LAN so enter option 2.
-
-![image](https://github.com/user-attachments/assets/2fd90833-1370-4f2f-a932-cf4a8a090c68)
-
-We are going to configure the address statically we will enter 'n'
-
-![image](https://github.com/user-attachments/assets/a33a78e9-4594-4597-b44a-4f61a55f324b)
-
-Enter the IP address.
-
-![image](https://github.com/user-attachments/assets/d44ef8c7-3c84-4c2d-9a5e-95db20d74310)
-
-Enter the subnet mask bits.
-
-![image](https://github.com/user-attachments/assets/b7dd1628-263f-4e7a-be09-dd3d69c55583)
-
-Hit Enter this is for LAN.
-
-![image](https://github.com/user-attachments/assets/3e8990ab-4066-4866-9196-0e9b157026e0)
-
-Press 'n' to configure the address statically.
-
-![image](https://github.com/user-attachments/assets/23ea1fb7-2727-459c-9187-f293acfeecfc)
-
-Press Enter we are not going to be using IPv6.
-
-![image](https://github.com/user-attachments/assets/14099163-f473-42e9-a7de-86ab03eb58cc)
-
-Enter 'y' to enable the DHCP server.
-
-![image](https://github.com/user-attachments/assets/36f07dcd-46d5-41d1-9cf3-90c689094758)
-
-Enter the start and end range.
-
-![image](https://github.com/user-attachments/assets/8701352d-1e83-4ce3-bfcd-a18683d29d21)
-
-Enter 'n', we want to keep using TLS on the web portal.
-
-![image](https://github.com/user-attachments/assets/cee8c91a-3fea-497f-bcd4-c8eb6f794aa8)
-
-Press Enter and you are done with the LAN.
-
-![image](https://github.com/user-attachments/assets/18fb87f1-88ba-4002-a764-e623e34fd87d)
-
-### Configure the ISOLATED Interface
-
-Enter 2.
-
-![image](https://github.com/user-attachments/assets/c8265961-0bed-425d-be7b-96efcad11aeb)
-
-Enter option 3 to configure OPT3.
-
-![image](https://github.com/user-attachments/assets/0883dce2-053f-44fe-907b-3d96ae9ea5b5)
-
-Enter 'n' to configure the address statically.
-
-![image](https://github.com/user-attachments/assets/399d4ace-edf9-4359-a375-771a37bb71f3)
-
-Enter the network address.
-
-![image](https://github.com/user-attachments/assets/d0f7ce08-b81e-4cd6-b3bf-b92a907264de)
-
-Enter the subnet mask bit.
-
-![image](https://github.com/user-attachments/assets/5aa86244-f89a-4962-bfa1-466c09a68f29)
-
-Press Enter this is for the LAN.
-
-![image](https://github.com/user-attachments/assets/c47dfcc5-e16b-47dc-9ae0-0d0f48a4bf63)
-
-Press 'n' to configure statically.
-
-![image](https://github.com/user-attachments/assets/618cd159-3979-408c-bcfd-f9ea80c61d6a)
-
-Press Enter we will not be using IPv6.
-
-![image](https://github.com/user-attachments/assets/232aafbb-ca03-43cb-9046-d4549ac6b424)
-
-Enable the DHCP server y' and then enter the start and end range.
-
-![image](https://github.com/user-attachments/assets/1c13e01c-9756-429b-8c42-448ae30ba4f3)
-
-Enter 'n', we want to keep using TLS on the web portal.
-
-![image](https://github.com/user-attachments/assets/c77ad20b-be1d-4135-8876-670b92f10a8a)
-
-Now we are done with the ISOLATED Interface.
-
-![image](https://github.com/user-attachments/assets/93e0a0bd-f519-4ff1-9d6b-b945b2502173)
-
-### Configure the AD_LAB
-
-Enter option 2.
-
-![image](https://github.com/user-attachments/assets/17caea15-b67f-49ba-8e12-6926a5124612)
-
-Enter 4 to configure the OPT4.
-
-![image](https://github.com/user-attachments/assets/7119fee6-3375-4462-abd8-7d88f3423421)
-
-Enter the 'n' to configure the address statically.
-
-![image](https://github.com/user-attachments/assets/8b091b1f-4971-4ab4-8a8f-9690e7b12455)
-
-Enter the network address.
-
-![image](https://github.com/user-attachments/assets/dc69c922-e5b7-45ca-a1f1-6f9a19df0f40)
-
-Enter the subnet mask bits.
-
-![image](https://github.com/user-attachments/assets/06bd2dd6-0561-4389-9010-b2a70e671473)
-
-Press Enter, this is for the LAN.
-
-![image](https://github.com/user-attachments/assets/ff489e11-bc9f-4929-bc91-9169e9ca5731)
-
-Enter 'n' to configure the address statically.
-
-![image](https://github.com/user-attachments/assets/b4fe77f0-fbd9-47e2-af03-133744f353e7)
-
-Press Enter, we are not going to use IPv6.
-
-![image](https://github.com/user-attachments/assets/1597c9a7-a41f-4369-975e-30bfbfb0745f)
-
-Enter 'n' to disable the DHCP server, as the domain controller will be acting as the DHCP server.
-
-![image](https://github.com/user-attachments/assets/b691fdee-718b-4230-a0ba-c4915b2e1063)
-
-Enter 'n', we want to keep using TLS on the web portal.
-
-![image](https://github.com/user-attachments/assets/ee252a48-5a29-4092-828f-81587093f117)
-
-Now we are done with the AD_LAB Interface.
-
-![image](https://github.com/user-attachments/assets/7d8c3f96-2db1-462f-a122-0c7ee1d66107)
-
-### Final Check
-
-This is how it should look like after we are done. Remember mine might be different than yours if you chose to use another IP address.
-
-![image](https://github.com/user-attachments/assets/2a0f79b8-93a5-49ee-823b-f4970d67dd11)
-
-### !!!Important!!!
-
-We will not be making the pfSense web console accessible from the WAN to avoid exposing it to public networks, especially if using a laptop on public wireless. Instead, the firewall rules will be configured using a Kali VM later in the process.
+   ![Interface Overview](https://github.com/user-attachments/assets/32211990-aa57-4a3d-b86a-7dacca3b3e1d)
 
 ---
 
-## 6. Importing Kali 
+### Configure the LAN
 
- Go to https://kali.org/get-kali/
+1. **Enter LAN Configuration Mode**  
+   - Select option **2**.
 
-   - Click on the image that says Virtual Machines and download the 64-bit version of Virtualbox.
+   ![Option 2](https://github.com/user-attachments/assets/ded46fbe-ea36-48c8-89a1-ab5752bf9405)
 
-      ![image](https://github.com/user-attachments/assets/ae2d558e-57a4-4d1a-8576-5ad25de659ec)
-     
-     ![image](https://github.com/user-attachments/assets/6430026d-9ca1-46db-9dd6-98e6d758617c)
+2. **Set LAN IP Address**  
+   - Choose **2** again to modify the LAN IP.
 
- After downloading the file, extract it and hit the Add button on Virtualbox. 
+   ![Choose 2](https://github.com/user-attachments/assets/2fd90833-1370-4f2f-a932-cf4a8a090c68)
 
-![image](https://github.com/user-attachments/assets/37ef160d-c250-4151-80df-bdfb038f063c)
+3. **Static IP Configuration**  
+   - Enter **n** for static IP setup.
 
-Then choose the .vbox extension file.
+   ![Static IP](https://github.com/user-attachments/assets/a33a78e9-4594-4597-b44a-4f61a55f324b)
 
-![image-38](https://github.com/user-attachments/assets/5cf67d2e-ebd6-4c6e-ab83-f49f87a27b82)
+4. **Enter IP Address and Subnet Mask**  
+   - Provide the IP and subnet mask.
 
- Right-click the machine and choose the Network settings.
+     ![Enter IP](https://github.com/user-attachments/assets/d44ef8c7-3c84-4c2d-9a5e-95db20d74310)  
+     ![Subnet Mask](https://github.com/user-attachments/assets/b7dd1628-263f-4e7a-be09-dd3d69c55583)
 
-![cd25168f5bf7404cb6e4d5a8b84ca441](https://github.com/user-attachments/assets/465b1135-d2b9-4e79-aa75-f6eb9f315ed1)
+5. **DHCP and TLS Configuration**  
+   - Enable **DHCP** (enter **y**).
+   - Enter the DHCP range (start and end).
+   - Confirm to keep using **TLS** on the web portal (enter **n**).
+   - For the rest of the options that appear hit **Enter**
 
-Change the network settings to the pfSense LAN network that you created.
+     ![DHCP Range](https://github.com/user-attachments/assets/8701352d-1e83-4ce3-bfcd-a18683d29d21)  
+     ![TLS Confirmation](https://github.com/user-attachments/assets/cee8c91a-3fea-497f-bcd4-c8eb6f794aa8)
 
-![image](https://github.com/user-attachments/assets/82294fe3-d42c-44cb-8982-732ef4d9e3aa)
+6. **Finish LAN Setup**  
+   - Complete the configuration and press **Enter**.
 
-Then increase your RAM depending on how much you need. Mine is 8GB RAM because of the tools that I use. You can do it on the machine settings. 
+     ![Finish LAN](https://github.com/user-attachments/assets/18fb87f1-88ba-4002-a764-e623e34fd87d)
 
-![image](https://github.com/user-attachments/assets/9cf482b6-64c7-48be-8248-fe25ad5868eb)
+---
 
- Click OK and now you can start the machine. Use the default credentials of *kali:kali*.
+### Configure the ISOLATED Interface
 
-![image](https://github.com/user-attachments/assets/919a0fe4-12fe-4847-acad-0180f51a77b8)
+1. **Enter ISOLATED Interface Mode**  
+   - Select option **2** then choose **3** to configure **OPT3**.
 
- Open the terminal to see if we are on the LAN network. Our IP Address should be 10.19.19.X/24. Later, we can set up the IP Address that we want.
+   ![Option 3](https://github.com/user-attachments/assets/0883dce2-053f-44fe-907b-3d96ae9ea5b5)
 
-![image](https://github.com/user-attachments/assets/3507057e-d6df-423e-9fbe-bde723849657)
+2. **Set Static IP**  
+   - Choose **n** for static IP configuration.
+
+   ![Static IP](https://github.com/user-attachments/assets/399d4ace-edf9-4359-a375-771a37bb71f3)
+
+3. **Enter IP Address, Subnet Mask, and DHCP Range**  
+   - Provide the IP, subnet mask, and DHCP range. Enable DHCP (enter **y**).
+
+     ![IP and Subnet](https://github.com/user-attachments/assets/d0f7ce08-b81e-4cd6-b3bf-b92a907264de)
+
+4. **Finish ISOLATED Setup**  
+   - Confirm TLS usage for web portal (enter **n**).
+
+     ![TLS](https://github.com/user-attachments/assets/c77ad20b-be1d-4135-8876-670b92f10a8a)  
+     ![Finish ISOLATED](https://github.com/user-attachments/assets/93e0a0bd-f519-4ff1-9d6b-b945b2502173)
+
+---
+
+### Configure the AD_LAB Interface
+
+1. **Enter AD_LAB Interface Mode**  
+   - Select option **2** then choose **4** to configure **OPT4**.
+
+   ![Option 4](https://github.com/user-attachments/assets/7119fee6-3375-4462-abd8-7d88f3423421)
+
+2. **Set Static IP**  
+   - Enter **n** for static IP setup.
+
+   ![Static IP](https://github.com/user-attachments/assets/8b091b1f-4971-4ab4-8a8f-9690e7b12455)
+
+3. **Enter IP Address, Subnet Mask, and Disable DHCP**  
+   - Provide the IP, subnet mask, and disable DHCP (enter **n**).
+
+     ![IP and Subnet](https://github.com/user-attachments/assets/dc69c922-e5b7-45ca-a1f1-6f9a19df0f40)  
+     ![Disable DHCP](https://github.com/user-attachments/assets/b691fdee-718b-4230-a0ba-c4915b2e1063)
+
+4. **Finish AD_LAB Setup**  
+   - Confirm TLS usage (enter **n**).
+
+     ![Finish AD_LAB](https://github.com/user-attachments/assets/7d8c3f96-2db1-462f-a122-0c7ee1d66107)
+
+---
+
+### Final Check
+
+Review the completed configuration. Note that IP addresses may vary based on your setup.
+
+![Final Configuration](https://github.com/user-attachments/assets/2a0f79b8-93a5-49ee-823b-f4970d67dd11)
+
+### Important Security Note
+
+To avoid exposing the pfSense web console to public networks, we will **not make it accessible from the WAN**. Configuration of firewall rules will be completed using a Kali VM later in the setup.
+
+
+---
+
+## 6. Importing Kali
+
+## Step 1: Download Kali for VirtualBox
+
+1. Go to [https://kali.org/get-kali/](https://kali.org/get-kali/).
+2. Click on **Virtual Machines** and download the **64-bit version for VirtualBox**.
+
+   ![Click on Virtual Machines](https://github.com/user-attachments/assets/ae2d558e-57a4-4d1a-8576-5ad25de659ec)
+   
+   ![Download the 64-bit version](https://github.com/user-attachments/assets/6430026d-9ca1-46db-9dd6-98e6d758617c)
+
+## Step 2: Import Kali into VirtualBox
+
+1. After downloading the file, extract it.
+2. Open VirtualBox and click the **Add** button.
+
+   ![Click Add](https://github.com/user-attachments/assets/37ef160d-c250-4151-80df-bdfb038f063c)
+
+3. Choose the `.vbox` file from the extracted folder.
+
+   ![Choose the .vbox file](https://github.com/user-attachments/assets/5cf67d2e-ebd6-4c6e-ab83-f49f87a27b82)
+
+## Step 3: Configure Network Settings
+
+1. Right-click the imported Kali machine and choose **Settings > Network**.
+
+   ![Access Network Settings](https://github.com/user-attachments/assets/465b1135-d2b9-4e79-aa75-f6eb9f315ed1)
+
+2. In **Adapter 1**, set it to the **pfSense LAN network** you previously created.
+
+   ![Set to pfSense LAN network](https://github.com/user-attachments/assets/82294fe3-d42c-44cb-8982-732ef4d9e3aa)
+
+## Step 4: Adjust System Resources (Optional)
+
+1. Increase the **RAM** if needed. Go to **Settings > System** and adjust the RAM based on your requirements (e.g., 8GB if you use r
 
 ---
 
 ## 7. Configuring the pfSense firewall
 
- Log into the web portal (firefox for me) in your Kali machine to: **https://10.19.19.1**.
+Log into the web portal in your Kali machine at: `https://10.19.19.1`.
 
-![image](https://github.com/user-attachments/assets/db0ecfcb-6a40-4817-8187-8cabda8db0bd)
+### Bypassing Firefox Security Warning
 
- If you encounter this, click Advanced.
+1. Click **Advanced** when prompted.
+2. Accept the risk to proceed.
 
-![image](https://github.com/user-attachments/assets/329900dc-3fec-47e3-8335-42b84cd7069a)
+### pfSense Login
 
-Then accept the risk.
+- Default credentials:
+  - **Username:** admin
+  - **Password:** pfsense
 
-![image](https://github.com/user-attachments/assets/2fbd799e-db1d-447b-8616-538c8b91f774)
+Click **Next** after logging in.
 
-The default credentials are:
+### Setup
 
-- Username: admin
-- Password: pfsense
-
-Click Next after logging in.
-
-![image](https://github.com/user-attachments/assets/4157974c-affb-43d9-aa12-f745ad488560)
-
-Fill out the Hostname and Domain. Uncheck Override DNS. You can use whatever name you want. Click Next.
-
-![image](https://github.com/user-attachments/assets/c3e8a9f6-c266-4412-a404-03931166ec10)
-
-Double-check your timezone and click Next.
-
-![image](https://github.com/user-attachments/assets/6a3875bf-c8be-4140-863b-3296c20aa10a)
-
-Scroll down and uncheck this option. We’re double-NAT, meaning the WAN network is also private and we want to allow this. Click Next.
-
-![image](https://github.com/user-attachments/assets/1fa7b998-b55c-4207-a454-831a331e4356)
-
-Click Next.
-
-![image](https://github.com/user-attachments/assets/d01ad2a6-3c77-446e-80a0-34b74245ba2c)
-
-Change the admin password and remember it. 
-
-![image](https://github.com/user-attachments/assets/73b60b4c-6325-479f-b7be-fe1ef1b8e934)
-
-Click Next and Finish.
+1. **Hostname and Domain:** Fill out and uncheck "Override DNS". Click **Next**.
+2. **Timezone:** Confirm timezone and click **Next**.
+3. **Double-NAT Warning:** Uncheck the double-NAT option to allow private WAN access. Click **Next**.
+4. **Admin Password:** Change the password and remember it. Click **Next** and **Finish**.
 
 ## Configure the Interfaces
 
 ### Isolated Interface
 
-Go to Interfaces and choose OPT1.
-
-![image](https://github.com/user-attachments/assets/1d51f12c-c551-4c49-9543-464d5f1f9302)
-
-Set the Description to ISOLATED. Then scroll down to click Save and Apply Changes.
-
-![image](https://github.com/user-attachments/assets/90a7eff1-1423-4d85-921b-a4c649c6f7aa)
-
-![image](https://github.com/user-attachments/assets/5e86a71c-cb18-452a-b6f8-687eebaf96c8)
-
+1. Go to **Interfaces** > **OPT1**.
+2. Set the **Description** to `ISOLATED`.
+3. Scroll down and click **Save** and **Apply Changes**.
 
 ### AD_LAB Interface
 
-Go to Interface and choose OPT2.
+1. Go to **Interface** > **OPT2**.
+2. Set the **Description** to `AD_LAB`.
+3. Scroll down and click **Save** and **Apply Changes**.
 
-![image](https://github.com/user-attachments/assets/f6b7f5cc-1410-4316-a3ba-df06c50e7cb6)
+## Optimize the DNS Resolver Service
 
-Change the Description to AD_LAB. Then scroll down to click Save and Apply Changes.
+1. Go to **Services** > **DNS Resolver**.
+2. Enable necessary options and click **Save** and **Apply Changes**.
+3. In **Advanced Settings**, enable the additional options. **Save** and **Apply Changes** again.
 
-![image](https://github.com/user-attachments/assets/4a1b57ba-2a69-43d3-a743-fde6276d0868)
+## Give Kali a Static DHCP Lease
 
-![image](https://github.com/user-attachments/assets/44d8157c-8736-484a-8def-c67444700015)
+1. Go to **Status** > **DHCP Leases**.
+2. Click the button to add a static mapping for your Kali machine.
+3. Set the IP address for Kali. Click **Save** and **Apply Changes**.
 
-### Optimize the DNS Resolver Service
+## Configure the Firewall Rules
 
-Go to Services > DNS Resolver.
+### Create Aliases
 
-![image](https://github.com/user-attachments/assets/b0dd2a59-96fb-4496-8c93-423fd49f4bfe)
+1. **RFC1918 Alias**: Go to **Firewall** > **Aliases**, add and save for private IPv4 spaces.
+2. **Kali Alias**: Add, save, and apply changes for Kali's IP address.
 
-Check both of these options, then click save and apply changes just like before.
+### LAN Interface Rules
 
-![image](https://github.com/user-attachments/assets/7b7612c2-1fde-463d-aa03-ebf2125d3aab)
+1. Go to **Firewall** > **Rules** > **LAN**.
+2. Add and configure the required rules to control LAN traffic.
 
-If you are still in the DNS Resolver, go to Advance Settings and check both of these options. Do not forget to Save and Apply Changes.
+### ISOLATED Interface Rules
 
-![image](https://github.com/user-attachments/assets/e7f537a4-9c21-4fe7-889b-68b01c09afa2)
+1. Go to **Firewall** > **Rules** > **ISOLATED**.
+2. Add and configure the necessary rules to manage isolated network traffic.
 
-### Give Kali a Static DHCP Lease
+### AD_LAB Interface Rules
 
-Go to Status > DHCP Leases.
-
-![image](https://github.com/user-attachments/assets/1129d9f4-f090-470c-8a27-3202972cff1e)
-
-Click on this button to add a static mapping (the hostname is different because my Kali machine is named Vulnhunter).
-
-![image](https://github.com/user-attachments/assets/8e402467-88ac-4272-8336-7f0f00ad6c80)
-
-Now we set up the IP address of our Kali machine. Click Save and Apply changes.
-
-![image](https://github.com/user-attachments/assets/a85398a6-99fe-4090-9bb2-7f5540b39e88)
-
-### Configure the Firewall Rules
-
-Create an Alias for RFC1918. This will be used to reference all private IPv4 spaces. Go to Firewall > Alianses.
-
-![image](https://github.com/user-attachments/assets/d1132f04-0a9e-48d1-b6c2-102723e3c00b)
-
-Click Add and fill this and then click Save.
-
-![image](https://github.com/user-attachments/assets/b4e2dcdc-e912-4bf3-be1d-097eddbdee25)
-
-### Create an Alias for Kali
-
-Click Add, Save, and Apply Changes.
-
-![image](https://github.com/user-attachments/assets/b9e15e1a-9c14-42e1-8096-26c560fe7891)
-
-### LAN
-
-Click on Firewall > Rules.
-
-![image](https://github.com/user-attachments/assets/00e87e94-4a92-49cb-84ea-bdbb97dbbe80)
-
-Click on LAN and then add a rule.
-
-![image](https://github.com/user-attachments/assets/eb5af460-2933-4136-9018-fda3bd73f433)
-
- Copy these rules.
-
- ![image](https://github.com/user-attachments/assets/5c1b56a4-808a-45e8-9669-cf0f18cc6b54)
-
-This is how it should look like when you are done.
-
-![image](https://github.com/user-attachments/assets/388db847-7bf8-4421-8563-0153d522d6aa)
-
-
-### ISOLATED
-
-Click on ISOLATED and then we add a rule.
-
-![image](https://github.com/user-attachments/assets/c5e09e3a-6633-4157-8d2f-fffcee1e5938)
-
-![image](https://github.com/user-attachments/assets/fd4acef1-4374-4758-ac44-cbe094730803)
-
-![image](https://github.com/user-attachments/assets/f30108a8-dd32-43fb-893f-51d6fb4d3707)
-
-Then we add another rule.
-
-![image](https://github.com/user-attachments/assets/9df9fcf5-e0a0-4d03-8aaa-ae7f844d5856)
-
-![image](https://github.com/user-attachments/assets/56e4d325-79c9-401a-93dc-8d9c5ef1b505)
-
-Lastly, we add an Isolated rule.
-
-![image](https://github.com/user-attachments/assets/8c67283a-c782-4803-aad0-d1f509d66e08)
-
-![image](https://github.com/user-attachments/assets/a5fa3d8b-e313-4b79-84dc-98f83b19f941)
-
-This is how it should look like when you are done.
-
-![image](https://github.com/user-attachments/assets/dc5850a1-70a8-4548-b69e-bc1dc935007e)
-
-### AD_LAB
-
-Click on the AD_LAB and then we add a rule.
-
-![image](https://github.com/user-attachments/assets/354dc273-5e98-41d7-bd3d-1b39e246359d)
-
-![image](https://github.com/user-attachments/assets/a92c06e5-bc3d-4368-a396-8159cd84619a)
-
-![image](https://github.com/user-attachments/assets/21947bc9-1f65-4e6d-b362-3fd67ccc3039)
-
-**This rule effectively blocks traffic to any private IP address. Then we'll add another rule above this one to allow traffic to Kali, which is aliased to 10.19.19.2. If there are additional private IPv4 addresses you want your AD_LAB hosts to be able to talk to, you'll need to place the firewall rules above this one, as rules are evaluated from top to bottom.**
-
-Then we will add another rule.
-
-![image](https://github.com/user-attachments/assets/cd42f591-7f97-4725-9baa-48bcc7b4d413)
-
-![image](https://github.com/user-attachments/assets/7c7f7019-a65c-4ed8-bb69-b814c6fd6166)
-
- Add another rule.
-
- ![image](https://github.com/user-attachments/assets/5c0cb759-aded-4b16-85ab-5286e6bf6e58)
-
-![image](https://github.com/user-attachments/assets/13aa5108-fdfe-44b4-9577-d0e8caf224fa)
-
-Final AD_LAB rule.
-
-![image](https://github.com/user-attachments/assets/6db4663a-9c11-4cff-9f53-a0739ae4156e)
-
-![image](https://github.com/user-attachments/assets/7b9235e4-b712-42b4-b076-1889f7358bc3)
-
-This is how it should look like when you are done.
-
-![image](https://github.com/user-attachments/assets/35cf63a4-ff61-4fcb-b5a1-bea349450758)
+1. Go to **Firewall** > **Rules** > **AD_LAB**.
+2. Add a rule to block private IP addresses, then add exceptions as needed.
+3. Configure additional rules for managing AD_LAB traffic.
 
 ### Floating Rules
 
-Floating rules are a flexible way to create firewall rules that can be applied to multiple interfaces. Unlike rules attached directly to specific interfaces, floating rules can be applied to any interface. This is helpful for rules that need to be consistent across multiple network locations.
+1. Go to **Firewall** > **Aliases**.
+2. Add a port alias and configure the necessary rules in **Firewall** > **Rules** > **Floating**.
 
-Add the port Alias.
+### Add Separators
 
-Go to Firewall > Aliases.
-
-![image](https://github.com/user-attachments/assets/afd67561-4332-48a6-b4c0-eb89886cb4c3)
-
-Then click on ports and we add a rule.
-
-![image](https://github.com/user-attachments/assets/1aee82ef-8ea6-4bdc-8ae1-7e8f506c447e)
-
-![image](https://github.com/user-attachments/assets/619133f6-b021-44a0-9ac4-8d2b1b7748c1)
-
-Fill it out and then click on Save.
-
-![image](https://github.com/user-attachments/assets/08a31367-b3a1-463d-9873-23ca20873fc9)
-
-### Add the Separators
-
-Go to Firewall > Rules.
-
-![image](https://github.com/user-attachments/assets/c0a61275-99c3-4a50-9ed6-835921920d3a)
-
-Choose Floating.
-
-![image](https://github.com/user-attachments/assets/5ef5ef01-0caa-4954-a8f9-4917bf8ac593)
-
-Click this button to add a separator.
-
-![image](https://github.com/user-attachments/assets/e0a96622-c717-4600-bfed-ccc811c7bbd9)
-
-Write this and do it again.
-
-![image](https://github.com/user-attachments/assets/1bc1957f-3550-4f6a-a8c4-2c7b6d8778c5)
-
-You should have two separators when you are done, we will use them to sandwich the other rules that we create.
-
-![image](https://github.com/user-attachments/assets/aa9127bd-e1c4-47ff-b04b-fd5d4f644dc9)
-
-Don't forget to save what you created.
+1. Go to **Firewall** > **Rules** > **Floating**.
+2. Add two separators to organize rules.
+3. Ensure separators are applied correctly and save.
 
 ### Block Logins to the Firewall
 
-Add a rule.
+1. Add a floating rule to block ISOLATED and AD_LAB from accessing firewall login ports.
+2. Set direction to **in** to block incoming login traffic.
+3. Click **Save** and **Apply Changes**.
 
-![image](https://github.com/user-attachments/assets/b34e2ea1-ab27-4dcd-a6ec-0aba4839348e)
+### Floating Rules Desired End State
 
-![image](https://github.com/user-attachments/assets/ddde4107-32c5-4d1f-8691-c952f0eed999)
+1. Arrange rules in the desired order.
+2. Click **Save** and **Apply Changes**.
 
-The subnets ISOLATED and AD_LAB are isolated from the firewall's login ports to enhance security. The "in" direction is chosen because traffic is flowing from external hosts into the firewall interface.
+## Make System Tweaks to pfSense
 
-![image](https://github.com/user-attachments/assets/5240f215-a47b-4479-8a25-295e3a340417)
+1. Go to **System** > **Advanced** > **Networking**.
+2. Enable required network options and save changes.
+3. Reboot pfSense for changes to take effect.
 
-Click Save and Apply changes.
+## Update Kali's DHCP Lease
 
-![image](https://github.com/user-attachments/assets/2936151e-28c2-4105-b561-dc94fc86df5d)
-
-### FLOATING Rules Desired End State
-
-Drag and drop items to re-order, then click Save and Apply Changes.
-
-![image](https://github.com/user-attachments/assets/efdb2193-6a39-4d8e-81be-d76b396d1223)
-
-**To prevent hosts from accessing the firewall login ports, additional interfaces will be created as you progress through the VirtualBox lab. Subnets that are allowed to access the internet but not private IP addresses need to reach the gateway address. To achieve this without allowing access to the firewall login ports, specific rules are created.**
-
-### Make Some System Tweaks to pfSense
-
-Go to System > Advanced.
-
-![image](https://github.com/user-attachments/assets/a2199be8-544f-4688-9109-3fd44c28d47f)
-
-Then Networking.
-
-![image](https://github.com/user-attachments/assets/a3ae6783-b1d0-4961-9e87-db9835445ecf)
-
-Scroll down until you find this option and check it.
-
-![image](https://github.com/user-attachments/assets/313f82d4-2e26-4f65-ad4f-f641c3c142bc)
-
-Click Save and Apply Changes. Click Reboot and reboot now.
-
-Lastly, you will grab Kali's new DHCP reservation(IP we set up earlier). Open a terminal on your and type this command **"sudo ip link set eth0 down && ip link set eth0 up"**.
+1. Run the following command in Kali's terminal:
+   ```bash
+   sudo ip link set eth0 down && sudo ip link set eth0 up
 
 ---
 

@@ -51,80 +51,72 @@
 
 ## 3. Building a pfSense VM
 
-First, we download the file that we need.
+### Step 1: Download the pfSense Installation File
 
- - Go to this link: https://www.google.com/search?q=site%3A*.netgate.com+download+-site%3Aforum.netgate.com+-site%3Adocs.netgate.com+-inurl%3Ablog+-site%3Awww.netgate.com+-site%3Ashop.netgate.com+-site%3Aforums.netgate.com+-site%3Ainfo.netgate.com&ref=benheater.com
+1. Open [this link](https://www.google.com/search?q=site%3A*.netgate.com+download+-site%3Aforum.netgate.com+-site%3Adocs.netgate.com+-inurl%3Ablog+-site%3Awww.netgate.com+-site%3Ashop.netgate.com+-site%3Aforums.netgate.com+-site%3Ainfo.netgate.com&ref=benheater.com) to locate the latest pfSense ISO.
+2. Select the latest version of pfSense available.
 
-Choose this one. 
+   ![Download pfSense](https://github.com/user-attachments/assets/b1c3be2d-a7dd-437d-af8d-3af6658d3056)
 
-![image](https://github.com/user-attachments/assets/b1c3be2d-a7dd-437d-af8d-3af6658d3056)
+### Step 2: Extract the Downloaded File
 
-Then we choose the latest version.
+1. Use 7-Zip (or any file extraction tool) to extract the downloaded pfSense ISO file.
 
-![image](https://github.com/user-attachments/assets/4510c75a-d8b6-4821-ae6d-df8d84c0bf3a)
+   ![Extract with 7-Zip](https://github.com/user-attachments/assets/b395d9a3-6e1c-4d7d-a32f-352084f731eb)
+
+### Step 3: Create a New Virtual Machine
+
+1. Open your virtualization software and create a new virtual machine.
+2. Name your VM, choose the folder to save it, select the extracted ISO as the installation image, and set the VM type and version (Linux/BSD, 64-bit).
+
+   ![New Machine Settings](https://github.com/user-attachments/assets/a1bed139-45f7-4864-9d89-74ef542fc0cc)
+
+   ![image](https://github.com/user-attachments/assets/56b00275-2a31-4da9-8535-45e44f417f51)
+
+   ![image](https://github.com/user-attachments/assets/bf359848-201f-438d-992a-66db8d18b070)
+
+   ![image](https://github.com/user-attachments/assets/e73ca9a0-ee82-4aff-83a5-d966640e2c60)
 
 
- Extract the file, in this case, I will be using 7-zip.
+**Important**: **Do not start the VM yet!**
 
-![image](https://github.com/user-attachments/assets/b395d9a3-6e1c-4d7d-a32f-352084f731eb)
+### Step 4: Adjust VM Settings
 
- Create a New Machine.
+1. **Boot Order**: Go to the VM's settings, adjust the boot order as shown below, and uncheck the floppy disk option. This ensures that pfSense boots from the ISO.
 
-![image](https://github.com/user-attachments/assets/a1bed139-45f7-4864-9d89-74ef542fc0cc)
+   ![Boot Order](https://github.com/user-attachments/assets/f69d55aa-465c-4616-a2cb-ceac898494ef)
 
-Name your vm, choose the folder that you want to save the machine, choose the iso image that you want to use, and select the type and version of the VM.
+2. **Audio**: Go to Audio settings and disable it.
 
-![image](https://github.com/user-attachments/assets/fa7194ac-cf8c-44f5-882e-62213f7dc89d)
+   ![Disable Audio](https://github.com/user-attachments/assets/0677dd7d-2d4d-4383-8697-01d8fe5b8c04)
 
-![image](https://github.com/user-attachments/assets/56b00275-2a31-4da9-8535-45e44f417f51)
+3. **USB**: Go to USB settings and disable it.
 
-![image](https://github.com/user-attachments/assets/bf359848-201f-438d-992a-66db8d18b070)
+   ![Disable USB](https://github.com/user-attachments/assets/96c4257b-b5aa-416e-a86a-2f23360f1d0c)
 
-![image](https://github.com/user-attachments/assets/e73ca9a0-ee82-4aff-83a5-d966640e2c60)
+### Step 5: Configure Network Interfaces
 
-!!Do not start the VM yet!!
+In Network settings, configure the following adapters:
 
- Go to the settings of the machine.
+- **Adapter 1 (WAN)**: Set up as shown below.
 
-![image](https://github.com/user-attachments/assets/783117c5-c6c4-42d2-81c3-d70b5ce5d8fb)
+   ![WAN Adapter](https://github.com/user-attachments/assets/7ba13507-0c08-4ce8-a7a5-48591123ad08)
 
-Change the boot order and match it as in the image shown below. Also, uncheck the Floppy Disk. 
+- **Adapter 2 (LAN)**: Configure as shown below.
 
-This will ensure that the operating system boots upon installation from the disc.
+   ![LAN Adapter](https://github.com/user-attachments/assets/924e9715-78d5-45ba-8176-7dcb7d878862)
 
-![image](https://github.com/user-attachments/assets/f69d55aa-465c-4616-a2cb-ceac898494ef)
+- **Adapter 3 (Isolated)**: Set up as shown below.
 
-Go to the audio settings and disable the audio.
+   ![Isolated Adapter](https://github.com/user-attachments/assets/7f6f4678-f46f-4344-8b99-9b39a45d55cf)
 
-![image](https://github.com/user-attachments/assets/0677dd7d-2d4d-4383-8697-01d8fe5b8c04)
+- **Adapter 4 (AD-Lab)**: Configure as shown below.
 
-Go to the USB settings and disable it.
+   ![AD-Lab Adapter](https://github.com/user-attachments/assets/7fe81f34-1f06-443e-bbaf-251de2fc6024)
 
-![image](https://github.com/user-attachments/assets/96c4257b-b5aa-416e-a86a-2f23360f1d0c)
+### Step 6: Start the VM
 
- Configure the Network Interface.
-
-Still on the machine settings go to the Network settings.
-
-![image](https://github.com/user-attachments/assets/f21163f3-85dc-4176-a402-9eb705f61631)
-
-Adapter 1 WAN:
-
-![image](https://github.com/user-attachments/assets/7ba13507-0c08-4ce8-a7a5-48591123ad08)
-
-Adapter 2 LAN:
-
-![image](https://github.com/user-attachments/assets/924e9715-78d5-45ba-8176-7dcb7d878862)
-
-Adapter 3 ISOLATED:
-
-![image](https://github.com/user-attachments/assets/7f6f4678-f46f-4344-8b99-9b39a45d55cf)
-
-Adapter 4 AD-LAB:
-
-![image](https://github.com/user-attachments/assets/7fe81f34-1f06-443e-bbaf-251de2fc6024)
-
-After doing all of this we can start the machine.
+After completing the settings above, start the VM to begin the pfSense installation.
 
 ---
 

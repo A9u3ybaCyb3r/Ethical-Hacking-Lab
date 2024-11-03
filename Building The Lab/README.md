@@ -162,6 +162,8 @@ After completing the settings above, start the VM to begin the pfSense installat
 8. **Confirm Installation**  
    - Choose **YES** to confirm and continue with the installation.
 
+     ![image](https://github.com/user-attachments/assets/4e52f142-af31-477e-bb39-06a898fe9910)
+
 9. **Wait for Installation**  
    - Wait for the installation to complete. Once done, choose **Reboot** to restart the system.
 

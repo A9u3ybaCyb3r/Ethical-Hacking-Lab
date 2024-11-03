@@ -122,45 +122,50 @@ After completing the settings above, start the VM to begin the pfSense installat
 
 ---
 
-## 4. Intstalling pfSense
+## 4. Installing pfSense
 
-Start the machine.
+1. **Start the VM**  
+   Start your pfSense virtual machine.
 
-![image](https://github.com/user-attachments/assets/e8207eaf-82db-4e52-a6e0-5efb4512622d)
+   ![Start VM](https://github.com/user-attachments/assets/e8207eaf-82db-4e52-a6e0-5efb4512622d)
 
-![image](https://github.com/user-attachments/assets/16fb7088-5ea1-44f1-ac24-7f3a8b9eddea)
+2. **Boot pfSense**  
+   When prompted, press **Enter** to boot.
 
-Press Enter.
+   ![Press Enter](https://github.com/user-attachments/assets/16fb7088-5ea1-44f1-ac24-7f3a8b9eddea)
 
-![image](https://github.com/user-attachments/assets/178f335e-62cf-409e-91d4-9c175da0c808)
+3. **Select Installation**  
+   Choose **Install pfSense** and press **Enter**.
 
- Choose Install pfSense.
+   ![Install pfSense](https://github.com/user-attachments/assets/ebc7e2fa-5d63-4bcf-ad4a-7e31b10de690)
 
-![image](https://github.com/user-attachments/assets/ebc7e2fa-5d63-4bcf-ad4a-7e31b10de690)
+4. **Choose Partitioning Scheme**  
+   - Select **Auto (ZFS)** as the partitioning scheme.
 
-Choose Auto (ZFS).
+     ![Auto ZFS](https://github.com/user-attachments/assets/fe0a64bc-c58a-4771-bacf-3412eccc69d3)
 
-![image](https://github.com/user-attachments/assets/fe0a64bc-c58a-4771-bacf-3412eccc69d3)
+5. **Default Configuration**  
+   - Proceed with the installation by selecting the **default configuration**.
 
-Then proceed with the installation using the default configuration.
+     ![Default Configuration](https://github.com/user-attachments/assets/3ef9e02b-aa6d-49f4-92c3-d64d3539a813)
 
-![image](https://github.com/user-attachments/assets/3ef9e02b-aa6d-49f4-92c3-d64d3539a813)
+6. **Select Disk Mode**  
+   - Choose **Stripe - No Redundancy** for the disk mode.
 
-Choose Stripe - No Redundancy.
+     ![Stripe No Redundancy](https://github.com/user-attachments/assets/f109234a-7691-4aba-beb2-21ff7bb2fc25)
 
-![image](https://github.com/user-attachments/assets/f109234a-7691-4aba-beb2-21ff7bb2fc25)
+7. **Select Disk**  
+   - Use the **Space Bar** to select the disk where you want to install pfSense. The selected disk will show an asterisk (*).
 
-Use the Space Bar to choose the disk that you want. We should see an asterisk (*) on the option that we chose.
+     ![Select Disk](https://github.com/user-attachments/assets/e26bf8a4-d30c-4f8b-bad7-b3c3c93121a4)
 
-![image](https://github.com/user-attachments/assets/e26bf8a4-d30c-4f8b-bad7-b3c3c93121a4)
+8. **Confirm Installation**  
+   - Choose **YES** to confirm and continue with the installation.
 
-Choose YES to continue.
+9. **Wait for Installation**  
+   - Wait for the installation to complete. Once done, choose **Reboot** to restart the system.
 
-![image](https://github.com/user-attachments/assets/4e52f142-af31-477e-bb39-06a898fe9910)
-
-Now we wait for the installation to complete and then we choose Reboot.
-
-![image](https://github.com/user-attachments/assets/2296c60c-d355-4902-9789-5f394ef42f15)
+     ![Reboot](https://github.com/user-attachments/assets/2296c60c-d355-4902-9789-5f394ef42f15)
 
 ---
 

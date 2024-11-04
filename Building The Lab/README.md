@@ -319,150 +319,236 @@ To avoid exposing the pfSense web console to public networks, we will **not make
 
 ---
 
-## 6. Importing Kali
+## 6. Importing Kali Linux
 
-## Step 1: Download Kali for VirtualBox
+1. **Download Kali Linux**  
+   - Go to [https://kali.org/get-kali/](https://kali.org/get-kali/).
+   - Click on **Virtual Machines** and download the 64-bit **VirtualBox** version.
 
-1. Go to [https://kali.org/get-kali/](https://kali.org/get-kali/).
-2. Click on **Virtual Machines** and download the **64-bit version for VirtualBox**.
+   ![Download Page](https://github.com/user-attachments/assets/ae2d558e-57a4-4d1a-8576-5ad25de659ec)
 
-   ![Click on Virtual Machines](https://github.com/user-attachments/assets/ae2d558e-57a4-4d1a-8576-5ad25de659ec)
-   
-   ![Download the 64-bit version](https://github.com/user-attachments/assets/6430026d-9ca1-46db-9dd6-98e6d758617c)
+   ![Select Version](https://github.com/user-attachments/assets/6430026d-9ca1-46db-9dd6-98e6d758617c)
 
-## Step 2: Import Kali into VirtualBox
+2. **Extract and Add to VirtualBox**  
+   - After downloading, extract the file.
+   - In VirtualBox, click **Add** and select the `.vbox` file.
 
-1. After downloading the file, extract it.
-2. Open VirtualBox and click the **Add** button.
+   ![Add to VirtualBox](https://github.com/user-attachments/assets/37ef160d-c250-4151-80df-bdfb038f063c)
 
-   ![Click Add](https://github.com/user-attachments/assets/37ef160d-c250-4151-80df-bdfb038f063c)
+   ![Select .vbox File](https://github.com/user-attachments/assets/5cf67d2e-ebd6-4c6e-ab83-f49f87a27b82)
 
-3. Choose the `.vbox` file from the extracted folder.
+3. **Configure Network Settings**  
+   - Right-click the Kali machine, go to **Network** settings.
 
-   ![Choose the .vbox file](https://github.com/user-attachments/assets/5cf67d2e-ebd6-4c6e-ab83-f49f87a27b82)
+   ![Network Settings](https://github.com/user-attachments/assets/465b1135-d2b9-4e79-aa75-f6eb9f315ed1)
 
-## Step 3: Configure Network Settings
+   - Change the network adapter to the **pfSense LAN** network you created.
 
-1. Right-click the imported Kali machine and choose **Settings > Network**.
+   ![Select pfSense LAN Network](https://github.com/user-attachments/assets/82294fe3-d42c-44cb-8982-732ef4d9e3aa)
 
-   ![Access Network Settings](https://github.com/user-attachments/assets/465b1135-d2b9-4e79-aa75-f6eb9f315ed1)
+4. **Adjust RAM**  
+   - Increase the RAM based on your requirements (e.g., 8GB for heavy usage). You can do this in **Machine Settings**.
 
-2. In **Adapter 1**, set it to the **pfSense LAN network** you previously created.
+   ![Adjust RAM](https://github.com/user-attachments/assets/9cf482b6-64c7-48be-8248-fe25ad5868eb)
 
-   ![Set to pfSense LAN network](https://github.com/user-attachments/assets/82294fe3-d42c-44cb-8982-732ef4d9e3aa)
+5. **Start the Machine**  
+   - Click **OK** to save the settings, then start the Kali machine.
+   - Login with the default credentials: **Username**: `kali`, **Password**: `kali`.
 
-## Step 4: Adjust System Resources (Optional)
+   ![Login Screen](https://github.com/user-attachments/assets/919a0fe4-12fe-4847-acad-0180f51a77b8)
 
-1. Increase the **RAM** if needed. Go to **Settings > System** and adjust the RAM based on your requirements (e.g., 8GB if you use r
+6. **Verify Network Connection**  
+   - Open a terminal and check the IP address to ensure you're on the LAN network. It should show an IP in the `10.19.19.X/24` range.
+   - You can later configure a specific IP address if needed.
+
+   ![Check Network Connection](https://github.com/user-attachments/assets/3507057e-d6df-423e-9fbe-bde723849657)
 
 ---
 
 ## 7. Configuring the pfSense firewall
 
-Log into the web portal in your Kali machine at: `https://10.19.19.1`.
+## Log into the Web Portal
 
-### Bypassing Firefox Security Warning
+1. Open Firefox on your Kali machine and go to:  
+   **`https://10.19.19.1`**  
+   ![Login Portal](https://github.com/user-attachments/assets/db0ecfcb-6a40-4817-8187-8cabda8db0bd)
 
-1. Click **Advanced** when prompted.
-2. Accept the risk to proceed.
+2. If you encounter a security warning, click **Advanced**.  
+   ![Advanced Security Warning](https://github.com/user-attachments/assets/329900dc-3fec-47e3-8335-42b84cd7069a)
 
-### pfSense Login
+3. Accept the risk by clicking on **Accept the Risk and Continue**.  
+   ![Accept Risk](https://github.com/user-attachments/assets/2fbd799e-db1d-447b-8616-538c8b91f774)
 
-- Default credentials:
-  - **Username:** admin
-  - **Password:** pfsense
+4. Enter Default Credentials:  
+   - Username: `admin`  
+   - Password: `pfsense`  
+   Click **Next** after logging in.  
+   ![Default Credentials](https://github.com/user-attachments/assets/4157974c-affb-43d9-aa12-f745ad488560)
 
-Click **Next** after logging in.
+5. Fill out Hostname and Domain:  
+   Uncheck **Override DNS**. You can use any name you prefer. Click **Next**.  
+   ![Hostname and Domain](https://github.com/user-attachments/assets/c3e8a9f6-c266-4412-a404-03931166ec10)
 
-### Setup
+6. Double-check your timezone and click **Next**.  
+   ![Timezone Setting](https://github.com/user-attachments/assets/6a3875bf-c8be-4140-863b-3296c20aa10a)
 
-1. **Hostname and Domain:** Fill out and uncheck "Override DNS". Click **Next**.
-2. **Timezone:** Confirm timezone and click **Next**.
-3. **Double-NAT Warning:** Uncheck the double-NAT option to allow private WAN access. Click **Next**.
-4. **Admin Password:** Change the password and remember it. Click **Next** and **Finish**.
+7. Scroll down and uncheck the option to allow double-NAT, as the WAN network is also private. Click **Next**.  
+   ![Double-NAT Option](https://github.com/user-attachments/assets/1fa7b998-b55c-4207-a454-831a331e4356)
+
+8. Click **Next** again.  
+   ![Next Confirmation](https://github.com/user-attachments/assets/d01ad2a6-3c77-446e-80a0-34b74245ba2c)
+
+9. Change the Admin Password: Remember to note the new password.  
+   ![Change Admin Password](https://github.com/user-attachments/assets/73b60b4c-6325-479f-b7be-fe1ef1b8e934)
+
+10. Click **Next** and then **Finish** to complete the setup.
+
+---
 
 ## Configure the Interfaces
 
 ### Isolated Interface
 
-1. Go to **Interfaces** > **OPT1**.
-2. Set the **Description** to `ISOLATED`.
-3. Scroll down and click **Save** and **Apply Changes**.
+11. Go to `Interfaces` and choose **OPT1**.  
+   ![OPT1 Interface](https://github.com/user-attachments/assets/1d51f12c-c551-4c49-9543-464d5f1f9302)
+
+12. Set the **Description** to **ISOLATED**. Then scroll down and click **Save** and **Apply Changes**.  
+   ![Isolated Interface Save](https://github.com/user-attachments/assets/90a7eff1-1423-4d85-921b-a4c649c6f7aa)  
+   ![Isolated Interface Apply Changes](https://github.com/user-attachments/assets/5e86a71c-cb18-452a-b6f8-687eebaf96c8)
 
 ### AD_LAB Interface
 
-1. Go to **Interface** > **OPT2**.
-2. Set the **Description** to `AD_LAB`.
-3. Scroll down and click **Save** and **Apply Changes**.
+13. Go to `Interface` and choose **OPT2**.  
+   ![OPT2 Interface](https://github.com/user-attachments/assets/f6b7f5cc-1410-4316-a3ba-df06c50e7cb6)
 
-## Optimize the DNS Resolver Service
+14. Change the **Description** to **AD_LAB**. Then scroll down and click **Save** and **Apply Changes**.  
+   ![AD_LAB Interface Save](https://github.com/user-attachments/assets/4a1b57ba-2a69-43d3-a743-fde6276d0868)  
+   ![AD_LAB Interface Apply Changes](https://github.com/user-attachments/assets/44d8157c-8736-484a-8def-c67444700015)
 
-1. Go to **Services** > **DNS Resolver**.
-2. Enable necessary options and click **Save** and **Apply Changes**.
-3. In **Advanced Settings**, enable the additional options. **Save** and **Apply Changes** again.
+### Optimize the DNS Resolver Service
 
-## Give Kali a Static DHCP Lease
+15. Go to `Services > DNS Resolver`.  
+   ![DNS Resolver](https://github.com/user-attachments/assets/b0dd2a59-96fb-4496-8c93-423fd49f4bfe)
 
-1. Go to **Status** > **DHCP Leases**.
-2. Click the button to add a static mapping for your Kali machine.
-3. Set the IP address for Kali. Click **Save** and **Apply Changes**.
+16. Check both options, then click **Save** and **Apply Changes**.  
+   ![DNS Resolver Options](https://github.com/user-attachments/assets/7b7612c2-1fde-463d-aa03-ebf2125d3aab)
 
-## Configure the Firewall Rules
+17. Go to Advanced Settings in DNS Resolver and check both options. Don’t forget to **Save and Apply Changes**.  
+   ![DNS Resolver Advanced Settings](https://github.com/user-attachments/assets/e7f537a4-9c21-4fe7-889b-68b01c09afa2)
 
-### Create Aliases
+### Give Kali a Static DHCP Lease
 
-1. **RFC1918 Alias**: Go to **Firewall** > **Aliases**, add and save for private IPv4 spaces.
-2. **Kali Alias**: Add, save, and apply changes for Kali's IP address.
+18. Go to `Status > DHCP Leases`.  
+   ![DHCP Leases](https://github.com/user-attachments/assets/1129d9f4-f090-470c-8a27-3202972cff1e)
 
-### LAN Interface Rules
+19. Click on the button to **add a static mapping**. (Note: The hostname may differ; my Kali machine is named Vulnhunter).  
+   ![Add Static Mapping](https://github.com/user-attachments/assets/8e402467-88ac-4272-8336-7f0f00ad6c80)
 
-1. Go to **Firewall** > **Rules** > **LAN**.
-2. Add and configure the required rules to control LAN traffic.
+20. Set the IP address for your Kali machine. Click **Save** and **Apply Changes**.  
+   ![Set Kali IP Address](https://github.com/user-attachments/assets/a85398a6-99fe-4090-9bb2-7f5540b39e88)
 
-### ISOLATED Interface Rules
+### Configure the Firewall Rules
 
-1. Go to **Firewall** > **Rules** > **ISOLATED**.
-2. Add and configure the necessary rules to manage isolated network traffic.
+21. Create an Alias for RFC1918. Go to `Firewall > Aliases`.  
+   ![Firewall Aliases](https://github.com/user-attachments/assets/d1132f04-0a9e-48d1-b6c2-102723e3c00b)
 
-### AD_LAB Interface Rules
+22. Click **Add**, fill out the necessary details, then click **Save**.  
+   ![Add RFC1918 Alias](https://github.com/user-attachments/assets/b4e2dcdc-e912-4bf3-be1d-097eddbdee25)
 
-1. Go to **Firewall** > **Rules** > **AD_LAB**.
-2. Add a rule to block private IP addresses, then add exceptions as needed.
-3. Configure additional rules for managing AD_LAB traffic.
+23. Create an Alias for Kali: Click **Add**, then **Save** and **Apply Changes**.  
+   ![Add Kali Alias](https://github.com/user-attachments/assets/b9e15e1a-9c14-42e1-8096-26c560fe7891)
 
-### Floating Rules
+### Configure LAN Rules
 
-1. Go to **Firewall** > **Aliases**.
-2. Add a port alias and configure the necessary rules in **Firewall** > **Rules** > **Floating**.
+24. Go to `Firewall > Rules`.  
+   ![Firewall Rules](https://github.com/user-attachments/assets/00e87e94-4a92-49cb-84ea-bdbb97dbbe80)
 
-### Add Separators
+25. Select LAN and click **Add Rule**.  
+   ![Add LAN Rule](https://github.com/user-attachments/assets/eb5af460-2933-4136-9018-fda3bd73f433)
 
-1. Go to **Firewall** > **Rules** > **Floating**.
-2. Add two separators to organize rules.
-3. Ensure separators are applied correctly and save.
+26. Copy the following rules:  
+   ![LAN Rules](https://github.com/user-attachments/assets/5c1b56a4-808a-45e8-9669-cf0f18cc6b54)
 
-### Block Logins to the Firewall
+27. This is how it should look when you are done:  
+   ![Finished LAN Rules](https://github.com/user-attachments/assets/388db847-7bf8-4421-8563-0153d522d6aa)
 
-1. Add a floating rule to block ISOLATED and AD_LAB from accessing firewall login ports.
-2. Set direction to **in** to block incoming login traffic.
-3. Click **Save** and **Apply Changes**.
+### Configure ISOLATED Rules
 
-### Floating Rules Desired End State
+28. Click on ISOLATED and then click **Add Rule**.  
+   ![ISOLATED Add Rule](https://github.com/user-attachments/assets/c5e09e3a-6633-4157-8d2f-fffcee1e5938)  
+   ![ISOLATED Add Rule Screenshot 1](https://github.com/user-attachments/assets/fd4acef1-4374-4758-ac44-cbe094730803)  
+   ![ISOLATED Add Rule Screenshot 2](https://github.com/user-attachments/assets/f30108a8-dd32-43fb-893f-51d6fb4d3707)
 
-1. Arrange rules in the desired order.
-2. Click **Save** and **Apply Changes**.
+  - Add another rule:
+    ![ISOLATED Add Rule](https://github.com/user-attachments/assets/9df9fcf5-e0a0-4d03-8aaa-ae7f844d5856)
+    ![ISOLATED Add Rule Screenshot 3](https://github.com/user-attachments/assets/56e4d325-79c9-401a-93dc-8d9c5ef1b505)
 
-## Make System Tweaks to pfSense
+  - Lastly, we add an isolated rule:
+    ![ISOLATED Add Rule](https://github.com/user-attachments/assets/8c67283a-c782-4803-aad0-d1f509d66e08)
+    ![ISOLATED Add Rule Screenshot 4](https://github.com/user-attachments/assets/a5fa3d8b-e313-4b79-84dc-98f83b19f941)
+    ![ISOLATED Add Rule Screenshot 5](https://github.com/user-attachments/assets/dc5850a1-70a8-4548-b69e-bc1dc935007e)
 
-1. Go to **System** > **Advanced** > **Networking**.
-2. Enable required network options and save changes.
-3. Reboot pfSense for changes to take effect.
+### Configure AD_LAB Rules
 
-## Update Kali's DHCP Lease
+29. Go to `Firewall > Rules > AD_LAB`.  
+   ![AD_LAB Rules](https://github.com/user-attachments/assets/354dc273-5e98-41d7-bd3d-1b39e246359d)
 
-1. Run the following command in Kali's terminal:
-   ```bash
-   sudo ip link set eth0 down && sudo ip link set eth0 up
+30. Add rules:  
+   ![AD_LAB Rules Screenshot 1](https://github.com/user-attachments/assets/a92c06e5-bc3d-4368-a396-8159cd84619a)  
+   ![AD_LAB Rules Screenshot 2](https://github.com/user-attachments/assets/21947bc9-1f65-4e6d-b362-3fd67ccc3039)
+
+31. Ensure the rule to block traffic to private IPs is below any allow rules.  
+
+  - Add another rule:
+    ![image](https://github.com/user-attachments/assets/cd42f591-7f97-4725-9baa-48bcc7b4d413)
+    ![image](https://github.com/user-attachments/assets/7c7f7019-a65c-4ed8-bb69-b814c6fd6166)
+   
+  - Add another rule:
+    ![image](https://github.com/user-attachments/assets/5c0cb759-aded-4b16-85ab-5286e6bf6e58)
+    ![image](https://github.com/user-attachments/assets/13aa5108-fdfe-44b4-9577-d0e8caf224fa)
+
+  - Final rule:
+    ![image](https://github.com/user-attachments/assets/6db4663a-9c11-4cff-9f53-a0739ae4156e)
+    ![image](https://github.com/user-attachments/assets/7b9235e4-b712-42b4-b076-1889f7358bc3)
+    ![image](https://github.com/user-attachments/assets/35cf63a4-ff61-4fcb-b5a1-bea349450758)
+
+
+### Configure Floating Rules
+
+32. Create Port Alias: Go to `Firewall > Aliases > Ports` and add the required rule.
+    ![image](https://github.com/user-attachments/assets/619133f6-b021-44a0-9ac4-8d2b1b7748c1)
+    ![Port Alias](https://github.com/user-attachments/assets/08a31367-b3a1-463d-9873-23ca20873fc9)
+
+34. Add Separators: Go to `Firewall > Rules > Floating` and add two separators.
+    ![image](https://github.com/user-attachments/assets/e0a96622-c717-4600-bfed-ccc811c7bbd9)
+   ![Add Floating Separator](https://github.com/user-attachments/assets/1bc1957f-3550-4f6a-a8c4-2c7b6d8778c5)
+
+- You should have two separators:
+  ![image](https://github.com/user-attachments/assets/aa9127bd-e1c4-47ff-b04b-fd5d4f644dc9)
+
+35. Block Login Access: Create a floating rule to prevent ISOLATED and AD_LAB subnets from accessing firewall login ports.
+    ![image](https://github.com/user-attachments/assets/b34e2ea1-ab27-4dcd-a6ec-0aba4839348e)
+    ![image](https://github.com/user-attachments/assets/ddde4107-32c5-4d1f-8691-c952f0eed999)
+    ![image](https://github.com/user-attachments/assets/5240f215-a47b-4479-8a25-295e3a340417)
+    ![image](https://github.com/user-attachments/assets/2936151e-28c2-4105-b561-dc94fc86df5d)
+   ![Block Login Access Rule](https://github.com/user-attachments/assets/efdb2193-6a39-4d8e-81be-d76b396d1223)
+
+---
+
+## System Tweaks
+
+35. Go to `System > Advanced > Networking`. Scroll to find the specific network option, check it, then click **Save** and **Apply Changes**.  
+   ![Specific Network Option](https://github.com/user-attachments/assets/313f82d4-2e26-4f65-ad4f-f641c3c142bc)
+
+36. Reboot pfSense: Go to `Diagnostics > Reboot`.  
+
+---
+
+## Final Steps
+
+38. Update Kali's Network: Open a terminal and run:  
+
+   `sudo ip link set eth0 down && sudo ip link set eth0 up`
 
 ---
 

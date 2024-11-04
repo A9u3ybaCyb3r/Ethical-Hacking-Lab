@@ -808,17 +808,17 @@ Download the necessary ISO files from the [Microsoft Evaluation Center](https://
 
 2. Go to **Manage** > **Add Roles and Features**.
 
-   ![Add Roles and Features](https://github.com/user-attachments/assets/3c5d8e8d-e79d-4511-827c-2d68e3f58e30)
+   ![Add Roles and Features](https://github.com/user-attachments/assets/830e519e-bb03-48f2-950e-8979a75caf36)
 
 3. Proceed through the wizard until you reach **Server Roles**.
 
 4. Check **Active Directory Certificate Services** and click **Next**.
 
-   ![Select AD Certificate Services](https://github.com/user-attachments/assets/930e5249-3514-49eb-b75c-e40b302fc3d4)
+   ![Select AD Certificate Services](https://github.com/user-attachments/assets/664c7489-1afe-4dc9-907b-286d2cd14c48)
 
 5. On the **Role Services** page, select **Certification Authority** and click **Next**.
 
-   ![Select Certification Authority](https://github.com/user-attachments/assets/ab0f3d63-7384-4336-b7c1-52a44748f693)
+   ![Select Certification Authority](https://github.com/user-attachments/assets/04aa0450-a9ee-4c85-8949-c60c6639dc6e)
 
 6. Proceed through the installation.
 

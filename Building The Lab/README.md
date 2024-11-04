@@ -554,77 +554,85 @@ To avoid exposing the pfSense web console to public networks, we will **not make
 
 ## 8. Importing Vulnhub VMs to the lab
 
-We are going to Import Machines from Vulnhub. We are going to download Metasploitable 2 these are the links:
+## Step 1: Download Metasploitable 2
 
-VM Info on Vulnhub: https://vulnhub.com/entry/metasploitable-2,29/
+- **VM Info on Vulnhub**: [Metasploitable 2 Entry](https://vulnhub.com/entry/metasploitable-2,29/)
+- **Vulnhub Download Link**: [Download Metasploitable 2](https://download.vulnhub.com/metasploitable/metasploitable-linux-2.0.0.zip)
 
-Vulnhub Download Link: https://download.vulnhub.com/metasploitable/metasploitable-linux-2.0.0.zip
+After downloading, you will get a zip file. Extract it to access the `.vmdk` file.
 
-You will get a zip file so we need to extract it.
+![Extracted File](https://github.com/user-attachments/assets/852efc57-8754-4618-ada7-5e8d4533cf57)
 
-![image](https://github.com/user-attachments/assets/852efc57-8754-4618-ada7-5e8d4533cf57)
+## Step 2: Set Up the VM in VirtualBox
 
-The .vmdk file is what we want.
+1. Open **VirtualBox** and click on **New** to create a new virtual machine.
 
-![image](https://github.com/user-attachments/assets/6b2f3222-b258-4853-9fbd-acf787fd9469)
+   ![New VM](https://github.com/user-attachments/assets/94cf1927-a8a1-4975-bf93-9c85ba4ef9b5)
 
-On Virtualbox Click New so we can build a new machine.
+2. Follow the prompts to configure your VM settings as needed.
 
-![image](https://github.com/user-attachments/assets/94cf1927-a8a1-4975-bf93-9c85ba4ef9b5)
+   ![VM Configuration](https://github.com/user-attachments/assets/23473cf4-7b97-401e-b5e4-78b4c37a23c5)
 
-![image](https://github.com/user-attachments/assets/23473cf4-7b97-401e-b5e4-78b4c37a23c5)
+3. When prompted, select **Add a disk**.
 
-![image](https://github.com/user-attachments/assets/3a6874c8-8a31-4972-aa27-2a7d97e008b7)
+   ![Add Disk](https://github.com/user-attachments/assets/d53613eb-96ac-47c7-b7d7-1225d52424a6)
 
-Then we go here so we can add a disk.
+4. Click on the disk icon to choose your disk file.
 
-![image](https://github.com/user-attachments/assets/d53613eb-96ac-47c7-b7d7-1225d52424a6)
+   ![Disk Icon](https://github.com/user-attachments/assets/ce21926b-c715-476c-899a-a5e430dda9aa)
 
-Click this icon.
+5. Navigate to where you downloaded and unzipped Metasploitable 2. Select the `.vmdk` file.
 
-![image](https://github.com/user-attachments/assets/ce21926b-c715-476c-899a-a5e430dda9aa)
+   ![Select VMDK](https://github.com/user-attachments/assets/c26467eb-5e9b-4423-8447-8cffc81f6623)
 
-Then you go where you downloaded and unzipped Metasploitable 2 and get this file.
+6. Confirm that it looks correct and click **Finish**.
 
-![image](https://github.com/user-attachments/assets/c26467eb-5e9b-4423-8447-8cffc81f6623)
+   ![Finish VM Setup](https://github.com/user-attachments/assets/b083e8e6-1b8e-4e3f-a18e-d087a9eadd4a)
 
-It should look like this.
+## Step 3: Configure Network Settings
 
-![image](https://github.com/user-attachments/assets/8a730189-dbda-4797-8299-3d4cddf79c91)
+1. **Do not start the VM yet**. Right-click the Metasploitable 2 VM and choose **Settings**.
 
-Then we click Finish.
+   ![Settings](https://github.com/user-attachments/assets/ce42f843-1bf5-4bd0-9603-6f11ff9c7a59)
 
-![image](https://github.com/user-attachments/assets/b083e8e6-1b8e-4e3f-a18e-d087a9eadd4a)
+2. Go to **Network** settings and configure as needed.
 
-We don't start the VM, we right-click the Metasploitable2 VM, choose Settings, and go to network settings.
+   ![Network Settings](https://github.com/user-attachments/assets/61ba46aa-5273-462a-a242-9aaa1d5c6e2a)
 
-![image](https://github.com/user-attachments/assets/ce42f843-1bf5-4bd0-9603-6f11ff9c7a59)
+## Step 4: Start the VM and Log In
 
-![image](https://github.com/user-attachments/assets/61ba46aa-5273-462a-a242-9aaa1d5c6e2a)
+1. Now, you can start the VM.
+2. Log in with the following credentials:
+   - **Username**: `msfadmin`
+   - **Password**: `msfadmin`
 
-Now you can start the VM.
+   ![Login Screen](https://github.com/user-attachments/assets/1856ad49-3f18-46ed-aea6-a9714d7528d6)
 
-Login to the machine with the credentials msfadmin:msfadmin 
+## Step 5: Check the IP Address
 
-![image](https://github.com/user-attachments/assets/1856ad49-3f18-46ed-aea6-a9714d7528d6)
+1. Use the command below to check the IP address of the Metasploitable VM:
 
-You can check the IP of the machine, by command: **ip a**.
+`ip a`
 
 ![image](https://github.com/user-attachments/assets/956432cf-afbd-4853-a3c1-84abcc870bea)
 
-Next, we ping our Kali machine from Metasploitable 2, we will do it with the IP address first.
+## Step 6: Ping the Kali Machine
+
+1. Start by pinging your Kali machine from Metasploitable 2 using the IP address.
 
 ![image](https://github.com/user-attachments/assets/9468c8a9-9bd3-46c4-a2da-fc04dc64cee8)
 
-Then we will use the local DNS suffix.
+2. Next, use the local DNS suffix to ping.
 
 ![image](https://github.com/user-attachments/assets/69a58057-7d8e-4dbf-85eb-5673d19234bf)
 
-Lastly, we will ping Google and it should fail because we blocked everything outside.
+3. Finally, try to ping Google. This should fail because we’ve blocked all outside traffic.
 
 ![image](https://github.com/user-attachments/assets/3e2e770e-7db8-488b-bbb7-b4dac1e7d480)
 
-Now we should ping the Metasploitable VM from Kali.
+## Step 7: Ping Metasploitable from Kali
+
+Lastly, check connectivity by pinging the Metasploitable VM from your Kali machine.
 
 ![image](https://github.com/user-attachments/assets/4e73696b-f0d9-40fb-92ab-27ce6058ded5)
 

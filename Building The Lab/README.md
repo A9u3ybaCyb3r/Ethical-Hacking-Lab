@@ -640,124 +640,139 @@ Lastly, check connectivity by pinging the Metasploitable VM from your Kali machi
 
 ## 9. Building an Active Directory
 
-### Downloading the ISOs
+# Setting Up Windows Server and Domain Controller
 
-1. Visit Microsoft Evaluation Center:
+## Downloading the ISOs
 
-	- Go to Google and search for "Microsoft Evaluation Center." Link: https://www.microsoft.com/en-us/evalcenter
-  
-	- Open the official Microsoft Evaluation Center page from the search results.
-  
-2. Browse Available Software:
-   
-	- The Evaluation Center offers trial versions of Windows, Windows Server, SQL Server, and more.
-  
-	- For our lab, we’ll be downloading Windows 10 Enterprise and Windows Server 2022.
+### Step 1: Visit Microsoft Evaluation Center
+1. Go to Google and search for "Microsoft Evaluation Center."
+   - Official link: [Microsoft Evaluation Center](https://www.microsoft.com/en-us/evalcenter)
+2. Open the official Microsoft Evaluation Center page from the search results.
 
-3. Download Windows 10 Enterprise:
-   
-	- Select Windows 10 Enterprise from the list.
-  
-	- Choose the 64-bit ISO version for the United States (or your preferred region).
-  
-	- Fill out the registration form (you can use generic information for the form fields).
-  
-	- Click Download Now to start the download.
-  
-4. Download Windows Server 2022:
-   
-	- Similarly, select Windows Server 2022 and open the download page.
+### Step 2: Browse Available Software
+- The Evaluation Center offers trial versions of Windows, Windows Server, SQL Server, and more.
+- For this lab, download **Windows 10 Enterprise** and **Windows Server 2022**.
 
-	- Choose the 64-bit ISO version.
+### Step 3: Download Windows 10 Enterprise
+1. Select **Windows 10 Enterprise** from the list.
+2. Choose the **64-bit ISO** version for your region (e.g., United States).
+3. Fill out the registration form (generic information is acceptable).
+4. Click **Download Now** to start the download.
 
-	- Complete the registration form, then click Download Now to begin.
+### Step 4: Download Windows Server 2022
+1. Select **Windows Server 2022** and open the download page.
+2. Choose the **64-bit ISO** version.
+3. Complete the registration form, then click **Download Now** to begin.
 
-5. Notes:
-   
-	- Remember, these downloads are large files (Windows 10 Enterprise is around 5.2 GB, and Windows Server 2022 is about 4.7 GB).
+### Step 5: Notes
+- Note that these downloads are large (Windows 10 Enterprise is ~5.2 GB, Windows Server 2022 is ~4.7 GB).
+- After 90 days, the OS may prompt for activation or start shutting down if inactive. Reboot as needed for testing.
 
-	- After 90 days, the OS might prompt for activation or start shutting down if not actively used, so reboot as needed for testing.
+---
 
-### Setting Up the Domain Controller
+## Setting Up the Domain Controller
 
-1. Create a New Virtual Machine:
+### Step 1: Create a New Virtual Machine
+1. In VMware or VirtualBox, select **Create a New Virtual Machine**.
+2. Choose the **Typical** setup option.
+3. Browse for the **Windows Server 2022 ISO** file you downloaded and select it.
 
-	- In VMware or VirtualBox, select Create a New Virtual Machine.
+### Step 2: Operating System Selection
+- Choose **Windows Server 2016** if Windows Server 2022 isn’t listed. This won’t affect the setup.
 
-	- Choose the Typical setup option.
+### Step 3: Configure Disk Space
+- Allocate **at least 60 GB** of disk space.
+- Select the option to **Split virtual disk into multiple files** for efficient disk space use.
 
-	- Browse for the Windows Server 2022 ISO file you downloaded and select it.
-  
-2. Operating System Selection:
-   
-	- When prompted to select the operating system, choose Windows Server 2016 if Windows Server 2022 isn’t listed. This won’t affect your setup.
+### Step 4: Adjust Virtual Machine Settings
+1. Open **Edit Virtual Machine Settings**.
+2. Set memory to **4–8 GB** (8 GB recommended if available).
+3. Remove any **floppy disk device** if it appears.
 
-4. Configure Disk Space:
+### Step 5: Power On and Install Windows Server
+1. Power on the virtual machine.
+2. Press any key to boot from the ISO when prompted.
+3. Follow installation prompts, choosing:
+   - **Language and region** (defaults are typically fine).
+   - **Standard Evaluation Desktop Experience** as the installation type.
+   - Accept **license terms**.
+   - **Custom installation** on Drive 0 (unallocated space).
 
-	- Allocate at least 60 GB of disk space.
+### Step 6: Complete Initial Setup
+- After installation, Windows will reboot.
+- Set an **administrator password** (e.g., `P@$$w0rd!`).
 
-	- Select the option to Split virtual disk into multiple files to allow it to grow as needed.
+### Step 7: Install VMware Tools (Optional but Recommended)
+1. In VMware, go to **VM > Install VMware Tools**.
+2. Run the `setup64` file from the **D drive** to install the tools.
+3. Choose the **Complete** installation option, then finish and reboot if needed.
 
-5. Adjust Virtual Machine Settings:
-   
- 	- Open Edit Virtual Machine Settings.
-   
- 	- Set memory to 4–8 GB (depending on your host machine’s capacity; 8 GB is recommended if available).
+### Step 8: Rename the Computer
+1. Open the Start menu and search for **View your PC name**.
+2. Click **Rename this PC**.
+3. Name your domain controller (e.g., **Hydra-PC**).
+4. Restart the virtual machine after renaming.
 
- 	- Remove any floppy disk device if it appears in the list.
+### Step 9: Reboot and Continue
+- Allow the machine to restart.
+- Once logged back in, continue with additional domain controller configurations as needed.
 
+---
 
-6. Power On and Install Windows Server:
-   
-	- Power on the virtual machine.
+## Making the Machine a Domain Controller
 
-	- When prompted, press any key to boot from the ISO.
-  
-	- Follow the installation prompts, selecting:
+### Step 1: Open Server Manager
+- Open Server Manager, then select **Manage > Add Roles and Features**.
 
-   		- Language and region (default options are typically fine).
-       
-     		- Standard Evaluation Desktop Experience as the installation type.
-         
-       		-  Accept license terms.
-           
-         	-  Custom installation on Drive 0 (unallocated space).
-            
-8. Complete Initial Setup:
-   
-   	- After installation, Windows will reboot.
-   	  
-		- Set an administrator password (e.g., `P@$$w0rd!`).
-   	  
-9. Install VMware Tools (Optional but Recommended):
-    
-   	- In VMware, go to VM > Install VMware Tools.
-   	  
-   	- Run the setup64 file from the D drive to install the tools.
-   	  
-   	- Choose the Complete installation option, then finish.
-   	  
-   	- This may require a reboot for the changes to fully take effect.
-   	  
-11. Rename the Computer:
+### Step 2: Roles and Features Wizard
+1. Click **Next** on the introduction screen.
+2. Choose **Role-based or feature-based installation** and click **Next**.
+3. Select the server (e.g., "Hydra DC") and click **Next**.
 
-    - Go to the Start menu and search for View your PC name.
-      
-    - Click Rename this PC.
-      
-    - Name your domain controller. For example, if following a superhero theme, use a name like Hydra-PC.
-      
-    - After renaming, restart the virtual machine.
-      
-13. Reboot and Continue:
-    
-    - Allow the machine to restart.
-      
-    - Once logged back in, continue with any additional domain controller configurations.
+### Step 3: Select AD DS
+1. Select **Active Directory Domain Services** and add any required features when prompted.
+2. Click **Next** until you reach the **Install** button, then start the installation.
+3. Wait for the installation to complete.
 
+### Step 4: Promote to Domain Controller
+1. After installation, click **Promote this server to a domain controller**.
+2. Choose **Add a new forest** and enter a root domain name (e.g., `Marvel.local`).
+3. Click **Next** and set the Forest and Domain functional levels (e.g., 2016).
+4. Set the **Directory Services Restore Mode (DSRM) password**.
 
+### Step 5: Configure NetBIOS and Paths
+1. Accept the automatically generated NetBIOS domain name.
+2. Proceed with default paths for **NTDS, SYSVOL**, etc.
+3. Click **Install** and let the server reboot after installation.
+
+### Step 6: Log into the Domain
+- After reboot, log in using the new domain (e.g., `Marvel\administrator`) and the administrator password.
+
+---
+
+## Setting Up Active Directory Certificate Services (AD CS)
+
+### Step 1: Add Roles and Features for AD CS
+1. In Server Manager, select **Manage > Add Roles and Features**.
+2. Choose **Role-based or feature-based installation** and proceed by clicking **Next**.
+3. Select **Active Directory Certificate Services** and add required features.
+
+### Step 2: Install Certificate Authority
+1. Continue through the wizard and select **Certification Authority**.
+2. Enable **Restart if required**, then click **Install**.
 
 
+
+### Step 3: Configure AD CS
+1. After installation, select **Configure Active Directory Certificate Services**.
+2. Choose **Certification Authority** and set it up as an **Enterprise CA** and **Root CA**.
+3. Create a **New Private Key** and use default cryptographic settings (e.g., SHA-256).
+4. Set the **Validity Period** to 99 years for long-term lab setup.
+5. Click **Next**, review settings, then **Configure**.
+
+### Step 4: Reboot
+- After configuration, restart the server to finalize setup.
+/
 
 ---
 

@@ -640,203 +640,96 @@ Lastly, check connectivity by pinging the Metasploitable VM from your Kali machi
 
 ## 9. Building an Active Directory
 
-For an internal penetration test, you need to change the network adapter settings of the Kali machine to connect it to the AD_LAB network.
+### Downloading the ISOs
+
+1. Visit Microsoft Evaluation Center:
+   
+- Go to Google and search for "Microsoft Evaluation Center." Link: https://www.microsoft.com/en-us/evalcenter
+  
+- Open the official Microsoft Evaluation Center page from the search results.
+  
+2. Browse Available Software:
+   
+- The Evaluation Center offers trial versions of Windows, Windows Server, SQL Server, and more.
+  
+- For our lab, we’ll be downloading Windows 10 Enterprise and Windows Server 2022.
+
+3. Download Windows 10 Enterprise:
+   
+- Select Windows 10 Enterprise from the list.
+  
+- Choose the 64-bit ISO version for the United States (or your preferred region).
+  
+- Fill out the registration form (you can use generic information for the form fields).
+  
+- Click Download Now to start the download.
+  
+4. Download Windows Server 2022:
+   
+- Similarly, select Windows Server 2022 and open the download page.
+
+- Choose the 64-bit ISO version.
+
+- Complete the registration form, then click Download Now to begin.
+
+5. Notes:
+   
+- Remember, these downloads are large files (Windows 10 Enterprise is around 5.2 GB, and Windows Server 2022 is about 4.7 GB).
+
+- After 90 days, the OS might prompt for activation or start shutting down if not actively used, so reboot as needed for testing.
+
+### Setting Up the Domain Controller
+
+1. Create a New Virtual Machine:
+
+- In VMware or VirtualBox, select Create a New Virtual Machine.
+
+- Choose the Typical setup option.
+
+- Browse for the Windows Server 2022 ISO file you downloaded and select it.
+  
+2. Operating System Selection:
+   
+- When prompted to select the operating system, choose Windows Server 2016 if Windows Server 2022 isn’t listed. This won’t affect your setup.
+
+4. Configure Disk Space:
+
+- Allocate at least 60 GB of disk space.
+
+- Select the option to Split virtual disk into multiple files to allow it to grow as needed.
+
+5. Adjust Virtual Machine Settings:
+
+- Open Edit Virtual Machine Settings.
+		○ Set memory to 4–8 GB (depending on your host machine’s capacity; 8 GB is recommended if available).
+		○ Remove any floppy disk device if it appears in the list.
+6. Power On and Install Windows Server:
+		○ Power on the virtual machine.
+		○ When prompted, press any key to boot from the ISO.
+		○ Follow the installation prompts, selecting:
+			 - Language and region (default options are typically fine).
+			 - Standard Evaluation Desktop Experience as the installation type.
+			 - Accept license terms.
+			 - Custom installation on Drive 0 (unallocated space).
+7. Complete Initial Setup:
+		○ After installation, Windows will reboot.
+		○ Set an administrator password (e.g., P@$$w0rd!).
+8. Install VMware Tools (Optional but Recommended):
+		○ In VMware, go to VM > Install VMware Tools.
+		○ Run the setup64 file from the D drive to install the tools.
+		○ Choose the Complete installation option, then finish.
+		○ This may require a reboot for the changes to fully take effect.
+9. Rename the Computer:
+		○ Go to the Start menu and search for View your PC name.
+		○ Click Rename this PC.
+		○ Name your domain controller. For example, if following a superhero theme, use a name like Hydra-PC.
+		○ After renaming, restart the virtual machine.
+10. Reboot and Continue:
+		○ Allow the machine to restart.
+		○ Once logged back in, continue with any additional domain controller configurations.
 
-## Windows ISO Files
 
-Download the necessary ISO files from the [Microsoft Evaluation Center](https://www.microsoft.com/en-us/evalcenter):
 
-### Windows Server 2019
-
-1. Download the ISO.
-2. Fill out the required information.
-3. Select your language and download.
-
-### Windows 10 Enterprise
-
-1. Download the ISO for Enterprise.
-2. Fill out the required information.
-3. Select your language and click download.
-
-## Creating the Windows Server
-
-1. Click the **New VM** button and choose the ISO image. Then click **Next**.
-
-   ![Creating Windows Server VM](https://github.com/user-attachments/assets/9236f1e2-8434-4fac-ad75-75abdef2523a)
-
-2. Use **2048 MB** RAM (minimum), though **4096 MB** RAM is preferred.
-
-   ![Setting RAM for VM](https://github.com/user-attachments/assets/bc72a1f8-930d-4735-b485-5b06d5dec688)
-
-3. Right-click the VM, choose **Settings**, and go to **Network**.
-
-   ![Network Settings](https://github.com/user-attachments/assets/2dfca7fd-ac04-4ce6-977d-2f015f04abd2)
-
-## Create a Windows 10 Enterprise Template
-
-1. Create a new VM named **Win10EnterpriseTemplate** and select the ISO file, then click **Next**.
-
-   ![Creating Win10 Template](https://github.com/user-attachments/assets/95cd722a-afb5-428e-affe-d68f151856a5)
-
-2. Again, use **2048 MB** RAM (minimum), preferably **4096 MB**.
-
-   ![RAM Settings for Win10 Template](https://github.com/user-attachments/assets/73e05703-3c5d-4ef2-a3a5-6be3027d15c2)
-
-3. Change the network adapter settings.
-
-   ![Network Adapter Settings](https://github.com/user-attachments/assets/b3c12b35-1707-4cc9-8733-a3ed0db29fda)
-
-4. Save the settings but do not start the VM.
-
-## Install Windows Server 2019
-
-1. Start the VM; it will begin installation. Choose your language and click **Install Now**.
-
-   ![Install Windows Server](https://github.com/user-attachments/assets/911f2ead-4caf-4ba6-8d80-d754ccb9b25f)
-
-2. Select **Windows Server 2019 Standard Evaluation (Desktop Experience)**.
-
-   ![Select Windows Server Edition](https://github.com/user-attachments/assets/8bd4d678-196f-43e4-a3d7-279d82e32817)
-
-3. Click **Next**, accept the terms and conditions, then select **New** and **Apply** to create a new drive.
-
-   ![Create Drive](https://github.com/user-attachments/assets/1eb2e5a6-2b07-449a-bc7a-d308e35a5baf)
-
-4. Click **Next** and wait for the installation to finish.
-
-   ![Installation Progress](https://github.com/user-attachments/assets/c0cc35a8-20f8-43e5-ab74-8a7695df6d90)
-
-5. Create a local Administrator password (do not forget it). Press **CTRL + ALT + DEL** and log in.
-
-   ![Log in to Windows Server](https://github.com/user-attachments/assets/f7c5d4cb-9ab8-4b44-9959-061a8b988700)
-
-**Note:** The DHCP service was disabled on pfSense for the AD Lab LAN to allow the domain controller to serve as the DHCP server. Therefore, manual configuration is necessary.
-
-1. Right-click the network interface icon and select **Open Network & Internet Settings**.
-
-   ![Open Network Settings](https://github.com/user-attachments/assets/e230d92c-111e-4be1-bb10-bbfbbcad97c7)
-
-2. Scroll down and choose **Change adapter options**.
-
-   ![Change Adapter Options](https://github.com/user-attachments/assets/11162fbb-b875-45f9-8fcd-8acc5a972b9b)
-
-3. Right-click the adapter and select **Properties**.
-
-   ![Adapter Properties](https://github.com/user-attachments/assets/03dfa97f-a2a2-43b4-b1df-91d19fdf5ce4)
-
-4. Double-click **Internet Protocol Version 4 (TCP/IPv4)** and configure your adapter.
-
-   ![Configure TCP/IP Settings](https://github.com/user-attachments/assets/7bc35dcf-8793-4079-88d0-bd2585525b20)
-
-5. DNS queries will initially be handled by the domain controller's DNS server.
-
-## Rename the Server
-
-1. Click the **Start Menu**, then **Settings**.
-
-   ![Settings Menu](https://github.com/user-attachments/assets/0c78f167-eb1d-4394-8b05-97f366105bdf)
-
-2. Click **System** > **About**.
-
-   ![About System Settings](https://github.com/user-attachments/assets/70b9ed00-a739-4b5a-83be-de105f59e9ec)
-
-3. Enter the name of the domain controller (e.g., **DeathStar**).
-
-   ![Rename Server](https://github.com/user-attachments/assets/883e5a8c-8734-43aa-ac16-deec9f877cc6)
-
-4. Choose **Restart Now**. If prompted for a reason, select **Other (planned)**.
-
-## Take a Snapshot of the VM
-
-1. Click the menu icon next to the VM and choose **Snapshots**.
-
-   ![Snapshots Menu](https://github.com/user-attachments/assets/f97eac30-6dd0-400d-bbae-6ff295c88fbf)
-
-2. Click the **Take** button and fill it out with a relevant description.
-
-   ![Take Snapshot](https://github.com/user-attachments/assets/1824a038-9ffb-4ece-a5ae-3182de360c99)
-
-3. Click **OK**. You can restore this snapshot at any time to revert to a pre-domain installation state.
-
-## Configure Domain Services
-
-1. Open **Server Manager** and go to **Manage** > **Add Roles and Features**.
-
-   ![Add Roles and Features](https://github.com/user-attachments/assets/3c5d8e8d-e79d-4511-827c-2d68e3f58e30)
-
-2. Click **Next** until you reach **Server Roles**. Check the following boxes:
-   - **Active Directory Domain Services**
-   - **DNS Server**
-
-   ![Select Server Roles](https://github.com/user-attachments/assets/e5f34826-48f5-4d72-87f9-c3816f0018ba)
-
-3. Click **Next** > **Install** and wait for the installation to finish.
-
-   ![Installation Progress](https://github.com/user-attachments/assets/2b817f0c-18de-490b-a6ae-6c69b270d291)
-
-## Configure Active Directory Domain Services
-
-1. Log back into the domain controller as the local administrator and wait for **Server Manager** to load.
-
-   ![Server Manager](https://github.com/user-attachments/assets/4ff65c32-6db1-4bac-b5cb-8d8411c9acca)
-
-2. Click **Promote this server to a domain controller**.
-
-   ![Promote Server](https://github.com/user-attachments/assets/3ec9b97a-e43b-49fb-9f07-bbfaa4a91fa6)
-
-3. Specify a root domain name (e.g., **galactic.empire**).
-
-   ![Domain Name Input](https://github.com/user-attachments/assets/e589f244-ea9b-4302-8889-3c06899d41a9)
-
-4. Click **Next**, set a restore password, and continue with the default options.
-
-   ![Set Restore Password](https://github.com/user-attachments/assets/5a052621-8569-4a81-976e-5c60adad81be)
-
-5. Ignore any warning messages and continue.
-
-   ![Ignore Warning](https://github.com/user-attachments/assets/932f6756-b3a2-423c-aeed-21cb0782d26a)
-
-6. Click **Install** and wait for the installation to complete.
-
-   ![Installation Complete](https://github.com/user-attachments/assets/9b9ee9a5-e763-4fc5-93b7-1817789c841a)
-
-7. The server will automatically reboot.
-
-## Configure Active Directory Certificate Services
-
-1. After rebooting, log back into the domain controller and open **Server Manager**.
-
-2. Go to **Manage** > **Add Roles and Features**.
-
-   ![Add Roles and Features](https://github.com/user-attachments/assets/830e519e-bb03-48f2-950e-8979a75caf36)
-
-3. Proceed through the wizard until you reach **Server Roles**.
-
-4. Check **Active Directory Certificate Services** and click **Next**.
-
-   ![Select AD Certificate Services](https://github.com/user-attachments/assets/664c7489-1afe-4dc9-907b-286d2cd14c48)
-
-5. On the **Role Services** page, select **Certification Authority** and click **Next**.
-
-   ![Select Certification Authority](https://github.com/user-attachments/assets/04aa0450-a9ee-4c85-8949-c60c6639dc6e)
-
-6. Proceed through the installation.
-
-## Configure Domain Controller for Group Policy
-
-1. After completing the Certificate Services setup, return to the **Server Manager**.
-
-2. Open **Group Policy Management** from the tools menu.
-
-   ![Open Group Policy Management](https://github.com/user-attachments/assets/7d962558-63dc-458e-9f7b-460e18351b40)
-
-3. Right-click on **Group Policy Objects**, select **New**, and name it **Domain Security Policy**.
-
-4. Edit the new policy to configure security settings as required.
-
-## Take a Snapshot Again
-
-1. Take a snapshot after configuring the domain controller for future restoration.
 
 
 ---

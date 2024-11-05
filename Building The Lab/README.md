@@ -643,90 +643,117 @@ Lastly, check connectivity by pinging the Metasploitable VM from your Kali machi
 ### Downloading the ISOs
 
 1. Visit Microsoft Evaluation Center:
-   
-- Go to Google and search for "Microsoft Evaluation Center." Link: https://www.microsoft.com/en-us/evalcenter
+
+	- Go to Google and search for "Microsoft Evaluation Center." Link: https://www.microsoft.com/en-us/evalcenter
   
-- Open the official Microsoft Evaluation Center page from the search results.
+	- Open the official Microsoft Evaluation Center page from the search results.
   
 2. Browse Available Software:
    
-- The Evaluation Center offers trial versions of Windows, Windows Server, SQL Server, and more.
+	- The Evaluation Center offers trial versions of Windows, Windows Server, SQL Server, and more.
   
-- For our lab, we’ll be downloading Windows 10 Enterprise and Windows Server 2022.
+	- For our lab, we’ll be downloading Windows 10 Enterprise and Windows Server 2022.
 
 3. Download Windows 10 Enterprise:
    
-- Select Windows 10 Enterprise from the list.
+	- Select Windows 10 Enterprise from the list.
   
-- Choose the 64-bit ISO version for the United States (or your preferred region).
+	- Choose the 64-bit ISO version for the United States (or your preferred region).
   
-- Fill out the registration form (you can use generic information for the form fields).
+	- Fill out the registration form (you can use generic information for the form fields).
   
-- Click Download Now to start the download.
+	- Click Download Now to start the download.
   
 4. Download Windows Server 2022:
    
-- Similarly, select Windows Server 2022 and open the download page.
+	- Similarly, select Windows Server 2022 and open the download page.
 
-- Choose the 64-bit ISO version.
+	- Choose the 64-bit ISO version.
 
-- Complete the registration form, then click Download Now to begin.
+	- Complete the registration form, then click Download Now to begin.
 
 5. Notes:
    
-- Remember, these downloads are large files (Windows 10 Enterprise is around 5.2 GB, and Windows Server 2022 is about 4.7 GB).
+	- Remember, these downloads are large files (Windows 10 Enterprise is around 5.2 GB, and Windows Server 2022 is about 4.7 GB).
 
-- After 90 days, the OS might prompt for activation or start shutting down if not actively used, so reboot as needed for testing.
+	- After 90 days, the OS might prompt for activation or start shutting down if not actively used, so reboot as needed for testing.
 
 ### Setting Up the Domain Controller
 
 1. Create a New Virtual Machine:
 
-- In VMware or VirtualBox, select Create a New Virtual Machine.
+	- In VMware or VirtualBox, select Create a New Virtual Machine.
 
-- Choose the Typical setup option.
+	- Choose the Typical setup option.
 
-- Browse for the Windows Server 2022 ISO file you downloaded and select it.
+	- Browse for the Windows Server 2022 ISO file you downloaded and select it.
   
 2. Operating System Selection:
    
-- When prompted to select the operating system, choose Windows Server 2016 if Windows Server 2022 isn’t listed. This won’t affect your setup.
+	- When prompted to select the operating system, choose Windows Server 2016 if Windows Server 2022 isn’t listed. This won’t affect your setup.
 
 4. Configure Disk Space:
 
-- Allocate at least 60 GB of disk space.
+	- Allocate at least 60 GB of disk space.
 
-- Select the option to Split virtual disk into multiple files to allow it to grow as needed.
+	- Select the option to Split virtual disk into multiple files to allow it to grow as needed.
 
 5. Adjust Virtual Machine Settings:
+   
+ 	- Open Edit Virtual Machine Settings.
+   
+ 	- Set memory to 4–8 GB (depending on your host machine’s capacity; 8 GB is recommended if available).
 
-- Open Edit Virtual Machine Settings.
-		○ Set memory to 4–8 GB (depending on your host machine’s capacity; 8 GB is recommended if available).
-		○ Remove any floppy disk device if it appears in the list.
+ 	- Remove any floppy disk device if it appears in the list.
+
+
 6. Power On and Install Windows Server:
-		○ Power on the virtual machine.
-		○ When prompted, press any key to boot from the ISO.
-		○ Follow the installation prompts, selecting:
-			 - Language and region (default options are typically fine).
-			 - Standard Evaluation Desktop Experience as the installation type.
-			 - Accept license terms.
-			 - Custom installation on Drive 0 (unallocated space).
-7. Complete Initial Setup:
-		○ After installation, Windows will reboot.
-		○ Set an administrator password (e.g., P@$$w0rd!).
-8. Install VMware Tools (Optional but Recommended):
-		○ In VMware, go to VM > Install VMware Tools.
-		○ Run the setup64 file from the D drive to install the tools.
-		○ Choose the Complete installation option, then finish.
-		○ This may require a reboot for the changes to fully take effect.
-9. Rename the Computer:
-		○ Go to the Start menu and search for View your PC name.
-		○ Click Rename this PC.
-		○ Name your domain controller. For example, if following a superhero theme, use a name like Hydra-PC.
-		○ After renaming, restart the virtual machine.
-10. Reboot and Continue:
-		○ Allow the machine to restart.
-		○ Once logged back in, continue with any additional domain controller configurations.
+   
+	- Power on the virtual machine.
+
+	- When prompted, press any key to boot from the ISO.
+  
+	- Follow the installation prompts, selecting:
+
+   		- Language and region (default options are typically fine).
+       
+     		- Standard Evaluation Desktop Experience as the installation type.
+         
+       		-  Accept license terms.
+           
+         	-  Custom installation on Drive 0 (unallocated space).
+            
+8. Complete Initial Setup:
+   
+   	- After installation, Windows will reboot.
+   	  
+		- Set an administrator password (e.g., `P@$$w0rd!`).
+   	  
+9. Install VMware Tools (Optional but Recommended):
+    
+   	- In VMware, go to VM > Install VMware Tools.
+   	  
+   	- Run the setup64 file from the D drive to install the tools.
+   	  
+   	- Choose the Complete installation option, then finish.
+   	  
+   	- This may require a reboot for the changes to fully take effect.
+   	  
+11. Rename the Computer:
+
+    - Go to the Start menu and search for View your PC name.
+      
+    - Click Rename this PC.
+      
+    - Name your domain controller. For example, if following a superhero theme, use a name like Hydra-PC.
+      
+    - After renaming, restart the virtual machine.
+      
+13. Reboot and Continue:
+    
+    - Allow the machine to restart.
+      
+    - Once logged back in, continue with any additional domain controller configurations.
 
 
 

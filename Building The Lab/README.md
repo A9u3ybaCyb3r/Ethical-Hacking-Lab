@@ -15,7 +15,7 @@
 
 ---
 
-## 1. Planning Phase
+# 1. Planning Phase
 
  We will build a network diagram to represent our lab visually.
    
@@ -23,7 +23,7 @@
 
 ---
  
-## 2. Downloading VirtualBox and Installing VirtualBox
+# 2. Downloading VirtualBox and Installing VirtualBox
 
 1. Go to the [VirtualBox download page](https://www.virtualbox.org/wiki/Downloads) and download the installer suitable for your operating system.
 
@@ -49,7 +49,7 @@
 
 ---
 
-## 3. Building a pfSense VM
+# 3. Building a pfSense VM
 
 ### Step 1: Download the pfSense Installation File
 
@@ -122,7 +122,7 @@ After completing the settings above, start the VM to begin the pfSense installat
 
 ---
 
-## 4. Installing pfSense
+# 4. Installing pfSense
 
 1. **Start the VM**  
    Start your pfSense virtual machine.
@@ -171,7 +171,7 @@ After completing the settings above, start the VM to begin the pfSense installat
 
 ---
 
-## 5. Configuring pfSense
+# 5. Configuring pfSense
 
 ### Initial Setup
 
@@ -319,7 +319,7 @@ To avoid exposing the pfSense web console to public networks, we will **not make
 
 ---
 
-## 6. Importing Kali Linux
+# 6. Importing Kali Linux
 
 1. **Download Kali Linux**  
    - Go to [https://kali.org/get-kali/](https://kali.org/get-kali/).
@@ -365,7 +365,7 @@ To avoid exposing the pfSense web console to public networks, we will **not make
 
 ---
 
-## 7. Configuring the pfSense firewall
+# 7. Configuring the pfSense firewall
 
 ## Log into the Web Portal
 
@@ -475,17 +475,24 @@ To avoid exposing the pfSense web console to public networks, we will **not make
 ### Configure ISOLATED Rules
 
 28. Click on ISOLATED and then click **Add Rule**.  
-   ![ISOLATED Add Rule](https://github.com/user-attachments/assets/c5e09e3a-6633-4157-8d2f-fffcee1e5938)  
-   ![ISOLATED Add Rule Screenshot 1](https://github.com/user-attachments/assets/fd4acef1-4374-4758-ac44-cbe094730803)  
-   ![ISOLATED Add Rule Screenshot 2](https://github.com/user-attachments/assets/f30108a8-dd32-43fb-893f-51d6fb4d3707)
+
+![ISOLATED Add Rule](https://github.com/user-attachments/assets/c5e09e3a-6633-4157-8d2f-fffcee1e5938)  
+
+![ISOLATED Add Rule Screenshot 1](https://github.com/user-attachments/assets/fd4acef1-4374-4758-ac44-cbe094730803)
+
+![ISOLATED Add Rule Screenshot 2](https://github.com/user-attachments/assets/f30108a8-dd32-43fb-893f-51d6fb4d3707)
 
   - Add another rule:
+
     ![ISOLATED Add Rule](https://github.com/user-attachments/assets/9df9fcf5-e0a0-4d03-8aaa-ae7f844d5856)
+
     ![ISOLATED Add Rule Screenshot 3](https://github.com/user-attachments/assets/56e4d325-79c9-401a-93dc-8d9c5ef1b505)
 
   - Lastly, we add an isolated rule:
     ![ISOLATED Add Rule](https://github.com/user-attachments/assets/8c67283a-c782-4803-aad0-d1f509d66e08)
+
     ![ISOLATED Add Rule Screenshot 4](https://github.com/user-attachments/assets/a5fa3d8b-e313-4b79-84dc-98f83b19f941)
+
     ![ISOLATED Add Rule Screenshot 5](https://github.com/user-attachments/assets/dc5850a1-70a8-4548-b69e-bc1dc935007e)
 
 ### Configure AD_LAB Rules
@@ -493,45 +500,64 @@ To avoid exposing the pfSense web console to public networks, we will **not make
 29. Go to `Firewall > Rules > AD_LAB`.  
    ![AD_LAB Rules](https://github.com/user-attachments/assets/354dc273-5e98-41d7-bd3d-1b39e246359d)
 
-30. Add rules:  
-   ![AD_LAB Rules Screenshot 1](https://github.com/user-attachments/assets/a92c06e5-bc3d-4368-a396-8159cd84619a)  
+30. Add rules:
+
+    ![AD_LAB Rules Screenshot 1](https://github.com/user-attachments/assets/a92c06e5-bc3d-4368-a396-8159cd84619a)  
+   
    ![AD_LAB Rules Screenshot 2](https://github.com/user-attachments/assets/21947bc9-1f65-4e6d-b362-3fd67ccc3039)
 
 31. Ensure the rule to block traffic to private IPs is below any allow rules.  
 
   - Add another rule:
+
     ![image](https://github.com/user-attachments/assets/cd42f591-7f97-4725-9baa-48bcc7b4d413)
+
     ![image](https://github.com/user-attachments/assets/7c7f7019-a65c-4ed8-bb69-b814c6fd6166)
    
   - Add another rule:
+
     ![image](https://github.com/user-attachments/assets/5c0cb759-aded-4b16-85ab-5286e6bf6e58)
+
     ![image](https://github.com/user-attachments/assets/13aa5108-fdfe-44b4-9577-d0e8caf224fa)
 
   - Final rule:
+
     ![image](https://github.com/user-attachments/assets/6db4663a-9c11-4cff-9f53-a0739ae4156e)
+
     ![image](https://github.com/user-attachments/assets/7b9235e4-b712-42b4-b076-1889f7358bc3)
+
     ![image](https://github.com/user-attachments/assets/35cf63a4-ff61-4fcb-b5a1-bea349450758)
 
 
 ### Configure Floating Rules
 
 32. Create Port Alias: Go to `Firewall > Aliases > Ports` and add the required rule.
+
     ![image](https://github.com/user-attachments/assets/619133f6-b021-44a0-9ac4-8d2b1b7748c1)
+
     ![Port Alias](https://github.com/user-attachments/assets/08a31367-b3a1-463d-9873-23ca20873fc9)
 
 34. Add Separators: Go to `Firewall > Rules > Floating` and add two separators.
+
     ![image](https://github.com/user-attachments/assets/e0a96622-c717-4600-bfed-ccc811c7bbd9)
-   ![Add Floating Separator](https://github.com/user-attachments/assets/1bc1957f-3550-4f6a-a8c4-2c7b6d8778c5)
+
+![Add Floating Separator](https://github.com/user-attachments/assets/1bc1957f-3550-4f6a-a8c4-2c7b6d8778c5)
 
 - You should have two separators:
+
   ![image](https://github.com/user-attachments/assets/aa9127bd-e1c4-47ff-b04b-fd5d4f644dc9)
 
-35. Block Login Access: Create a floating rule to prevent ISOLATED and AD_LAB subnets from accessing firewall login ports.
-    ![image](https://github.com/user-attachments/assets/b34e2ea1-ab27-4dcd-a6ec-0aba4839348e)
+34. Block Login Access: Create a floating rule to prevent ISOLATED and AD_LAB subnets from accessing firewall login ports.
+
+     ![image](https://github.com/user-attachments/assets/b34e2ea1-ab27-4dcd-a6ec-0aba4839348e)
+
     ![image](https://github.com/user-attachments/assets/ddde4107-32c5-4d1f-8691-c952f0eed999)
+
     ![image](https://github.com/user-attachments/assets/5240f215-a47b-4479-8a25-295e3a340417)
+
     ![image](https://github.com/user-attachments/assets/2936151e-28c2-4105-b561-dc94fc86df5d)
-   ![Block Login Access Rule](https://github.com/user-attachments/assets/efdb2193-6a39-4d8e-81be-d76b396d1223)
+
+![Block Login Access Rule](https://github.com/user-attachments/assets/efdb2193-6a39-4d8e-81be-d76b396d1223)
 
 ---
 
@@ -546,13 +572,13 @@ To avoid exposing the pfSense web console to public networks, we will **not make
 
 ## Final Steps
 
-38. Update Kali's Network: Open a terminal and run:  
+37. Update Kali's Network: Open a terminal and run:  
 
    `sudo ip link set eth0 down && sudo ip link set eth0 up`
 
 ---
 
-## 8. Importing Vulnhub VMs to the lab
+# 8. Importing Vulnhub VMs to the lab
 
 ## Step 1: Download Metasploitable 2
 
@@ -638,11 +664,11 @@ Lastly, check connectivity by pinging the Metasploitable VM from your Kali machi
 
 ---
 
-## 9. Building an Active Directory
+# 9. Building an Active Directory
 
-# Setting Up Windows Server and Domain Controller
+## Setting Up Windows Server and Domain Controller
 
-## Downloading the ISOs
+### Downloading the ISOs
 
 ### Step 1: Visit Microsoft Evaluation Center
 1. Go to Google and search for "Microsoft Evaluation Center."
@@ -773,7 +799,7 @@ Lastly, check connectivity by pinging the Metasploitable VM from your Kali machi
 ### Step 4: Reboot
 - After configuration, restart the server to finalize setup.
 
-# Setting Up User Virtual Machines for Lab
+## Setting Up User Virtual Machines for Lab
 
 ## Step 1: Shut Down the Domain Controller
 - Shut down the domain controller to free up resources, especially if working with limited RAM or storage.
@@ -837,7 +863,7 @@ Lastly, check connectivity by pinging the Metasploitable VM from your Kali machi
 
 Once these steps are complete, both user machines should be ready. The next step is to join them to the domain when you power on the domain controller again.
 
-# Setting Up Users, Groups, Policies, and Configurations on a Windows Server Domain Controller
+## Setting Up Users, Groups, Policies, and Configurations on a Windows Server Domain Controller
 
 ## Step 1: Boot up the Domain Controller
 1. Power down any non-essential virtual machines (e.g., workstations named Punisher and Spider-Man).
@@ -913,7 +939,7 @@ Once these steps are complete, both user machines should be ready. The next step
 - Confirm all configurations are as expected.
 - Ensure the domain controller is correctly configured for user authentication, file sharing, and group policies before running further security tests.
 
-# Joining Machines to the Domain (Marvel.local)
+## Joining Machines to the Domain (Marvel.local)
 
 This guide outlines the steps to join client machines to the Marvel.local domain, configure network settings, set up user roles, and verify shared drive access.
 
@@ -996,7 +1022,7 @@ By following these steps, your machines should now be correctly joined to the **
 
 ---
 
-## 10. Make your AD Lab vulnerable
+# 10. Make your AD Lab vulnerable
 
 ### Using a Vulnerable AD Script
 

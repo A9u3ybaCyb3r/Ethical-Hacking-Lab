@@ -1053,9 +1053,9 @@ We will download the script as a string using a .NET class. The script includes 
 
 Use the `-replace` operator in PowerShell to change `change.me` to your domain (e.g., `ad.lab`). The script will then run in memory using `Invoke-Expression`.
 
-
-``[System.Net.WebClient]::new().DownloadString('https://raw.githubusercontent.com/WaterExecution/vulnerable-AD-plus/master/vulnadplus.ps1') -replace 'change\.me', 'ad.lab' | Invoke-Expression``
-
+```powershell
+[System.Net.WebClient]::new().DownloadString('https://raw.githubusercontent.com/WaterExecution/vulnerable-AD-plus/master/vulnadplus.ps1') -replace 'change\.me', 'ad.lab' | Invoke-Expression
+```
 Note: Replace `ad.lab` with the actual name of your domain.
 
 3. **Monitor the Output:**

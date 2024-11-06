@@ -716,6 +716,13 @@ Lastly, check connectivity by pinging the Metasploitable VM from your Kali machi
 1. Open **Edit Virtual Machine Settings**.
 2. Set memory to **4–8 GB** (8 GB recommended if available).
 3. Remove any **floppy disk device** if it appears.
+4. Go to **Network** and change the network settings.
+   - Set the Adapter to **Internal Network**
+   - Set the name of the Adapter to the one you created
+   - Set the **Adapter Type** to `Intel Pro/1000 MT Server (82545EM)`.
+
+     ![image](https://github.com/user-attachments/assets/5c5092e4-9496-488b-a32e-127d13c0c880)
+
 
 ### Step 5: Power On and Install Windows Server
 1. Power on the virtual machine.
@@ -725,6 +732,7 @@ Lastly, check connectivity by pinging the Metasploitable VM from your Kali machi
    - **Standard Evaluation Desktop Experience** as the installation type.
    - Accept **license terms**.
    - **Custom installation** on Drive 0 (unallocated space).
+   - Hit **New** and **Apply** to create a new Partition.
 
 ### Step 6: Complete Initial Setup
 - After installation, Windows will reboot.
@@ -738,7 +746,7 @@ Lastly, check connectivity by pinging the Metasploitable VM from your Kali machi
 ### Step 8: Rename the Computer
 1. Open the Start menu and search for **View your PC name**.
 2. Click **Rename this PC**.
-3. Name your domain controller (e.g., **Hydra-PC**).
+3. Name your domain controller (e.g., **Death-Star-DC**).
 4. Restart the virtual machine after renaming.
 
 ### Step 9: Reboot and Continue
@@ -764,7 +772,7 @@ Lastly, check connectivity by pinging the Metasploitable VM from your Kali machi
 
 ### Step 4: Promote to Domain Controller
 1. After installation, click **Promote this server to a domain controller**.
-2. Choose **Add a new forest** and enter a root domain name (e.g., `Marvel.local`).
+2. Choose **Add a new forest** and enter a root domain name (e.g., `Empire.local`).
 3. Click **Next** and set the Forest and Domain functional levels (e.g., 2016).
 4. Set the **Directory Services Restore Mode (DSRM) password**.
 
@@ -774,7 +782,7 @@ Lastly, check connectivity by pinging the Metasploitable VM from your Kali machi
 3. Click **Install** and let the server reboot after installation.
 
 ### Step 6: Log into the Domain
-- After reboot, log in using the new domain (e.g., `Marvel\administrator`) and the administrator password.
+- After reboot, log in using the new domain (e.g., `Empire\administrator`) and the administrator password.
 
 ---
 
@@ -807,7 +815,7 @@ Lastly, check connectivity by pinging the Metasploitable VM from your Kali machi
 - Shut down the domain controller to free up resources, especially if working with limited RAM or storage.
 
 ## Step 2: Create New Virtual Machines
-1. Open **VMware Workstation** and select **Create a New Virtual Machine**.
+1. Open **VMware Workstation or Virtualbox** and select **Create a New Virtual Machine**.
 2. Select the **ISO file for Windows 10** (instead of the Windows Server ISO used for the domain controller).
 3. Click **Next** to proceed through setup steps.
 4. When prompted, skip entering the **Windows product key**.
@@ -815,8 +823,8 @@ Lastly, check connectivity by pinging the Metasploitable VM from your Kali machi
 
 ## Step 3: Name the Machines
 - Assign unique names to each VM. Examples:
-  - **Punisher** (e.g., for one user)
-  - **Spider-Man** (for another user)
+  - **Darth_Vader** (e.g., for one user)
+  - **Darth_Sidious** (for another user)
 
 ## Step 4: Configure Virtual Machine Hardware
 1. Allocate **60 GB** of disk space and select **Split virtual disk**.
@@ -824,7 +832,7 @@ Lastly, check connectivity by pinging the Metasploitable VM from your Kali machi
    - Remove the **floppy disk drive**.
    - Set **memory allocation** based on system resources:
      - Use **8 GB** if available, or adjust to **4 GB** or **2 GB** if limited.
-   - Use **NAT** for the network adapter, similar to previous lab configurations.
+   - Use **Internal Network** for the network adapter, similar to the server.
 
 ## Step 5: Power On and Start Installation
 1. Power on each VM, and when prompted, press a key to start the boot sequence.
@@ -840,12 +848,12 @@ Lastly, check connectivity by pinging the Metasploitable VM from your Kali machi
 
 ## Step 7: Configure User Accounts
 1. When prompted to sign in with Microsoft, select **Domain Join Instead**.
-   - For Punisher:
-     - **Username**: Frank Castle
+   - For Darth_Vader:
+     - **Username**: Anakin Skywalker
      - **Password**: Password1
-   - For Spider-Man:
-     - **Username**: Peter Parker
-     - **Password**: Password1
+   - For Darth_Sidious:
+     - **Username**: Sheev Palpatine
+     - **Password**: Password2
 2. Set security questions with generic answers (e.g., answer each with "Bob").
 
 ## Step 8: Disable Optional Settings
@@ -854,11 +862,11 @@ Lastly, check connectivity by pinging the Metasploitable VM from your Kali machi
 ## Step 9: Install VMware Tools
 1. In each VM, install **VMware Tools** to enable full-screen mode and improved performance.
 2. Perform a **Complete Install** and restart if prompted.
-3. Adjust display settings if needed (e.g., **150%** for better visibility).
+3. Adjust display settings if needed.
 
 ## Step 10: Rename Each VM for Identification
-1. Rename **Frank Castle’s** machine as **Punisher**.
-2. Rename **Peter Parker’s** machine as **Spider-Man**.
+1. Rename **Anakin Skywalker** machine as **Darth_Vader**.
+2. Rename **Sheev Palpatine** machine as **Darth_Sidious**.
 
 ## Step 11: Final Reboot
 - Restart each machine after renaming to complete the setup process for both VMs.
@@ -877,14 +885,14 @@ Once these steps are complete, both user machines should be ready. The next step
 3. Observe the existing **Organizational Units (OUs)**, users, and groups.
 
 ## Step 3: Create Organizational Units (OUs) for Users and Groups
-1. Right-click on the root of your domain (e.g., Marvel.local), select **New > Organizational Unit**, and name it **Groups**.
+1. Right-click on the root of your domain (e.g., Empire.local), select **New > Organizational Unit**, and name it **Groups**.
 2. Move default system groups (e.g., Domain Admins, Enterprise Admins) into the **Groups OU** for organizational clarity.
 
 ## Step 4: Create New User Accounts
 1. **Tony Stark (Domain Admin)**:
    - Right-click the existing **Administrator** account, select **Copy**, and create a new user with the following:
-     - Full Name: **Tony Stark**
-     - Username: **TStark**
+     - Full Name: **Moff Tarkin**
+     - Username: **MTarkin**
      - Password: **Password12345!**
      - **Password Never Expires**: Enabled
 2. **SQL Service Account (for demonstration)**:
@@ -893,14 +901,14 @@ Once these steps are complete, both user machines should be ready. The next step
      - Username: **SQLService**
      - Password: **MyPassword123#**
      - Add a description for demonstration purposes: "Password is MyPassword123#".
-3. **Standard Users (Frank Castle and Peter Parker)**:
+3. **Standard Users (Anakin Skywalker and Sheev Palpatine)**:
    - Create individual user accounts as follows:
-     - **Frank Castle**:
-       - Username: **FCastle**
+     - **Anakin Skywalker**:
+       - Username: **ASkywalker**
        - Password: **Password1**
        - **Password Never Expires**: Enabled
-     - **Peter Parker**:
-       - Username: **PParker**
+     - **Sheev Palpatine**:
+       - Username: **SPalpatine**
        - Password: **Password2**
        - **Password Never Expires**: Enabled
 
@@ -908,21 +916,21 @@ Once these steps are complete, both user machines should be ready. The next step
 1. In **Server Manager**, go to **File and Storage Services > Shares**.
 2. Click **Tasks > New Share**, and select **SMB Share - Quick**.
 3. Choose a share location on the **C:** drive, name the share **HackMe**, and complete the configuration.
-4. The network path should look like `\\Hydra-DC\HackMe`.
+4. The network path should look like `\\Death-Star-DC\ImperialPlans`.
 
 ## Step 6: Set up a Service Principal Name (SPN) for the SQL Service Account
 1. Open **Command Prompt** as Administrator.
 2. Use the following command to set up an SPN for the SQL service account:
    ```shell
-   setspn -a Hydra-DC/SQLService.Marvel.local:60111 Marvel\SQLService
+   setspn -a Death-Star-DC/SQLService.Empire.local:60111 Empire\SQLService
 3. Verify the SPN by querying with:
    ```shell
-   setspn -T Marvel.local -Q */*
+   setspn -T Empire.local -Q */*
 
 ## Step 7: Create a Group Policy to Disable Microsoft Defender
 1. In Server Manager, open Group Policy Management.
-2. Expand **Forest: Marvel.local > Domains > Marvel.local.**
-3. Right-click Marvel.local and select **Create a GPO** in this domain. Name it Disable Windows Defender.
+2. Expand **Forest: Empire.local > Domains > Empire.local.**
+3. Right-click Empire.local and select **Create a GPO** in this domain. Name it Disable Windows Defender.
 4. Right-click the new GPO and select **Edit**. Navigate to:
     ```shell
     Computer Configuration > Policies > Administrative Templates > Windows Components > Microsoft Defender Antivirus
@@ -932,28 +940,29 @@ Once these steps are complete, both user machines should be ready. The next step
 ## Step 8: Set a Static IP Address
 1. Go to **Network & Internet Settings > Change adapter options**.
 2. Open **Properties** for the network adapter, and configure IPv4 settings:
-   - **IP Address**: 192.168.138.136 (IP Address of pfSense network interface)
+   - **IP Address**: 10.25.25.2 (IP Address of pfSense network interface)
    - **Subnet Mask**: 255.255.255.0
-   - **Default Gateway**: 192.168.138.2 (IP Address of pfSense Gateway)
+   - **Default Gateway**: 10.25.25.1 (IP Address of pfSense Gateway)
+   - **Preferred DNS server**: 10.25.25.2
 3. Apply the settings.
 
 ## Final Notes
 - Confirm all configurations are as expected.
 - Ensure the domain controller is correctly configured for user authentication, file sharing, and group policies before running further security tests.
 
-## Joining Machines to the Domain (Marvel.local)
+## Joining Machines to the Domain (Empire.local)
 
-This guide outlines the steps to join client machines to the Marvel.local domain, configure network settings, set up user roles, and verify shared drive access.
+This guide outlines the steps to join client machines to the Empire.local domain, configure network settings, set up user roles, and verify shared drive access.
 
 ## Step 1: Adjust RAM Allocation (If Necessary)
 
 - **Windows Server**: 2 GB (unless more RAM is available).
-- **Punisher Machine**: 4 GB.
-- **Spider-Man Machine**: 2 GB (optional, you can allocate 4 GB for better performance).
+- **Darth_Vader Machine**: 4 GB.
+- **Darth_Sidious Machine**: 2 GB (optional, you can allocate 4 GB for better performance).
 
 ## Step 2: Power On All Machines
 
-- Start the domain controller (DC) and both client machines (Punisher and Spider-Man).
+- Start the domain controller (DC) and both client machines (Darth_Vader and Darth_Sidious).
 - Log in with the default local admin password (`Password1` with a capital "P" as per your setup).
 
 ## Step 3: Configure Network Settings on Each Machine
@@ -964,17 +973,17 @@ This guide outlines the steps to join client machines to the Marvel.local domain
    - Select **Internet Protocol Version 4 (TCP/IPv4)**, then **Properties**.
 
 2. **Set Static IP and DNS**:
-   - Use the domain controller’s IP as the DNS server (e.g., `192.168.138.136`).
+   - Use the domain controller’s IP as the DNS server (e.g., `10.25.25.2`).
    - Save the settings.
 
-## Step 4: Join Each Machine to the Domain (Marvel.local)
+## Step 4: Join Each Machine to the Domain (Empire.local)
 
 1. On each machine:
    - Go to **Settings > Accounts > Access work or school**.
    - Select **Connect** and choose **Join this device to a local Active Directory domain**.
 
 2. **Enter the Domain Information**:
-   - **Domain Name**: `Marvel.local`
+   - **Domain Name**: `Empire.local`
    - **Username**: `administrator`
    - **Password**: (use the administrator password for the DC).
 
@@ -984,7 +993,7 @@ This guide outlines the steps to join client machines to the Marvel.local domain
 
 - On the DC, open **Active Directory Users and Computers**:
    - Navigate to **Computers** in the **Marvel.local** domain.
-   - Ensure **Punisher** and **Spider-Man** appear in the list.
+   - Ensure **Darth_Vader** and **Darth_Sidious** appear in the list.
 
 ## Step 6: Configure Local Users and Groups on Each Client Machine
 
@@ -994,32 +1003,32 @@ This guide outlines the steps to join client machines to the Marvel.local domain
 
 2. **Add Domain Users as Local Administrators**:
    - Go to **Computer Management > Local Users and Groups > Groups > Administrators**.
-   - Add `Fcastle` (Frank Castle) as a local administrator on **Punisher**.
-   - Add both `Fcastle` and `Pparker` (Peter Parker) as local administrators on **Spider-Man**.
+   - Add `ASkywalker` (Anakin Skywalker) as a local administrator on **Darth_Vader**.
+   - Add both `ASkywalker` and `SPalpatine` (Sheev Palpatine) as local administrators on **Darth_Sidious**.
 
 ## Step 7: Enable Network Discovery
 
 - On each client, go to **Network & Sharing Center > Change advanced sharing settings**:
    - Turn on **Network discovery** and **File and printer sharing**.
 
-## Step 8: Map the Shared Drive (HackMe) on Spider-Man
+## Step 8: Map the Shared Drive (ImperialPlans) on Darth_Sidious
 
 1. Open **File Explorer**:
    - Go to **This PC > Map Network Drive**.
 
 2. **Set Drive Mapping**:
    - Choose a drive letter (e.g., `Z:`).
-   - Enter the path `\\Hydra-DC\HackMe`.
+   - Enter the path `\\Death-Star-DC\ImperialPlans`.
    - Select **Connect using different credentials**.
    - Use the **Administrator** account and password for authentication.
 
 ## Step 9: Verify Access to Shared Drive
 
-- Ensure the **HackMe** shared drive is accessible on **Spider-Man**.
+- Ensure the **ImperialPlans** shared drive is accessible on **Darth_Sidious**.
 
 ---
 
-By following these steps, your machines should now be correctly joined to the **Marvel.local** domain with all necessary configurations for domain access, shared drive mapping, and user roles.
+By following these steps, your machines should now be correctly joined to the **Empire.local** domain with all necessary configurations for domain access, shared drive mapping, and user roles.
 
 
 ---

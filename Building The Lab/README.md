@@ -701,7 +701,7 @@ Lastly, check connectivity by pinging the Metasploitable VM from your Kali machi
 ## Setting Up the Domain Controller
 
 ### Step 1: Create a New Virtual Machine
-1. In VMware or VirtualBox, select **Create a New Virtual Machine**.
+1. In VirtualBox, select **Create a New Virtual Machine**.
 2. Choose the **Typical** setup option.
 3. Browse for the **Windows Server 2022 ISO** file you downloaded and select it.
 
@@ -738,11 +738,16 @@ Lastly, check connectivity by pinging the Metasploitable VM from your Kali machi
 - After installation, Windows will reboot.
 - Set an **administrator password** (e.g., `P@$$w0rd!`).
 
-### Step 7: Install VMware Tools (Optional but Recommended)
-1. In VMware, go to **VM > Install VMware Tools**.
-2. Run the `setup64` file from the **D drive** to install the tools.
+### Step 7: Install Virtualbox Tools (Optional but Recommended)
+1. In Virtualbox, go to **Devices > Insert Guest Additions CD image**.
+2. Run the `amd64` file from the **This PC** to install the tools.
 3. Choose the **Complete** installation option, then finish and reboot if needed.
 
+![image](https://github.com/user-attachments/assets/6799f85a-7a14-4948-b6fb-c3ce1a67cf8e)
+
+![image](https://github.com/user-attachments/assets/16995426-5122-4ead-bc4d-5849a19ecf5e)
+
+   
 ### Step 8: Rename the Computer
 1. Open the Start menu and search for **View your PC name**.
 2. Click **Rename this PC**.
@@ -763,7 +768,7 @@ Lastly, check connectivity by pinging the Metasploitable VM from your Kali machi
 ### Step 2: Roles and Features Wizard
 1. Click **Next** on the introduction screen.
 2. Choose **Role-based or feature-based installation** and click **Next**.
-3. Select the server (e.g., "Hydra DC") and click **Next**.
+3. Select the server (e.g., "Death-Star-DC") and click **Next**.
 
 ### Step 3: Select AD DS
 1. Select **Active Directory Domain Services** and add any required features when prompted.
@@ -775,6 +780,7 @@ Lastly, check connectivity by pinging the Metasploitable VM from your Kali machi
 2. Choose **Add a new forest** and enter a root domain name (e.g., `Empire.local`).
 3. Click **Next** and set the Forest and Domain functional levels (e.g., 2016).
 4. Set the **Directory Services Restore Mode (DSRM) password**.
+5. Use the Password that you use for **Administrator** of the server. Then hit **Next**.
 
 ### Step 5: Configure NetBIOS and Paths
 1. Accept the automatically generated NetBIOS domain name.
@@ -798,7 +804,6 @@ Lastly, check connectivity by pinging the Metasploitable VM from your Kali machi
 2. Enable **Restart if required**, then click **Install**.
 
 
-
 ### Step 3: Configure AD CS
 1. After installation, select **Configure Active Directory Certificate Services**.
 2. Choose **Certification Authority** and set it up as an **Enterprise CA** and **Root CA**.
@@ -815,7 +820,7 @@ Lastly, check connectivity by pinging the Metasploitable VM from your Kali machi
 - Shut down the domain controller to free up resources, especially if working with limited RAM or storage.
 
 ## Step 2: Create New Virtual Machines
-1. Open **VMware Workstation or Virtualbox** and select **Create a New Virtual Machine**.
+1. Open **Virtualbox** and select **Create a New Virtual Machine**.
 2. Select the **ISO file for Windows 10** (instead of the Windows Server ISO used for the domain controller).
 3. Click **Next** to proceed through setup steps.
 4. When prompted, skip entering the **Windows product key**.
@@ -823,8 +828,8 @@ Lastly, check connectivity by pinging the Metasploitable VM from your Kali machi
 
 ## Step 3: Name the Machines
 - Assign unique names to each VM. Examples:
-  - **Darth_Vader** (e.g., for one user)
-  - **Darth_Sidious** (for another user)
+  - **Darth-Vader** (e.g., for one user)
+  - **Darth-Sidious** (for another user)
 
 ## Step 4: Configure Virtual Machine Hardware
 1. Allocate **60 GB** of disk space and select **Split virtual disk**.
@@ -833,6 +838,9 @@ Lastly, check connectivity by pinging the Metasploitable VM from your Kali machi
    - Set **memory allocation** based on system resources:
      - Use **8 GB** if available, or adjust to **4 GB** or **2 GB** if limited.
    - Use **Internal Network** for the network adapter, similar to the server.
+
+     ![image](https://github.com/user-attachments/assets/efb23e90-cea6-4b46-8898-dbcfa54e72ef)
+
 
 ## Step 5: Power On and Start Installation
 1. Power on each VM, and when prompted, press a key to start the boot sequence.
@@ -848,10 +856,10 @@ Lastly, check connectivity by pinging the Metasploitable VM from your Kali machi
 
 ## Step 7: Configure User Accounts
 1. When prompted to sign in with Microsoft, select **Domain Join Instead**.
-   - For Darth_Vader:
+   - For Darth-Vader:
      - **Username**: Anakin Skywalker
      - **Password**: Password1
-   - For Darth_Sidious:
+   - For Darth-Sidious:
      - **Username**: Sheev Palpatine
      - **Password**: Password2
 2. Set security questions with generic answers (e.g., answer each with "Bob").
@@ -859,14 +867,14 @@ Lastly, check connectivity by pinging the Metasploitable VM from your Kali machi
 ## Step 8: Disable Optional Settings
 - Skip optional settings like **advertising**, **location services**, and **Cortana setup**.
 
-## Step 9: Install VMware Tools
-1. In each VM, install **VMware Tools** to enable full-screen mode and improved performance.
+## Step 9: Install Virtualbox Tools
+1. In each **Devices**, install **Virtualbox Tools** to enable full-screen mode and improved performance.
 2. Perform a **Complete Install** and restart if prompted.
 3. Adjust display settings if needed.
 
 ## Step 10: Rename Each VM for Identification
-1. Rename **Anakin Skywalker** machine as **Darth_Vader**.
-2. Rename **Sheev Palpatine** machine as **Darth_Sidious**.
+1. Rename **Anakin Skywalker** machine as **Darth-Vader**.
+2. Rename **Sheev Palpatine** machine as **Darth-Sidious**.
 
 ## Step 11: Final Reboot
 - Restart each machine after renaming to complete the setup process for both VMs.
@@ -876,7 +884,7 @@ Once these steps are complete, both user machines should be ready. The next step
 ## Setting Up Users, Groups, Policies, and Configurations on a Windows Server Domain Controller
 
 ## Step 1: Boot up the Domain Controller
-1. Power down any non-essential virtual machines (e.g., workstations named Punisher and Spider-Man).
+1. Power down any non-essential virtual machines (e.g., workstations named Darth-Vader and Darth-Sidious).
 2. Start the Domain Controller (Windows Server 2022, named as Windows Server 2016 in this example) and log in.
 
 ## Step 2: Access Active Directory Users and Computers
@@ -889,7 +897,7 @@ Once these steps are complete, both user machines should be ready. The next step
 2. Move default system groups (e.g., Domain Admins, Enterprise Admins) into the **Groups OU** for organizational clarity.
 
 ## Step 4: Create New User Accounts
-1. **Tony Stark (Domain Admin)**:
+1. **Moff Tarkin (Domain Admin)**:
    - Right-click the existing **Administrator** account, select **Copy**, and create a new user with the following:
      - Full Name: **Moff Tarkin**
      - Username: **MTarkin**
@@ -902,7 +910,7 @@ Once these steps are complete, both user machines should be ready. The next step
      - Password: **MyPassword123#**
      - Add a description for demonstration purposes: "Password is MyPassword123#".
 3. **Standard Users (Anakin Skywalker and Sheev Palpatine)**:
-   - Create individual user accounts as follows:
+   - Create individual user accounts as follows, **Right-click black space > New > User **:
      - **Anakin Skywalker**:
        - Username: **ASkywalker**
        - Password: **Password1**
@@ -915,8 +923,9 @@ Once these steps are complete, both user machines should be ready. The next step
 ## Step 5: Configure an SMB File Share
 1. In **Server Manager**, go to **File and Storage Services > Shares**.
 2. Click **Tasks > New Share**, and select **SMB Share - Quick**.
-3. Choose a share location on the **C:** drive, name the share **HackMe**, and complete the configuration.
-4. The network path should look like `\\Death-Star-DC\ImperialPlans`.
+3. Choose a share location on the **C:** drive, name the share **ImperialPlans**.
+4. Complete the configuration with default settings and hit **Create**.
+5. The network path should look like `\\Death-Star-DC\ImperialPlans`.
 
 ## Step 6: Set up a Service Principal Name (SPN) for the SQL Service Account
 1. Open **Command Prompt** as Administrator.
@@ -926,9 +935,10 @@ Once these steps are complete, both user machines should be ready. The next step
 3. Verify the SPN by querying with:
    ```shell
    setspn -T Empire.local -Q */*
+4. If you see the message **Existing SPN found!** you are done.
 
 ## Step 7: Create a Group Policy to Disable Microsoft Defender
-1. In Server Manager, open Group Policy Management.
+1. In Server Manager, **Tools** open Group Policy Management.
 2. Expand **Forest: Empire.local > Domains > Empire.local.**
 3. Right-click Empire.local and select **Create a GPO** in this domain. Name it Disable Windows Defender.
 4. Right-click the new GPO and select **Edit**. Navigate to:
@@ -938,13 +948,15 @@ Once these steps are complete, both user machines should be ready. The next step
 6. Enforce the policy by right-clicking the GPO and selecting Enforce.
 
 ## Step 8: Set a Static IP Address
-1. Go to **Network & Internet Settings > Change adapter options**.
+1. Go to **Open Network & Internet Settings > Change adapter options**.
 2. Open **Properties** for the network adapter, and configure IPv4 settings:
    - **IP Address**: 10.25.25.2 (IP Address of pfSense network interface)
    - **Subnet Mask**: 255.255.255.0
    - **Default Gateway**: 10.25.25.1 (IP Address of pfSense Gateway)
    - **Preferred DNS server**: 10.25.25.2
 3. Apply the settings.
+
+![image](https://github.com/user-attachments/assets/129d43c2-3048-4019-9a97-43ff08316be3)
 
 ## Final Notes
 - Confirm all configurations are as expected.

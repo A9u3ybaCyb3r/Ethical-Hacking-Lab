@@ -1024,18 +1024,18 @@ By following these steps, your machines should now be correctly joined to the **
 
 # 10. Make your AD Lab vulnerable
 
-### Using a Vulnerable AD Script
+## Using a Vulnerable AD Script
 
-We will use this script to create a vulnerable active directory: **https://github.com/WaterExecution/vulnerable-AD-plus?ref=benheater.com**
+We will use this script to create a vulnerable active directory: [Vulnerable AD Plus Script](**https://github.com/WaterExecution/vulnerable-AD-plus?)**
 
 Following along with the installation guidance, you should do the following:
 
 - Log into your Domain Controller VM
 - Run the script on the Domain Controller
 
-### Open Powershell as Administrator
+## Open Powershell as Administrator
 
-Right-click the Start Menu and Choose Windows PowerShell (Admin).
+Right-click the Start Menu and Choose **Windows PowerShell (Admin)**.
 
 ![image](https://github.com/user-attachments/assets/f4b0a229-ad3a-448a-a788-dcf203db5fc1)
 
@@ -1043,22 +1043,29 @@ Right-click the Start Menu and Choose Windows PowerShell (Admin).
 
 Run the following command: 
 
-*# Set the Execution Policy to allow unsigned scripts*
+1. **Set the Execution Policy to allow unsigned scripts**
 
-*Set-ExecutionPolicy -ExecutionPolicy Bypass -Force*
+`Set-ExecutionPolicy -ExecutionPolicy Bypass -Force`
 
-We're going to download the script as a string using a .NET class. The script has a placeholder domain name of change.me, so we must change that before running it.
+2. **Download and Run the Script in Memory:**
 
-I'll use the PowerShell -replace operator to change change.me to [name of domain].lab. Be sure to substitute it with whatever your domain is. The script will then run in memory using Invoke-Expression.
+We will download the script as a string using a .NET class. The script includes a placeholder domain name `change.me`, so it must be modified to match your domain name.
 
-*[System.Net.WebClient]::new().DownloadString('https://raw.githubusercontent.com/WaterExecution/vulnerable-AD-plus/master/vulnadplus.ps1') -replace 'change\.me', 'ad.lab' | Invoke-Expression*
+Use the `-replace` operator in PowerShell to change `change.me` to your domain (e.g., `ad.lab`). The script will then run in memory using `Invoke-Expression`.
 
-As the script executes, you should see lots of output and green status indicating successful operations. In the screenshot below, we're at the end of the script and the server is going to reboot in 30 seconds.
+
+``[System.Net.WebClient]::new().DownloadString('https://raw.githubusercontent.com/WaterExecution/vulnerable-AD-plus/master/vulnadplus.ps1') -replace 'change\.me', 'ad.lab' | Invoke-Expression``
+
+Note: Replace `ad.lab` with the actual name of your domain.
+
+3. **Monitor the Output:**
+
+As the script executes, you should see output with green status messages indicating successful operations. At the end of the script, the server will reboot automatically after 30 seconds.
 
 ![image](https://github.com/user-attachments/assets/1958d78e-329e-401c-8c33-4783b14c2f5c)
 
 
-## 11. Building a Pivoting Lab To Practice External Pentest
+# 11. Building a Pivoting Lab To Practice External Pentest
 
 ### Network Diagram
 
@@ -1070,79 +1077,87 @@ The point is to make the lab as realistic as possible. To do so, we will add a r
 
 ### Block Packets to AD Subnet
 
-Go to Firewall > Rules on pfSense.
+1. Go to **Firewall > Rules** on pfSense.
 
-![image](https://github.com/user-attachments/assets/271ad827-b60f-4539-82f2-1d45ff5ca8cc)
+    ![image](https://github.com/user-attachments/assets/271ad827-b60f-4539-82f2-1d45ff5ca8cc)
 
-Choose LAN.
+2. Choose **LAN**.
 
-![image](https://github.com/user-attachments/assets/1fb49432-f36e-48db-a96e-c7d187fa9cdb)
+    ![image](https://github.com/user-attachments/assets/1fb49432-f36e-48db-a96e-c7d187fa9cdb)
 
-Click Add.
+3. Click **Add**.
 
-![image](https://github.com/user-attachments/assets/bfd20b19-b5a9-475e-873a-06b788b5a1e2)
+    ![image](https://github.com/user-attachments/assets/bfd20b19-b5a9-475e-873a-06b788b5a1e2)
+    
+    ![image](https://github.com/user-attachments/assets/db76748b-500c-4252-a03e-8c9b9405c0be)
 
-![image](https://github.com/user-attachments/assets/db76748b-500c-4252-a03e-8c9b9405c0be)
+    ![image](https://github.com/user-attachments/assets/f9fd88b8-41e3-46bd-9cae-c78399647ed1)
 
-![image](https://github.com/user-attachments/assets/f9fd88b8-41e3-46bd-9cae-c78399647ed1)
-
-Save and Apply Changes.
+4. Save and Apply Changes.
 
 ### Toggling the New Rule
 
-In pfSense you can toggle a rule on and off without deleting it by pressing the little ✅ or ❌ to the left side of the rule.
+In pfSense, you can toggle a rule on and off without deleting it by pressing the little ✅ or ❌ to the left side of the rule.
 
 ![image](https://github.com/user-attachments/assets/ea350f85-01ca-45ed-bbf3-7d49bf810c5a)
 
-Once you've toggled the rule on or off, click Apply Changes for it to take effect. You can turn it off if you do not want it. But for the sake of this lab, we need it enabled.
+Once you've toggled the rule on or off, click **Apply Changes** for it to take effect. You can turn it off if you do not want it. But for the sake of this lab, we need it enabled.
 
 ### Setting up the Vulnerable Target
 
-To keep things simple, we'll use an existing target that should already be in our lab. We are going to use Metasploitable 2 but you can use whatever machine you want. 
+To keep things simple, we'll use an existing target that should already be in our lab. We are going to use Metasploitable 2 but you can use whatever machine you want.
 
 ### Tweaking Metasploitable 2
 
-Right-click Metasploitable 2 > Snapshots.
+1. Right-click **Metasploitable 2 > Snapshots**.
 
-![image](https://github.com/user-attachments/assets/2439f8bc-9637-47d4-af11-65ecdf8494c4)
+    ![image](https://github.com/user-attachments/assets/2439f8bc-9637-47d4-af11-65ecdf8494c4)
 
-![image](https://github.com/user-attachments/assets/b20c688d-11d3-4b5e-b170-3125d386c7fe)
+    ![image](https://github.com/user-attachments/assets/b20c688d-11d3-4b5e-b170-3125d386c7fe)
 
-![image](https://github.com/user-attachments/assets/16f89731-de26-4cd4-be85-09959238a98d)
+    ![image](https://github.com/user-attachments/assets/16f89731-de26-4cd4-be85-09959238a98d)
 
-Right-click Metasploitable 2 > Settings.
+2. Right-click **Metasploitable 2 > Settings**.
 
-![image](https://github.com/user-attachments/assets/6be6cc5b-68b2-4a15-9226-18fe1c043415)
+    ![image](https://github.com/user-attachments/assets/6be6cc5b-68b2-4a15-9226-18fe1c043415)
 
-![image](https://github.com/user-attachments/assets/1cc0a036-a77c-42a1-b01e-7eb0de48766d)
+    ![image](https://github.com/user-attachments/assets/1cc0a036-a77c-42a1-b01e-7eb0de48766d)
 
-Adapter 1 (ISOLATED).
+3. Configure network adapters:
 
-![image](https://github.com/user-attachments/assets/f8c6b4f9-921e-4c4a-abfb-4bff0448dbbd)
+   - **Adapter 1**: ISOLATED
 
-Adapter 2 (AD LAB).
+        ![image](https://github.com/user-attachments/assets/f8c6b4f9-921e-4c4a-abfb-4bff0448dbbd)
 
-![image](https://github.com/user-attachments/assets/8146f32d-0e74-4638-8914-799ceeb9b8fd)
+   - **Adapter 2**: AD LAB
+
+        ![image](https://github.com/user-attachments/assets/8146f32d-0e74-4638-8914-799ceeb9b8fd)
 
 ### Start Up and Configure the Interfaces
 
-For this step, we will need to log into the Metasploitable 2 VM with some credentials and configure the /etc/network/interfaces file, so that we get a DHCP lease on the AD_LAB subnet. Use msfadmin:msfadmin credentials.
+1. Log into the Metasploitable 2 VM with **msfadmin:msfadmin** credentials.
 
-![image](https://github.com/user-attachments/assets/98f7738b-ea50-412f-8468-e93192ac54d2)
+    ![image](https://github.com/user-attachments/assets/98f7738b-ea50-412f-8468-e93192ac54d2)
 
-Command: **sudo nano /etc/network/interfaces**
+2. Edit the network interfaces configuration file.
 
-Before.
+    ```bash
+    sudo nano /etc/network/interfaces
+    ```
 
-![image](https://github.com/user-attachments/assets/e2fc5ab0-b1c4-41a6-be76-b9b649bc7301)
+    **Before:**
 
-**The post-up IP route commands shown below are used to prefer the 10.25.25.1 gateway as the default route so that the Metasploitable 2 host can retain internet access.**
+    ![image](https://github.com/user-attachments/assets/e2fc5ab0-b1c4-41a6-be76-b9b649bc7301)
 
-After.
+    **The post-up IP route commands shown below are used to prefer the 10.25.25.1 gateway as the default route so that the Metasploitable 2 host can retain internet access.**
 
-![image](https://github.com/user-attachments/assets/04470746-0cb9-46a9-a509-3acf38cdbb48)
+    **After:**
 
-Press CTRL + X then Y to save the changes to the file. Then, press Enter. Finally, we need to refresh the networking stack so that we get a new DHCP address on the AD_LAB subnet.
+    ![image](https://github.com/user-attachments/assets/04470746-0cb9-46a9-a509-3acf38cdbb48)
+
+3. Press `CTRL + X`, then `Y` to save the changes to the file. Press **Enter** to confirm.
+
+4. Refresh the networking stack to get a new DHCP address on the AD_LAB subnet.
 
 Command: **sudo /etc/init.d/networking restart**
 

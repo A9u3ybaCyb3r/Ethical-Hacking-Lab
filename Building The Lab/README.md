@@ -574,7 +574,9 @@ To avoid exposing the pfSense web console to public networks, we will **not make
 
 37. Update Kali's Network: Open a terminal and run:  
 
-   `sudo ip link set eth0 down && sudo ip link set eth0 up`
+```bash
+   sudo ip link set eth0 down && sudo ip link set eth0 up
+```
 
 ---
 

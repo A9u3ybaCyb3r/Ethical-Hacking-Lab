@@ -719,7 +719,7 @@ Lastly, check connectivity by pinging the Metasploitable VM from your Kali machi
 4. Go to **Network** and change the network settings.
    - Set the Adapter to **Internal Network**
    - Set the name of the Adapter to the one you created
-   - Set the **Adapter Type** to `Intel Pro/1000 MT Server (82545EM)`.
+   - Set the **Adapter Type** to `Intel PRO/1000 MT Server (82545EM)`.
 
      ![image](https://github.com/user-attachments/assets/5c5092e4-9496-488b-a32e-127d13c0c880)
 

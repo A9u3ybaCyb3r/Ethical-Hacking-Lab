@@ -772,7 +772,227 @@ Lastly, check connectivity by pinging the Metasploitable VM from your Kali machi
 
 ### Step 4: Reboot
 - After configuration, restart the server to finalize setup.
-/
+
+# Setting Up User Virtual Machines for Lab
+
+## Step 1: Shut Down the Domain Controller
+- Shut down the domain controller to free up resources, especially if working with limited RAM or storage.
+
+## Step 2: Create New Virtual Machines
+1. Open **VMware Workstation** and select **Create a New Virtual Machine**.
+2. Select the **ISO file for Windows 10** (instead of the Windows Server ISO used for the domain controller).
+3. Click **Next** to proceed through setup steps.
+4. When prompted, skip entering the **Windows product key**.
+5. Select **Windows 10 Enterprise** as the version.
+
+## Step 3: Name the Machines
+- Assign unique names to each VM. Examples:
+  - **Punisher** (e.g., for one user)
+  - **Spider-Man** (for another user)
+
+## Step 4: Configure Virtual Machine Hardware
+1. Allocate **60 GB** of disk space and select **Split virtual disk**.
+2. Customize hardware settings:
+   - Remove the **floppy disk drive**.
+   - Set **memory allocation** based on system resources:
+     - Use **8 GB** if available, or adjust to **4 GB** or **2 GB** if limited.
+   - Use **NAT** for the network adapter, similar to previous lab configurations.
+
+## Step 5: Power On and Start Installation
+1. Power on each VM, and when prompted, press a key to start the boot sequence.
+2. Go through the Windows setup:
+   - Set language to **English** (or your region’s language).
+   - Choose **Custom Install**.
+   - Partition the drive by clicking **New** and applying settings, then proceed with **Next** to start the installation.
+
+## Step 6: Complete Windows Installation Steps
+1. After installation, reboot each machine as prompted.
+2. Select region (e.g., **U.S.**) and keyboard layout.
+3. Choose to **skip the second keyboard layout**.
+
+## Step 7: Configure User Accounts
+1. When prompted to sign in with Microsoft, select **Domain Join Instead**.
+   - For Punisher:
+     - **Username**: Frank Castle
+     - **Password**: Password1
+   - For Spider-Man:
+     - **Username**: Peter Parker
+     - **Password**: Password1
+2. Set security questions with generic answers (e.g., answer each with "Bob").
+
+## Step 8: Disable Optional Settings
+- Skip optional settings like **advertising**, **location services**, and **Cortana setup**.
+
+## Step 9: Install VMware Tools
+1. In each VM, install **VMware Tools** to enable full-screen mode and improved performance.
+2. Perform a **Complete Install** and restart if prompted.
+3. Adjust display settings if needed (e.g., **150%** for better visibility).
+
+## Step 10: Rename Each VM for Identification
+1. Rename **Frank Castle’s** machine as **Punisher**.
+2. Rename **Peter Parker’s** machine as **Spider-Man**.
+
+## Step 11: Final Reboot
+- Restart each machine after renaming to complete the setup process for both VMs.
+
+Once these steps are complete, both user machines should be ready. The next step is to join them to the domain when you power on the domain controller again.
+
+# Setting Up Users, Groups, Policies, and Configurations on a Windows Server Domain Controller
+
+## Step 1: Boot up the Domain Controller
+1. Power down any non-essential virtual machines (e.g., workstations named Punisher and Spider-Man).
+2. Start the Domain Controller (Windows Server 2022, named as Windows Server 2016 in this example) and log in.
+
+## Step 2: Access Active Directory Users and Computers
+1. Open **Server Manager** on the domain controller.
+2. Navigate to **Tools > Active Directory Users and Computers**.
+3. Observe the existing **Organizational Units (OUs)**, users, and groups.
+
+## Step 3: Create Organizational Units (OUs) for Users and Groups
+1. Right-click on the root of your domain (e.g., Marvel.local), select **New > Organizational Unit**, and name it **Groups**.
+2. Move default system groups (e.g., Domain Admins, Enterprise Admins) into the **Groups OU** for organizational clarity.
+
+## Step 4: Create New User Accounts
+1. **Tony Stark (Domain Admin)**:
+   - Right-click the existing **Administrator** account, select **Copy**, and create a new user with the following:
+     - Full Name: **Tony Stark**
+     - Username: **TStark**
+     - Password: **Password12345!**
+     - **Password Never Expires**: Enabled
+2. **SQL Service Account (for demonstration)**:
+   - Copy the **Administrator** account and create a new service account with the following:
+     - Full Name: **SQL Service**
+     - Username: **SQLService**
+     - Password: **MyPassword123#**
+     - Add a description for demonstration purposes: "Password is MyPassword123#".
+3. **Standard Users (Frank Castle and Peter Parker)**:
+   - Create individual user accounts as follows:
+     - **Frank Castle**:
+       - Username: **FCastle**
+       - Password: **Password1**
+       - **Password Never Expires**: Enabled
+     - **Peter Parker**:
+       - Username: **PParker**
+       - Password: **Password2**
+       - **Password Never Expires**: Enabled
+
+## Step 5: Configure an SMB File Share
+1. In **Server Manager**, go to **File and Storage Services > Shares**.
+2. Click **Tasks > New Share**, and select **SMB Share - Quick**.
+3. Choose a share location on the **C:** drive, name the share **HackMe**, and complete the configuration.
+4. The network path should look like `\\Hydra-DC\HackMe`.
+
+## Step 6: Set up a Service Principal Name (SPN) for the SQL Service Account
+1. Open **Command Prompt** as Administrator.
+2. Use the following command to set up an SPN for the SQL service account:
+   ```shell
+   setspn -a Hydra-DC/SQLService.Marvel.local:60111 Marvel\SQLService
+3. Verify the SPN by querying with:
+   ```shell
+   setspn -T Marvel.local -Q */*
+
+## Step 7: Create a Group Policy to Disable Microsoft Defender
+1. In Server Manager, open Group Policy Management.
+2. Expand **Forest: Marvel.local > Domains > Marvel.local.**
+3. Right-click Marvel.local and select **Create a GPO** in this domain. Name it Disable Windows Defender.
+4. Right-click the new GPO and select **Edit**. Navigate to:
+    ```shell
+    Computer Configuration > Policies > Administrative Templates > Windows Components > Microsoft Defender Antivirus
+5. Double-click **Turn off Microsoft Defender Antivirus**, set it to **Enabled**, then click **Apply** and **OK**.
+6. Enforce the policy by right-clicking the GPO and selecting Enforce.
+
+## Step 8: Set a Static IP Address
+1. Go to **Network & Internet Settings > Change adapter options**.
+2. Open **Properties** for the network adapter, and configure IPv4 settings:
+   - **IP Address**: 192.168.138.136 (IP Address of pfSense network interface)
+   - **Subnet Mask**: 255.255.255.0
+   - **Default Gateway**: 192.168.138.2 (IP Address of pfSense Gateway)
+3. Apply the settings.
+
+## Final Notes
+- Confirm all configurations are as expected.
+- Ensure the domain controller is correctly configured for user authentication, file sharing, and group policies before running further security tests.
+
+# Joining Machines to the Domain (Marvel.local)
+
+This guide outlines the steps to join client machines to the Marvel.local domain, configure network settings, set up user roles, and verify shared drive access.
+
+## Step 1: Adjust RAM Allocation (If Necessary)
+
+- **Windows Server**: 2 GB (unless more RAM is available).
+- **Punisher Machine**: 4 GB.
+- **Spider-Man Machine**: 2 GB (optional, you can allocate 4 GB for better performance).
+
+## Step 2: Power On All Machines
+
+- Start the domain controller (DC) and both client machines (Punisher and Spider-Man).
+- Log in with the default local admin password (`Password1` with a capital "P" as per your setup).
+
+## Step 3: Configure Network Settings on Each Machine
+
+1. Open **Network and Sharing Center**:
+   - Go to **Change Adapter Settings**.
+   - Right-click on **Ethernet0** and choose **Properties**.
+   - Select **Internet Protocol Version 4 (TCP/IPv4)**, then **Properties**.
+
+2. **Set Static IP and DNS**:
+   - Use the domain controller’s IP as the DNS server (e.g., `192.168.138.136`).
+   - Save the settings.
+
+## Step 4: Join Each Machine to the Domain (Marvel.local)
+
+1. On each machine:
+   - Go to **Settings > Accounts > Access work or school**.
+   - Select **Connect** and choose **Join this device to a local Active Directory domain**.
+
+2. **Enter the Domain Information**:
+   - **Domain Name**: `Marvel.local`
+   - **Username**: `administrator`
+   - **Password**: (use the administrator password for the DC).
+
+3. **Restart Each Machine** once they’re successfully joined.
+
+## Step 5: Verify Domain Join on Domain Controller
+
+- On the DC, open **Active Directory Users and Computers**:
+   - Navigate to **Computers** in the **Marvel.local** domain.
+   - Ensure **Punisher** and **Spider-Man** appear in the list.
+
+## Step 6: Configure Local Users and Groups on Each Client Machine
+
+1. **Enable and Set Password for the Local Administrator Account**:
+   - Go to **Computer Management > Local Users and Groups > Users**.
+   - Double-click on **Administrator**, set the password (`Password1!`), and enable the account.
+
+2. **Add Domain Users as Local Administrators**:
+   - Go to **Computer Management > Local Users and Groups > Groups > Administrators**.
+   - Add `Fcastle` (Frank Castle) as a local administrator on **Punisher**.
+   - Add both `Fcastle` and `Pparker` (Peter Parker) as local administrators on **Spider-Man**.
+
+## Step 7: Enable Network Discovery
+
+- On each client, go to **Network & Sharing Center > Change advanced sharing settings**:
+   - Turn on **Network discovery** and **File and printer sharing**.
+
+## Step 8: Map the Shared Drive (HackMe) on Spider-Man
+
+1. Open **File Explorer**:
+   - Go to **This PC > Map Network Drive**.
+
+2. **Set Drive Mapping**:
+   - Choose a drive letter (e.g., `Z:`).
+   - Enter the path `\\Hydra-DC\HackMe`.
+   - Select **Connect using different credentials**.
+   - Use the **Administrator** account and password for authentication.
+
+## Step 9: Verify Access to Shared Drive
+
+- Ensure the **HackMe** shared drive is accessible on **Spider-Man**.
+
+---
+
+By following these steps, your machines should now be correctly joined to the **Marvel.local** domain with all necessary configurations for domain access, shared drive mapping, and user roles.
+
 
 ---
 
@@ -811,157 +1031,6 @@ As the script executes, you should see lots of output and green status indicatin
 
 ![image](https://github.com/user-attachments/assets/1958d78e-329e-401c-8c33-4783b14c2f5c)
 
-## Enable Some Extra Configurations
-
-### Disable Windows Defender Antivirus and Firewall
-
-Open the Start Menu and search for Group Policy.
-
-![image](https://github.com/user-attachments/assets/9044e22f-c381-49a4-9f43-005a777d0d86)
-
-Expand your forest until you see your domain.
-
-![image](https://github.com/user-attachments/assets/b4ce6ea5-38fe-4f2e-be98-acffe6a1097c)
-
-Right-click your domain name and choose Create a GPO.
-
-![image](https://github.com/user-attachments/assets/816d5a99-cb60-4644-a378-b7c806a97d5e)
-
-![image](https://github.com/user-attachments/assets/03ed6d43-a76a-498f-88dc-84ab0462f27a)
-
-Click OK. Right-click on your new group policy object and click Edit.
-
-![image](https://github.com/user-attachments/assets/e23c24ee-5fdd-4a5e-8ffc-d3017d819c1f)
-
-Expand down into Computer Configuration > Policies > Administrative Templates > Windows Components.
-
-![image](https://github.com/user-attachments/assets/dfaf703c-e6e2-4e8d-a58a-945df3d74dc1)
-
-Click on Windows Defender Antivirus, set it to enabled, and click OK.
-
-![image](https://github.com/user-attachments/assets/24bacaef-a79c-411f-8f44-2e3c416029b4)
-
-Click on Real-time Protection.
-
-![image](https://github.com/user-attachments/assets/57a37453-830d-4b0e-979e-c42bac1608a8)
-
-Double-click Turn off real-time protection, set it to enabled, and click OK.
-
-![image](https://github.com/user-attachments/assets/493169c3-b5fe-45f6-a90c-5ad84c2b5c85)
-
-Now, go to Network > Network Connections > Windows Defender Firewall > Domain Profile.
-
-![image](https://github.com/user-attachments/assets/cd016b5d-4e89-418a-bd8e-7bc212495d5c)
-
-Double-click Windows Defender Firewall: Protect all network connections. Set to Disabled and click OK.
-
-![image](https://github.com/user-attachments/assets/3b266d98-e79c-4c15-9e6a-51155a22162a)
-
-Right-click the group policy object. Turn on the Enforced option.
-
-![image](https://github.com/user-attachments/assets/c92383d2-475e-402f-b4e6-1955e1e524e7)
-
-### Enabling Any Local Admin Remote Login
-
-Log into your Domain Controller and run the Group Policy Management app.
-
-![image](https://github.com/user-attachments/assets/3493e5c9-d87f-447f-8071-ba3771ebfe28)
-
-Expand into and right-click the domain name. Choose Create a GPO in this domain, and Link it here.
-
-![image](https://github.com/user-attachments/assets/36f6d10c-d3b5-45a7-9423-1aa5fb60458d)
-
-![image](https://github.com/user-attachments/assets/80a67dea-edc3-47d8-95d8-5ea4f9075dcc)
-
-Right-click the new GPO and click Edit.
-
-![image](https://github.com/user-attachments/assets/d41f4424-6a7a-487a-913b-09745ed79009)
-
-Descend into Computer Configuration > Preferences > Windows Settings > Registry. Then, right-click Registry and choose New > Registry Item.
-
-![image](https://github.com/user-attachments/assets/d373f471-1521-48e1-aba8-b9f95014d671)
-
-- The Hive is **HKEY_LOCAL_MACHINE**
-- The Key Path is **SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\**
-- The ValueName is **LocalAccountTokenFilterPolicy**
-- The ValueType is **REG_DWORD**
-- The ValueData is **1**
-
-![image](https://github.com/user-attachments/assets/07ed763a-d3cd-4d2c-bdbe-4c08af57f651)
-
-### Enable WinRM Server on All Domain Hosts
-
-Log into your Domain Controller and run the Group Policy Management app.
-
-![image](https://github.com/user-attachments/assets/bc783e8c-2654-4c1b-afc2-09326bee650d)
-
-Expand into and right-click the domain name. Choose Create a GPO in this domain, and Link it here.
-
-![image](https://github.com/user-attachments/assets/219893af-923a-4454-bdbd-008617320bd6)
-
-Give the GPO a name of something descriptive like Enable WinRM Service. Then, right-click the new GPO and choose Edit.
-
-Start from Step 5 on the IBM knowledge base article below. You don't need to run gpupdate /force just yet, as we have other GPOs to create.
-
-Also, skip the last step to create a firewall rule because we have it disabled earlier.
-
-Link: https://www.ibm.com/docs/en/tarm/8.13.0?topic=management-enabling-winrm-via-global-policy-objects
-
-This will open TCP/5985 on your Windows 10 hosts. You can verify the service is running by checking if that port is open.
-
-### Enable Remote Desktop Service on All Domain Hosts
-
-Log into your Domain Controller and run the Group Policy Management app.
-
-![image](https://github.com/user-attachments/assets/0c867525-3c88-4df3-8c89-c9cde7d59b36)
-
-Expand into and right-click the domain name. Choose Create a GPO in this domain, and Link it here.
-
-![image](https://github.com/user-attachments/assets/b92e96be-0f1e-4290-ae3c-e807bbdc0889)
-
-Give the GPO a name of something descriptive like Enable Remote Desktop Service. Then, right-click the new GPO and choose Edit.
-
-Descend into Computer Configuration > Policies > Administrative Templates > Windows Components > Remote Desktop Services > Remote Desktop Session Host > Connections. Then, configure the policy as shown below and click OK.
-
-![image](https://github.com/user-attachments/assets/7a310ec5-2cc3-49a2-b5e5-70548973dddf)
-
-This will open TCP/3389 on your Windows 10 hosts.
-
-
-**If you want to allow any non-admin user to RDP into your domain hosts, follow the guidance here: https://technet2.github.io/Wiki/articles/17671.how-to-add-domain-usersgroup-to-remote-desktop-users-group-on-servers-using-group-policy.html?ref=benheater.com**
-
-**Use the GPO you've created here in this step and follow along with the article. The article uses the Remote Server Users security group, which doesn't exist in this lab. Instead, you can use the Domain Users group.**
-
-### Enable RPC Access on All Hosts
-
-Log into your Domain Controller and run the Group Policy Management app.
-
-![image](https://github.com/user-attachments/assets/d4cf396e-d6d3-4771-aa13-ba8f0a92cf56)
-
-Expand into and right-click the domain name. Choose Create a GPO in this domain, and Link it here.
-
-![image](https://github.com/user-attachments/assets/ebf6bc16-f9ce-41e1-8322-0cdafce13903)
-
-Give the GPO a name of something descriptive like Enable RPC Access on All Hosts. Then, right-click the new GPO and choose Edit.
-
-Descend into Computer Configuration > Administrative Templates > System > Remote Procedure Call and set Enable RPC Endpoint Mapper Client Authentication to Enabled.
-
-![image](https://github.com/user-attachments/assets/32b29036-a153-49d8-bc07-4a9c1298d51f)
-
-### Update the Domain Policies
-
-Now, open a PowerShell console as administrator on the Domain Controller and run this command: gpupdate /force
-
-![image](https://github.com/user-attachments/assets/4cff3f44-644c-482e-aac3-d03dd6a80b31)
-
-Finally, reboot your Windows 10 VMs, so that they pull the new policies when they come up. Alternatively, you can log into each VM and run the gpupdate /force command.
-
-**Now we can start attacking our Active Directory**
-
-**You can add this if you want, to cover another attack. Link: https://www.blumira.com/integration/how-to-disable-null-session-in-windows/
-A reboot is required to apply the changes.**
-
----
 
 ## 11. Building a Pivoting Lab To Practice External Pentest
 

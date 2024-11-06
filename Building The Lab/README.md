@@ -958,6 +958,93 @@ Once these steps are complete, both user machines should be ready. The next step
 
 ![image](https://github.com/user-attachments/assets/129d43c2-3048-4019-9a97-43ff08316be3)
 
+## Step 9: Configuring DNS Forwarders and DHCP Server in Active Directory Lab
+
+This guide covers how to configure DNS forwarders and a DHCP server on a Windows Server in an Active Directory lab environment. The DNS server will act as a resolver for the local domain (e.g., `Empire.local`) and forward any unknown DNS queries to a downstream DNS server. The DHCP server will manage IP addressing for network clients.
+
+---
+
+## Configure DNS Forwarders
+
+The DNS server running on the domain controller will resolve queries for the local domain, such as `Empire.local`. To handle any unknown DNS queries, configure a DNS forwarder to pass these queries to an external DNS server, such as the pfSense default gateway.
+
+### Steps to Configure DNS Forwarders
+
+1. **Open DNS Management Console**  
+   - Open the **Start Menu** and search for **DNS**.
+  
+2. **Access Forwarders Configuration**  
+   - Expand **DNS > [Your Domain Controller Name] (e.g., Death-Star-DC)**.
+   - Double-click **Forwarders**.
+
+3. **Add the Default Gateway as a Forwarder**  
+   - Click **Edit**.
+   - Enter the **IP address of the default gateway** (e.g., your pfSense IP address) `10.25.25.1`.
+   - Click **OK** to save the configuration.
+
+![image](https://github.com/user-attachments/assets/0b731c7b-b85b-4c43-ba29-2c8f4ba5e3c3)
+
+---
+
+## Add and Configure a DHCP Server
+
+To provide dynamic IP addressing in the lab environment, set up and configure a DHCP server on the domain controller.
+
+### Steps to Configure the DHCP Server
+
+1. **Open Server Manager and Add the DHCP Role**  
+   - Go to **Server Manager** and navigate to **Manage > Add Roles and Features**.
+   - Click **Next** through the first few setup screens.
+   - Select **DHCP Server** from the list of roles.
+   - Click **Add Features** when prompted.
+   - Click **Next > Next > Next**, then click **Install**.
+
+2. **Complete DHCP Configuration**  
+   - After installation, click **Complete DHCP Configuration**.
+   - Follow the setup wizard:
+     - Click **Next > Commit > Close > Close**.
+
+3. **Configure DHCP Scope**  
+   - Open the **Start Menu** and search for **DHCP**.
+   - Expand the **DHCP server tree**, right-click **IPv4**, and select **New Scope**.
+   - Click **Next** in the New Scope Wizard.
+
+4. **Define the Scope**  
+   - Enter a **name** and **description** for your DHCP configuration, then click **Next**.
+   - **Name**: Empire Local
+   - **Description**: Default DHCP scope for AD security lab
+   - Define the **address range** and **subnet mask** for the DHCP scope, then click **Next**.
+
+![image](https://github.com/user-attachments/assets/99d070d2-8e76-40b9-8f65-fc689000a358)
+
+![image](https://github.com/user-attachments/assets/a88eaacd-c2d9-4abc-a73a-cc7133438f89)
+
+5. **Configure Lease Duration**  
+   - We are not configuring any DHCP exclusions (reservations), so click **Next**.
+   - Set lease duration for **999 days**, then click **Next**.
+
+6. **Configure the Gateway Address**  
+   - Click **Next** to continue configuring the scope.
+   - Enter the **address of the default gateway** and click **Add**.
+
+   ![image](https://github.com/user-attachments/assets/9efa65c8-7739-49ba-83cf-a84a56ab6180)
+
+7. **Configure DNS for DHCP Clients**  
+   - The default DNS configuration for DHCP clients is sufficient, so click **Next**.
+
+![image](https://github.com/user-attachments/assets/f7a6dbad-b525-4452-9d42-0a22bd7102f4)
+
+8. **WINS Configuration**  
+   - Since we are not using WINS, click **Next**.
+
+9. **Activate the DHCP Scope**  
+   - Click **Next** to activate the DHCP scope, then click **Finish**.
+
+---
+
+Your DNS Forwarders and DHCP Server are now configured, allowing seamless DNS resolution and automatic IP allocation within your Active Directory lab.
+
+
 ## Final Notes
 - Confirm all configurations are as expected.
 - Ensure the domain controller is correctly configured for user authentication, file sharing, and group policies before running further security tests.
@@ -988,6 +1075,8 @@ This guide outlines the steps to join client machines to the Empire.local domain
    - Use the domain controller’s IP as the DNS server (e.g., `10.25.25.2`).
    - Save the settings.
 
+![image](https://github.com/user-attachments/assets/ee264ffa-e966-4fc1-ae97-041c580742f4)
+
 ## Step 4: Join Each Machine to the Domain (Empire.local)
 
 1. On each machine:
@@ -999,12 +1088,13 @@ This guide outlines the steps to join client machines to the Empire.local domain
    - **Username**: `administrator`
    - **Password**: (use the administrator password for the DC).
 
-3. **Restart Each Machine** once they’re successfully joined.
+3. For the **Account Type** choose Administrator.
+4. **Restart Each Machine** once they’re successfully joined.
 
 ## Step 5: Verify Domain Join on Domain Controller
 
 - On the DC, open **Active Directory Users and Computers**:
-   - Navigate to **Computers** in the **Marvel.local** domain.
+   - Navigate to **Computers** in the **Empire1!.local** domain.
    - Ensure **Darth_Vader** and **Darth_Sidious** appear in the list.
 
 ## Step 6: Configure Local Users and Groups on Each Client Machine
@@ -1037,6 +1127,15 @@ This guide outlines the steps to join client machines to the Empire.local domain
 ## Step 9: Verify Access to Shared Drive
 
 - Ensure the **ImperialPlans** shared drive is accessible on **Darth_Sidious**.
+
+## Step 10: Loggin to the machines with the domain users created
+
+- To log in to the machines use the domain credentials that were created.
+- Darth-Vader machine
+  
+  ![image](https://github.com/user-attachments/assets/ad7f318c-d0e5-4757-a408-e89794e36d30)
+
+- Darth-Sidious machine
 
 ---
 

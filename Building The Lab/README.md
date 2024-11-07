@@ -1062,22 +1062,10 @@ This guide outlines the steps to join client machines to the Empire.local domain
 ## Step 2: Power On All Machines
 
 - Start the domain controller (DC) and both client machines (Darth_Vader and Darth_Sidious).
-- Log in with the default local admin password (`Password1` with a capital "P" as per your setup).
+- Log in with the default local admin password (`Password1` for Darth-Vader and `Password2` for Darth-Sidious).
 
-## Step 3: Configure Network Settings on Each Machine
 
-1. Open **Network and Sharing Center**:
-   - Go to **Change Adapter Settings**.
-   - Right-click on **Ethernet0** and choose **Properties**.
-   - Select **Internet Protocol Version 4 (TCP/IPv4)**, then **Properties**.
-
-2. **Set Static IP and DNS**:
-   - Use the domain controller’s IP as the DNS server (e.g., `10.25.25.2`).
-   - Save the settings.
-
-![image](https://github.com/user-attachments/assets/ee264ffa-e966-4fc1-ae97-041c580742f4)
-
-## Step 4: Join Each Machine to the Domain (Empire.local)
+## Step 3: Join Each Machine to the Domain (Empire.local)
 
 1. On each machine:
    - Go to **Settings > Accounts > Access work or school**.
@@ -1091,13 +1079,13 @@ This guide outlines the steps to join client machines to the Empire.local domain
 3. For the **Account Type** choose Administrator.
 4. **Restart Each Machine** once they’re successfully joined.
 
-## Step 5: Verify Domain Join on Domain Controller
+## Step 4: Verify Domain Join on Domain Controller
 
 - On the DC, open **Active Directory Users and Computers**:
    - Navigate to **Computers** in the **Empire1!.local** domain.
    - Ensure **Darth_Vader** and **Darth_Sidious** appear in the list.
 
-## Step 6: Configure Local Users and Groups on Each Client Machine
+## Step 5: Configure Local Users and Groups on Each Client Machine
 
 1. **Enable and Set Password for the Local Administrator Account**:
    - Go to **Computer Management > Local Users and Groups > Users**.
@@ -1108,12 +1096,14 @@ This guide outlines the steps to join client machines to the Empire.local domain
    - Add `ASkywalker` (Anakin Skywalker) as a local administrator on **Darth_Vader**.
    - Add both `ASkywalker` and `SPalpatine` (Sheev Palpatine) as local administrators on **Darth_Sidious**.
 
-## Step 7: Enable Network Discovery
+ image here
+
+## Step 6: Enable Network Discovery
 
 - On each client, go to **Network & Sharing Center > Change advanced sharing settings**:
    - Turn on **Network discovery** and **File and printer sharing**.
 
-## Step 8: Map the Shared Drive (ImperialPlans) on Darth_Sidious
+## Step 7: Map the Shared Drive (ImperialPlans) on Darth_Sidious
 
 1. Open **File Explorer**:
    - Go to **This PC > Map Network Drive**.
@@ -1123,12 +1113,13 @@ This guide outlines the steps to join client machines to the Empire.local domain
    - Enter the path `\\Death-Star-DC\ImperialPlans`.
    - Select **Connect using different credentials**.
    - Use the **Administrator** account and password for authentication.
+   - Check the box for **Remember my Credentials**
 
-## Step 9: Verify Access to Shared Drive
+## Step 8: Verify Access to Shared Drive
 
 - Ensure the **ImperialPlans** shared drive is accessible on **Darth_Sidious**.
 
-## Step 10: Loggin to the machines with the domain users created
+## Step 9: Loggin to the machines with the domain users created
 
 - To log in to the machines use the domain credentials that were created.
 - Darth-Vader machine
@@ -1136,6 +1127,8 @@ This guide outlines the steps to join client machines to the Empire.local domain
   ![image](https://github.com/user-attachments/assets/ad7f318c-d0e5-4757-a408-e89794e36d30)
 
 - Darth-Sidious machine
+
+image here
 
 ---
 

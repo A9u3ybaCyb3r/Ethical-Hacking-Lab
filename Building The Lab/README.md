@@ -1141,7 +1141,7 @@ By following these steps, your machines should now be correctly joined to the **
 
 ## Using a Vulnerable AD Script
 
-We will use this script to create a vulnerable active directory: [Vulnerable AD Plus Script](**https://github.com/WaterExecution/vulnerable-AD-plus?)**
+We will use this script to create a vulnerable active directory: **[Vulnerable AD Plus Script](https://github.com/WaterExecution/vulnerable-AD-plus?)**
 
 Following along with the installation guidance, you should do the following:
 

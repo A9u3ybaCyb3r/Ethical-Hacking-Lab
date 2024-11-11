@@ -1251,7 +1251,7 @@ As the script executes, you should see output with green status messages indicat
 2. Reboot your **Windows 10 VMs** so that they pull the new policies on startup, or log into each VM and run `gpupdate /force` manually.
 
 
-**Make sure to turn on the first pfSense machine in order for the lab to work and start hacking**
+### **Make sure to turn on the first pfSense machine in order for the lab to work and start hacking**
 
 # 11. Building a Pivoting Lab To Practice External Pentest
 
@@ -1351,4 +1351,4 @@ Command: **sudo /etc/init.d/networking restart**
 
 ![image](https://github.com/user-attachments/assets/8f55beb3-450a-4686-9c0e-837ff839cb5f)
 
-**Now we are done with the lab! Happy Hacking! Also, make sure to turn on the first pfSense machine in order for the lab to work**
+### **Now we are done with the lab! Happy Hacking! Also, make sure to turn on first the pfSense machine in order for the lab to work**

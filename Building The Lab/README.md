@@ -1181,7 +1181,71 @@ As the script executes, you should see output with green status messages indicat
 
 ![image](https://github.com/user-attachments/assets/1958d78e-329e-401c-8c33-4783b14c2f5c)
 
-**Make sure to turn on the first pfSense machine in order for the lab to work**
+## Configuring Remote Access and Services on Domain Hosts
+
+### Enabling Any Local Admin Remote Logon
+
+1. **Log into your Domain Controller** and open the Group Policy Management app.
+2. Expand the domain and **right-click the domain name**. Choose **Create a GPO in this domain, and Link it here...**
+3. **Name the GPO** descriptively, then click **OK**.
+4. Right-click the new GPO and choose **Edit**.
+5. Go to **Computer Configuration > Preferences > Windows Settings > Registry**.
+   - Right-click **Registry** and choose **New > Registry Item**.
+   - Set the following values:
+     - **Hive**: `HKEY_LOCAL_MACHINE`
+     - **Key Path**: `SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\`
+     - **Value Name**: `LocalAccountTokenFilterPolicy`
+     - **Value Type**: `REG_DWORD`
+     - **Value Data**: `1`
+6. Click **OK** to save.
+
+---
+
+### Enable WinRM Server on All Domain Hosts
+
+1. **Log into your Domain Controller** and open the Group Policy Management app.
+2. Expand the domain and **right-click the domain name**. Choose **Create a GPO in this domain, and Link it here...**
+3. **Name the GPO** descriptively, such as "Enable WinRM Service," then right-click the new GPO and choose **Edit**.
+4. Follow Step 5 on the IBM Knowledge Base article for setting up WinRM.
+   - You can skip the last step where they create a firewall rule if you've disabled the firewall via a previous GPO.
+   - This configuration will open **TCP/5985** on Windows 10 hosts.
+5. Verify that the service is running by checking if **TCP/5985** is open.
+
+---
+
+### Enable Remote Desktop Service on All Domain Hosts
+
+1. **Log into your Domain Controller** and open the Group Policy Management app.
+2. Expand the domain and **right-click the domain name**. Choose **Create a GPO in this domain, and Link it here...**
+3. **Name the GPO** descriptively, such as "Enable Remote Desktop Service," then right-click the new GPO and choose **Edit**.
+4. Navigate to:
+   - **Computer Configuration > Policies > Administrative Templates > Windows Components > Remote Desktop Services > Remote Desktop Session Host > Connections**.
+5. Configure the Remote Desktop policy and click **OK**.
+   - This configuration will open **TCP/3389** on Windows 10 hosts.
+6. To allow any non-admin user to RDP, use the **Domain Users** group in place of the **Remote Server Users** security group.
+
+---
+
+### Enable RPC Access on All Hosts
+
+1. **Log into your Domain Controller** and open the Group Policy Management app.
+2. Expand the domain and **right-click the domain name**. Choose **Create a GPO in this domain, and Link it here...**
+3. **Name the GPO** descriptively, such as "Enable RPC Access on All Hosts," then right-click the new GPO and choose **Edit**.
+4. Navigate to:
+   - **Computer Configuration > Administrative Templates > System > Remote Procedure Call**.
+5. Set **Enable RPC Endpoint Mapper Client Authentication** to **Enabled**.
+
+---
+
+### Update Domain Policies
+
+1. Open a PowerShell console as administrator on the Domain Controller and run:
+   ```powershell
+   gpupdate /force
+2. Reboot your **Windows 10 VMs** so that they pull the new policies on startup, or log into each VM and run `gpupdate /force` manually.
+
+
+**Make sure to turn on the first pfSense machine in order for the lab to work and start hacking**
 
 # 11. Building a Pivoting Lab To Practice External Pentest
 

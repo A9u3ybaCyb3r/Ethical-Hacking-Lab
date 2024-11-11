@@ -10,7 +10,7 @@
 - [7.Configuring the pfSense firewall](#7-configuring-the-pfSense-firewall)
 - [8.Importing Vulnhub VMs to the lab ](#8-importing-vulnhub-vms-to-the-lab)
 - [9. Building an Active Directory](#9-building-an-active-directory)
-- [10. Using a Vulnerable AD Script (Optional)](#10-using-a-vulnerable-ad-script-(optional))
+- [10. Make your AD Vulnerable](#10-make-your-ad-vulnerable)
 - [11.Building a Pivoting Lab To Practice External Pentest](#11-building-a-pivoting-lab-to-practice-external-pentest)
 
 ---

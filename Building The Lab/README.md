@@ -1212,6 +1212,7 @@ As the script executes, you should see output with green status messages indicat
 2. Expand the domain and **right-click the domain name**. Choose **Create a GPO in this domain, and Link it here...**
 3. **Name the GPO** descriptively, such as "Enable WinRM Service," then right-click the new GPO and choose **Edit**.
 4. Follow Step 5 on the IBM Knowledge Base article for setting up WinRM.
+   - [Enabling WinRM Via Global Policy Objects](https://www.ibm.com/docs/en/tarm/8.14.0?topic=management-enabling-winrm-via-global-policy-objects)
    - You can skip the last step where they create a firewall rule if you've disabled the firewall via a previous GPO.
    - This configuration will open **TCP/5985** on Windows 10 hosts.
 5. Verify that the service is running by checking if **TCP/5985** is open.
@@ -1225,9 +1226,9 @@ As the script executes, you should see output with green status messages indicat
 3. **Name the GPO** descriptively, such as "Enable Remote Desktop Service," then right-click the new GPO and choose **Edit**.
 4. Navigate to:
    - **Computer Configuration > Policies > Administrative Templates > Windows Components > Remote Desktop Services > Remote Desktop Session Host > Connections**.
-5. Configure the Remote Desktop policy and click **OK**.
+5. Configure the Remote Desktop policy, choose **Enabled**, and click **OK**.
    - This configuration will open **TCP/3389** on Windows 10 hosts.
-6. To allow any non-admin user to RDP, use the **Domain Users** group in place of the **Remote Server Users** security group.
+6. (Optional)To allow any non-admin user to RDP, [follow this guide](https://technet2.github.io/Wiki/articles/17671.how-to-add-domain-usersgroup-to-remote-desktop-users-group-on-servers-using-group-policy.html?ref=benheater.com), use the **Domain Users** group in place of the **Remote Server Users** security group.
 
 ---
 

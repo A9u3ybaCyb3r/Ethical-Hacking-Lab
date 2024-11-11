@@ -363,6 +363,8 @@ To avoid exposing the pfSense web console to public networks, we will **not make
 
    ![Check Network Connection](https://github.com/user-attachments/assets/3507057e-d6df-423e-9fbe-bde723849657)
 
+### Keep the pfSense machine on to configure the rest of the environment!
+
 ---
 
 # 7. Configuring the pfSense firewall
@@ -1179,6 +1181,7 @@ As the script executes, you should see output with green status messages indicat
 
 ![image](https://github.com/user-attachments/assets/1958d78e-329e-401c-8c33-4783b14c2f5c)
 
+**Make sure to turn on the first pfSense machine in order for the lab to work**
 
 # 11. Building a Pivoting Lab To Practice External Pentest
 
@@ -1278,4 +1281,4 @@ Command: **sudo /etc/init.d/networking restart**
 
 ![image](https://github.com/user-attachments/assets/8f55beb3-450a-4686-9c0e-837ff839cb5f)
 
-**Now we are done with the lab! Happy Hacking!**
+**Now we are done with the lab! Happy Hacking! Also, make sure to turn on the first pfSense machine in order for the lab to work**

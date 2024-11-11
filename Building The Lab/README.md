@@ -10,7 +10,7 @@
 - [7.Configuring the pfSense firewall](#7-configuring-the-pfSense-firewall)
 - [8.Importing Vulnhub VMs to the lab ](#8-importing-vulnhub-vms-to-the-lab)
 - [9. Building an Active Directory](#9-building-an-active-directory)
-- [10. Make your AD Lab vulnerable](#10-make-your-ad-lab-vulnerable)
+- [10. Using a Vulnerable AD Script (Optional)](#10-using-a-vulnerable-ad-script-(optional))
 - [11.Building a Pivoting Lab To Practice External Pentest](#11-building-a-pivoting-lab-to-practice-external-pentest)
 
 ---
@@ -1139,11 +1139,16 @@ By following these steps, your machines should now be correctly joined to the **
 
 ---
 
-# 10. Make your AD Lab vulnerable
+# 10. Make your AD vulnerable
 
-## Using a Vulnerable AD Script
+## Using a Vulnerable AD Script (Optional)
 
-We will use this script to create a vulnerable active directory: **[Vulnerable AD Plus Script](https://github.com/WaterExecution/vulnerable-AD-plus?)**
+The AD is already vulnerable with the configuration earlier but we can add some other attacks. We will use this script to create a vulnerable active directory: **[Vulnerable AD Plus Script](https://github.com/WaterExecution/vulnerable-AD-plus?)**
+
+![image](https://github.com/user-attachments/assets/34f90042-aeaa-483b-b2de-8ddd8f35ac6e)
+
+![image](https://github.com/user-attachments/assets/51a8cb6e-7ebe-4782-8859-58be6cd0528f)
+
 
 Following along with the installation guidance, you should do the following:
 

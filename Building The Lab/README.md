@@ -909,8 +909,8 @@ Once these steps are complete, both user machines should be ready. The next step
    - Copy the **Administrator** account and create a new service account with the following:
      - Full Name: **SQL Service**
      - Username: **SQLService**
-     - Password: **MyPassword123#**
-     - Add a description for demonstration purposes: "Password is MyPassword123#".
+     - Password: **MyPassword123**
+     - Add a description for demonstration purposes: "Password is MyPassword123".
 3. **Standard Users (Anakin Skywalker and Sheev Palpatine)**:
    - Create individual user accounts as follows, **Right-click black space > New > User **:
      - **Anakin Skywalker**:

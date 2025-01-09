@@ -1098,7 +1098,6 @@ This guide outlines the steps to join client machines to the Empire.local domain
    - Add `ASkywalker` (Anakin Skywalker) as a local administrator on **Darth_Vader**.
    - Add both `ASkywalker` and `SPalpatine` (Sheev Palpatine) as local administrators on **Darth_Sidious**.
 
- image here
 
 ## Step 6: Enable Network Discovery
 
@@ -1130,7 +1129,8 @@ This guide outlines the steps to join client machines to the Empire.local domain
 
 - Darth-Sidious machine
 
-image here
+![image](https://github.com/user-attachments/assets/9f832c42-39c1-41ee-a347-5468e5b60612)
+
 
 ---
 

@@ -17,6 +17,11 @@ nmap -T4 -p- -A 10.21.21.11
 - `-p-`: Ensures all ports are scanned.
 - `-A`: Provides detailed information about the target, including OS, services, and versions.
 
+![image](https://github.com/user-attachments/assets/4cee477c-c968-4b31-adc7-f3827b50c822)
+![image](https://github.com/user-attachments/assets/55d36441-7359-4d39-90e3-b36a2ab0ef25)
+![image](https://github.com/user-attachments/assets/22e75d96-ff40-4a1c-9850-ec6224e59f56)
+![image](https://github.com/user-attachments/assets/171cfe96-40e0-41b2-acae-336c923a73e6)
+
 We can see that there are a lot of open ports, so we are going to exploit them.
 
 ### 1. Port 21 (FTP) - Exploiting FTP through Metasploit Framework

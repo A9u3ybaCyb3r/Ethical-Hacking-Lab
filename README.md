@@ -1,4 +1,4 @@
-# Virtual Network Penetration Testing Lab
+# Ethical Hacking Lab
 
 ## Objective
 
